@@ -24,6 +24,8 @@ runs/                       本地实验产物与评测工具
 
 ## 评测安装
 
+评测范围、子集选择、报告口径和历史版本入口见 [评测说明](configs/eval/README.md)。
+
 两个评测工具均放在 `runs/tools/`，用 `agentic-rl` 的 Python 创建独立环境。BFCL 固定 NumPy 1.26.4，独立安装可以避免修改训练环境。评测服务通过 OpenAI 兼容接口运行时，可独立选择模型推理后端。
 
 ### BFCL V4
