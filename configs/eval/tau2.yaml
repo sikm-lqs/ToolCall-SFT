@@ -1,0 +1,7 @@
+# Keep the original text protocol for the three τ²-Bench domains.
+git_ref: v0.2.0
+domains: [retail, airline, telecom]
+smoke:
+  domain: retail
+  num_tasks: 2
+  num_trials: 1

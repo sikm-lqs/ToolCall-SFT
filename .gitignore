@@ -1,0 +1,40 @@
+# Python, local environments and build output
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+.coverage*
+htmlcov/
+build/
+dist/
+.venv/
+.conda/
+
+# Local settings and credentials
+.env
+.env.*
+!.env.example
+.idea/
+.vscode/
+.DS_Store
+
+# Datasets, downloaded models and experiment artifacts
+/data/
+/models/
+/checkpoints/
+/runs/
+/swanlog/
+/.cache/
+*.safetensors
+*.gguf
+*.ckpt
+*.bin
+*.pt
+*.pth
+*.onnx
+*.parquet
+*.arrow
+*.log

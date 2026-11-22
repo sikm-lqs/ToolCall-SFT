@@ -1,0 +1,8 @@
+# Pass these smoke settings to the official BFCL CLI.
+version: "2026.3.23"
+smoke:
+  test_category: simple_python
+  case_ids:
+    - simple_python_0
+    - simple_python_1
+    - simple_python_2
