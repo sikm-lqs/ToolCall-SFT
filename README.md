@@ -2,9 +2,13 @@
 
 以 Qwen3.5-0.8B 和 Qwen3.5-2B 为起点，研究小模型通用工具调用的后训练。第一阶段选用 TRL 的 `SFTTrainer`，后续研究 OPD 和 Agentic RL。BFCL V4 和 API-Bank 用于评估工具调用，τ²-Bench 用于评估多轮任务。
 
-## 项目结构
+## 文档
 
-首次部署见 [V100 服务器安装指南](SERVER_SETUP.md)，包括 uv、Python、TRL、模型下载和显卡验证。
+- [0. 服务器环境安装](docs/0-服务器环境安装.md)：A100 40GB、vLLM 与双模型 smoke。
+- [1. 评测运行与产物](docs/1-评测运行与产物.md)：数据集、运行目录与指标文件。
+- [2. 基线评测](docs/2-基线评测.md)：双模型全量矩阵、参数审核和性能记录。
+
+## 项目结构
 
 ```text
 configs/models/             两个起始模型的下载配置
@@ -13,7 +17,8 @@ src/toolcall/data/          数据处理目录，目前占位
 src/toolcall/training/      后训练目录，目前占位
 src/toolcall/evaluation/    三套评测入口、指标与图表
 data/                       本地数据
-runs/eval/                  统一评测产物
+docs/                       按流程编号的操作文档
+runs/eval/<评测集>/<模型>/   每次运行的配置、预测、指标和遥测
 runs/swanlab/               SwanLab SDK 运行日志
 ```
 
@@ -32,7 +37,7 @@ git commit -m "Describe the experiment change"
 git push -u origin HEAD
 ```
 
-服务器首次克隆和安装见 [服务器安装指南](SERVER_SETUP.md)。后续运行前，在服务器的项目根目录检查当前分支并更新。下面以 `main` 为例。专题分支可将两处 `main` 替换成已推送的分支名，首次切换前先运行 `git fetch origin`。
+服务器首次克隆和安装见[服务器环境安装](docs/0-服务器环境安装.md)。后续运行前，在服务器的项目根目录检查当前分支并更新。下面以 `main` 为例。专题分支可将两处 `main` 替换成已推送的分支名，首次切换前先运行 `git fetch origin`。
 
 ```bash
 git status --short --branch
@@ -54,7 +59,7 @@ toolcall-eval api-bank
 toolcall-eval tau2
 ```
 
-默认是 smoke。完整评测、固定子集、用户模拟器和 SSH 部署参数见 [评测说明](configs/eval/README.md)。
+默认是 smoke。完整评测、固定子集和用户模拟器见[评测运行与产物](docs/1-评测运行与产物.md)。正式基线先走[人工审核](docs/2-基线评测.md)。
 
 ## SwanLab 云端实验
 
@@ -66,4 +71,4 @@ swanlab login
 
 评测自动命名为 `模型[-变体]-评测集-范围-UTC时间`，例如 `qwen3.5-0.8b-bfcl-v4-smoke-20261123-031500Z`。对比训练方法或 checkpoint 时用 `--variant sft-lora` 等短标签。每次手动记录或今后新增训练实验也使用描述性的名称，例如 `qwen3.5-0.8b-sft-lora-20261123-031500Z`。
 
-用 `toolcall-eval report runs/eval/<run_id>` 重绘已保存的运行。权重、数据、日志和本地凭据由 Git 忽略。
+用 `toolcall-eval report "$run_dir"` 重绘已保存的运行，其中 `run_dir` 指向 CLI 打印的运行目录。权重、数据、日志和本地凭据由 Git 忽略。

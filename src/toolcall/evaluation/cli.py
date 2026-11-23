@@ -54,10 +54,13 @@ def run_slug(value):
     return slug
 
 
+def model_slug(model):
+    return run_slug(model.rstrip("/").rsplit("/", 1)[-1])
+
+
 def experiment_name(settings, started_at):
-    model = settings["model"].rstrip("/").rsplit("/", 1)[-1]
     parts = (
-        run_slug(model),
+        model_slug(settings["model"]),
         settings.get("variant"),
         settings["benchmark"],
         settings.get("profile"),
@@ -204,10 +207,18 @@ def launch(args, root):
     settings.update(serving_metadata(args.base_url, args.model))
     started_at = datetime.now(timezone.utc)
     settings["run_name"] = experiment_name(settings, started_at)
-    timestamp = started_at.strftime("%Y%m%d-%H%M%S-%f")
+    run_id = "-".join(
+        part
+        for part in (
+            settings["profile"],
+            settings.get("variant"),
+            started_at.strftime("%Y%m%dT%H%M%S.%fZ"),
+        )
+        if part
+    )
     run = (
         args.output
-        or root / "runs/eval" / f"{timestamp}-{args.benchmark}-{settings['profile']}"
+        or root / "runs/eval" / args.benchmark / model_slug(args.model) / run_id
     ).resolve()
     run.mkdir(parents=True)
     write_json(run / "config.json", settings)
