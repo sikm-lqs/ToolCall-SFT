@@ -19,6 +19,7 @@ dependencies = [
 toolcall-download = "toolcall.models:main"
 toolcall-log-eval = "toolcall.evaluation.swanlab_log:main"
 toolcall-eval = "toolcall.evaluation.cli:main"
+toolcall-baseline-report = "toolcall.evaluation.baseline_report:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
