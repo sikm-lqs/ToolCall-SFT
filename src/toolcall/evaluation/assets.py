@@ -68,10 +68,19 @@ def fetch_encoder(worker, model, revision, destination=None):
     args = [model, revision, str(destination or "")]
     code = """
 import sys
+from pathlib import Path
 from huggingface_hub import snapshot_download
 model, revision, directory = sys.argv[1:]
-snapshot_download(model, revision=revision, local_dir=directory or None,
-                  allow_patterns=["*.json", "*.txt", "model.safetensors", "1_Pooling/*"])
+snap = Path(snapshot_download(
+    model, revision=revision, local_dir=directory or None,
+    allow_patterns=["*.json", "*.txt", "model.safetensors", "1_Pooling/*"],
+))
+if not directory:
+    # SentenceTransformer resolves refs/main in offline mode when no revision is passed.
+    ref = snap.parent.parent / "refs" / "main"
+    ref.parent.mkdir(parents=True, exist_ok=True)
+    if not ref.exists():
+        ref.write_text(revision, encoding="utf-8")
 """
     env = {
         key: val

@@ -396,6 +396,9 @@ def primary_metric(benchmark: str, profile: str, summary: dict) -> tuple[str, fl
         elif "no_web_weighted_accuracy" in metrics:
             label = "No-Web Weighted"
             score = metrics["no_web_weighted_accuracy"]
+        elif "core_weighted_accuracy" in metrics:
+            label = "Core Weighted (No-Agentic)"
+            score = metrics["core_weighted_accuracy"]
         elif "bfcl_aggregate_without_web_renormalized" in metrics:
             label = "No-Web Weighted (Hist.)"
             score = metrics["bfcl_aggregate_without_web_renormalized"]

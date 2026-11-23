@@ -78,6 +78,7 @@ def register(config, run):
 def selection(config):
     from bfcl_eval.constants.category_mapping import (
         ALL_SCORING_CATEGORIES,
+        MEMORY_CATEGORY,
         WEB_SEARCH_CATEGORY,
     )
     from bfcl_eval.utils import load_dataset_entry, parse_test_category_argument
@@ -112,11 +113,12 @@ def selection(config):
         return categories, None
     if config["profile"] == "smoke":
         return [config["test_category"]], {config["test_category"]: config["case_ids"]}
-    return [
-        key
-        for key in ALL_SCORING_CATEGORIES
-        if config["profile"] == "full" or key not in WEB_SEARCH_CATEGORY
-    ], None
+    excluded = set()
+    if config["profile"] != "full":
+        excluded |= set(WEB_SEARCH_CATEGORY)
+    if config["profile"] == "core":
+        excluded |= set(MEMORY_CATEGORY)
+    return [key for key in ALL_SCORING_CATEGORIES if key not in excluded], None
 
 
 def include_dependencies(ids):
@@ -162,6 +164,7 @@ def score_summary(run, categories, seconds, score_seconds, maximum, *, partial):
     import csv
     from bfcl_eval.constants.category_mapping import (
         ALL_SCORING_CATEGORIES,
+        MEMORY_CATEGORY,
         WEB_SEARCH_CATEGORY,
     )
 
@@ -176,6 +179,12 @@ def score_summary(run, categories, seconds, score_seconds, maximum, *, partial):
     ):
         metrics["no_web_weighted_accuracy"] = (
             float(official_row["Overall Acc"].rstrip("%")) / 80
+        )
+    if not partial and set(categories) == set(ALL_SCORING_CATEGORIES) - set(
+        WEB_SEARCH_CATEGORY
+    ) - set(MEMORY_CATEGORY):
+        metrics["core_weighted_accuracy"] = (
+            float(official_row["Overall Acc"].rstrip("%")) / 60
         )
     return result(
         metrics,

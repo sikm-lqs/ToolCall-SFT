@@ -87,7 +87,9 @@ def parser():
     for name in WORKERS:
         command = commands.add_parser(name)
         profiles = (
-            ("smoke", "full", "no-web") if name == "bfcl-v4" else ("smoke", "full")
+            ("smoke", "full", "no-web", "core")
+            if name == "bfcl-v4"
+            else ("smoke", "full")
         )
         command.add_argument("--profile", choices=profiles, default="smoke")
         command.add_argument("--model", default="Qwen/Qwen3.5-2B")
