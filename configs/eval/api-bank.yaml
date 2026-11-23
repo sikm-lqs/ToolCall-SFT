@@ -1,0 +1,6 @@
+concurrency: 96
+official_sources:
+  repository: f30ccf22b4e2617fab32958d4c03f5c1f2e7dfcf
+  level3_dataset: 12e8158b7628c168f07e8f31fbbe3445e99f44cf
+smoke:
+  seed: 42

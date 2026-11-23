@@ -7,6 +7,27 @@ from pathlib import Path
 import swanlab
 
 
+def publish(metrics, config, images, *, mode, project, name, log_dir, group=None):
+    with swanlab.init(
+        project=project,
+        name=name,
+        config=config,
+        log_dir=str(log_dir),
+        group=group,
+        mode=mode,
+    ) as run:
+        swanlab.log(
+            {
+                **metrics,
+                **{
+                    f"charts/{key}": swanlab.Image(str(path))
+                    for key, path in images.items()
+                },
+            }
+        )
+        return getattr(run, "id", None)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -27,11 +48,12 @@ def main() -> None:
         parser.error("metrics must be a nonempty JSON object with numeric values")
     config = json.loads(args.config.read_text(encoding="utf-8")) if args.config else {}
 
-    with swanlab.init(
+    publish(
+        metrics,
+        config,
+        {},
         project=args.project,
         name=args.run_name,
-        config=config,
-        log_dir="runs/swanlab",
         mode=args.mode,
-    ):
-        swanlab.log(metrics)
+        log_dir=Path("runs/swanlab"),
+    )

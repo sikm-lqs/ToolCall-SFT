@@ -1,7 +1,11 @@
-# Keep the original text protocol for the three τ²-Bench domains.
 git_ref: v0.2.0
+git_commit: f8de30c298689cbe0117d76a378e7315a17e5bd8
+concurrency: 3
+trials: 1
+max_steps: 200
 domains: [retail, airline, telecom]
 smoke:
-  domain: retail
-  num_tasks: 2
-  num_trials: 1
+  domains: [retail]
+  limit: 2
+  concurrency: 1
+  max_steps: 20
