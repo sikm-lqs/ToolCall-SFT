@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "Post-training experiments for small Qwen tool-calling models"
 requires-python = ">=3.11"
 dependencies = [
-    "modelscope>=1.39,<2",
+    "modelscope>=1.40,<2",
     "PyYAML>=6,<7",
     "swanlab>=0.10.6,<1",
     "matplotlib>=3.8,<4",

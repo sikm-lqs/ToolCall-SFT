@@ -143,6 +143,7 @@ def prepare(root, suite):
                 "rank-bm25==0.2.2",
                 "sentence-transformers==6.3.0",
                 "httpx>=0.28,<1",
+                "requests>=2.32,<3",
             )
             for filename in (
                 "level-3.json",
