@@ -6,15 +6,18 @@ from pathlib import Path
 
 import swanlab
 
+PROJECT = "toolcall-sft"
 
-def publish(metrics, config, images, *, mode, project, name, log_dir, group=None):
+
+def publish(metrics, config, images, *, name, log_dir, group=None):
     with swanlab.init(
-        project=project,
+        project=PROJECT,
         name=name,
         config=config,
         log_dir=str(log_dir),
         group=group,
-        mode=mode,
+        mode="online",
+        on_online_error="raise",
     ) as run:
         swanlab.log(
             {
@@ -33,9 +36,7 @@ def main() -> None:
     parser.add_argument(
         "metrics", type=Path, help="JSON object of metric names and values"
     )
-    parser.add_argument("--mode", choices=("local", "online"), default="local")
-    parser.add_argument("--project", default="toolcall-sft")
-    parser.add_argument("--run-name", required=True)
+    parser.add_argument("--run-name", required=True, help="descriptive experiment name")
     parser.add_argument("--config", type=Path, help="JSON snapshot of the run settings")
     args = parser.parse_args()
 
@@ -46,14 +47,14 @@ def main() -> None:
         or any(type(value) not in (float, int) for value in metrics.values())
     ):
         parser.error("metrics must be a nonempty JSON object with numeric values")
+    if not args.run_name.strip():
+        parser.error("--run-name must not be empty")
     config = json.loads(args.config.read_text(encoding="utf-8")) if args.config else {}
 
     publish(
         metrics,
         config,
         {},
-        project=args.project,
-        name=args.run_name,
-        mode=args.mode,
+        name=args.run_name.strip(),
         log_dir=Path("runs/swanlab"),
     )

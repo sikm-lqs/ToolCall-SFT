@@ -4,13 +4,14 @@
 
 ## 安装与启动
 
+先按 [服务器安装指南](../../SERVER_SETUP.md) 安装项目。V100 上可用已部署的兼容推理端点，通过 `--base-url` 和 `--model` 指定服务地址与模型名。
+
 ```bash
-conda activate agentic-rl
-python -m pip install -e .
+source .venv/bin/activate
 toolcall-eval prepare all
 ```
 
-可以把 `all` 换成 `bfcl-v4`、`api-bank` 或 `tau2`。准备命令会创建 `runs/tools/` 下的评测环境，准备固定的上游数据和向量检索模型。首次准备需要 GitHub、PyPI 和 Hugging Face 的网络访问。服务器已有独立环境时，可以用 `--worker-python /path/to/python`。启动受测模型时可用下面的 vLLM 命令，其中 `MODEL_PATH` 指向本机已有的权重快照。
+可以把 `all` 换成 `bfcl-v4`、`api-bank` 或 `tau2`。准备命令会创建 `runs/tools/` 下的评测环境，准备固定的上游数据和向量检索模型。首次准备需要 GitHub、PyPI 和 Hugging Face 的网络访问。服务器已有独立环境时，可以用 `--worker-python /path/to/python`。在支持 BF16 且满足 vLLM 要求的 GPU 上，可用下面的命令部署受测模型，其中 `MODEL_PATH` 指向推理服务器上已有的权重快照。
 
 ```bash
 MODEL_PATH=/absolute/path/to/qwen35-2b-snapshot
@@ -62,9 +63,11 @@ API-Bank 使用原生 FC，在每一步提供参考历史，并复用上游本�
 | `scores.png`、`resources.png` | 分项分数和资源曲线。API-Bank 另有 ROUGE-L 和工具覆盖图 |
 | `benchmark.log`、`resources.jsonl` | 运行日志、vLLM 排队与 KV cache 采样。推理和评测同机时，传 `--gpu-index 0` 记录整卡显存和 GPU 利用率 |
 | 原始预测、官方分数或模拟轨迹 | 按各评测原格式保留。τ² 每个域一份 JSON |
-| `swanlab.json` | SwanLab 模式、运行 ID 和日志目录 |
+| `swanlab.json` | SwanLab 云端项目、实验名、运行 ID 和 SDK 日志目录 |
 
-默认自动记录到本地 SwanLab，并按评测名分组。服务器上可以运行 `swanlab watch runs/swanlab`，从本机通过 SSH 转发面板端口。已登录且需要云端同步时设置 `--swanlab online`。只需要本地文件时用 `--swanlab off`。可用 `toolcall-eval report runs/eval/<run_id>` 重绘并重新记录已保存的评测，推理不会重跑。评测进程出错时仍可检查该运行的日志和可用遥测，状态标为失败。 [SwanLab 本地面板](https://docs.swanlab.cn/en/guide_cloud/offline-board.html)
+首次评测前运行 `swanlab login`。每次评测上传到同一个云端 `toolcall-sft` 项目，按评测集分组。名称自动包含模型、评测集、范围及 UTC 时间，可用 `--variant sft-lora` 加短标签。评测进程出错时仍可检查该运行的日志和可用遥测，状态标为失败。 [SwanLab 登录](https://docs.swanlab.cn/en/api/cli-swanlab-login.html)
+
+`toolcall-eval report runs/eval/<run_id>` 从现有结果重绘图表。云端上传失败时，可用同一条命令加 `--swanlab online` 补传。已记录云端运行 ID 和项目的评测会沿用上传记录。报告重绘与补传均直接读取已保存的评测产物。
 
 ## 复现 BFCL 旧版历史分数
 

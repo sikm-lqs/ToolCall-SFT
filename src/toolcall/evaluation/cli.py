@@ -1,10 +1,11 @@
 """Launch a benchmark in its isolated environment and report to SwanLab."""
 
 import argparse
-from datetime import datetime
+from datetime import datetime, timezone
 import json
 import os
 from pathlib import Path
+import re
 import subprocess
 import time
 from urllib.parse import urlsplit
@@ -46,6 +47,25 @@ def endpoint(value):
     return value.rstrip("/")
 
 
+def run_slug(value):
+    slug = re.sub(r"[^\w.-]+", "-", value.lower()).strip(".-")
+    if not slug:
+        raise argparse.ArgumentTypeError("use a name containing letters or digits")
+    return slug
+
+
+def experiment_name(settings, started_at):
+    model = settings["model"].rstrip("/").rsplit("/", 1)[-1]
+    parts = (
+        run_slug(model),
+        settings.get("variant"),
+        settings["benchmark"],
+        settings.get("profile"),
+        started_at.strftime("%Y%m%d-%H%M%SZ"),
+    )
+    return "-".join(part for part in parts if part)
+
+
 def parser():
     cli = argparse.ArgumentParser(description=__doc__)
     commands = cli.add_subparsers(dest="benchmark", required=True)
@@ -56,9 +76,11 @@ def parser():
     report = commands.add_parser("report", help="render and log a previously saved run")
     report.add_argument("run", type=Path)
     report.add_argument(
-        "--swanlab", choices=("local", "online", "off"), default="local"
+        "--swanlab",
+        choices=("online", "off"),
+        default="off",
+        help="publish a saved run to SwanLab Cloud (default: redraw only)",
     )
-    report.add_argument("--project", default="toolcall-sft")
     for name in WORKERS:
         command = commands.add_parser(name)
         profiles = (
@@ -86,9 +108,8 @@ def parser():
             help="local NVML device index when running on the serving host",
         )
         command.add_argument(
-            "--swanlab", choices=("local", "online", "off"), default="local"
+            "--variant", type=run_slug, help="short experiment label, e.g. sft-lora"
         )
-        command.add_argument("--project", default="toolcall-sft")
         if name == "bfcl-v4":
             selection = command.add_mutually_exclusive_group()
             selection.add_argument("--categories", nargs="+")
@@ -155,9 +176,7 @@ def launch(args, root):
         {
             k: v
             for k, v in vars(args).items()
-            if v is not None
-            and k
-            not in {"worker_python", "output", "case_ids_file", "swanlab", "project"}
+            if v is not None and k not in {"worker_python", "output", "case_ids_file"}
         }
     )
     settings["workspace"] = str(root)
@@ -183,7 +202,9 @@ def launch(args, root):
             f"Missing worker {worker}. Run toolcall-eval prepare {args.benchmark}."
         )
     settings.update(serving_metadata(args.base_url, args.model))
-    timestamp = datetime.now().strftime("%Y%m%d-%H%M%S-%f")
+    started_at = datetime.now(timezone.utc)
+    settings["run_name"] = experiment_name(settings, started_at)
+    timestamp = started_at.strftime("%Y%m%d-%H%M%S-%f")
     run = (
         args.output
         or root / "runs/eval" / f"{timestamp}-{args.benchmark}-{settings['profile']}"
@@ -245,40 +266,55 @@ def launch(args, root):
     resources = read_jsonl(run / "resources.jsonl")
     summary["metrics"].update(peak_metrics(resources), wall_seconds=elapsed)
     write_json(run / "summary.json", summary)
-    report_run(run, root, args.swanlab, args.project)
+    report_run(run, root, upload=True)
     if code:
         raise RuntimeError(
             f"{args.benchmark} exited with {code}. See {run / 'benchmark.log'}."
         )
 
 
-def report_run(run, root, mode, project):
+def report_run(run, root, *, upload):
     summary = read_json(run / "summary.json")
     resources = read_jsonl(run / "resources.jsonl")
     charts = write_charts(run, summary, resources)
     metrics = scalar_metrics(summary)
     write_json(run / "metrics.json", metrics)
-    settings = read_json(run / "config.json")
-    settings["run_status"] = summary.get("status", "completed")
-    if mode != "off":
-        from .swanlab_log import publish
+    print(f"Summary: {run / 'summary.json'}", flush=True)
+    if upload:
+        from .swanlab_log import PROJECT, publish
 
+        record = run / "swanlab.json"
+        previous = read_json(record) if record.is_file() else {}
+        if previous.get("id") and previous.get("project") == PROJECT:
+            return
+        config_path = run / "config.json"
+        settings = read_json(config_path)
+        settings["run_status"] = summary.get("status", "completed")
+        name = settings.get("run_name")
+        if not name:
+            started_at = datetime.fromtimestamp(
+                config_path.stat().st_mtime, timezone.utc
+            )
+            name = experiment_name(settings, started_at)
         log_dir = root / "runs/swanlab"
         identifier = publish(
             metrics,
             settings,
             charts,
-            mode=mode,
-            project=project,
-            name=run.name,
+            name=name,
             log_dir=log_dir,
             group=settings["benchmark"],
         )
         write_json(
-            run / "swanlab.json",
-            {"mode": mode, "id": identifier, "log_dir": str(log_dir)},
+            record,
+            {
+                "mode": "online",
+                "project": PROJECT,
+                "name": name,
+                "id": identifier,
+                "log_dir": str(log_dir),
+            },
         )
-    print(f"Summary: {run / 'summary.json'}", flush=True)
 
 
 def main():
@@ -290,7 +326,7 @@ def main():
 
             prepare(Path.cwd(), args.suite)
         elif args.benchmark == "report":
-            report_run(args.run.resolve(), Path.cwd(), args.swanlab, args.project)
+            report_run(args.run.resolve(), Path.cwd(), upload=args.swanlab == "online")
         else:
             launch(args, Path.cwd())
     except (
