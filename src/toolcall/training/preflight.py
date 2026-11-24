@@ -242,6 +242,47 @@ def inspect_dataloader_batches(
     return report
 
 
+def verify_model_forward_pass(trainer: Any, dataloader: Any) -> dict[str, Any]:
+    """Run one real forward pass before training starts to catch kernel/cu_seqlens issues early."""
+    batch = next(iter(dataloader))
+    device = trainer.args.device
+    gpu_batch = {
+        k: v.to(device) if isinstance(v, torch.Tensor) else v
+        for k, v in batch.items()
+    }
+    was_training = trainer.model.training
+    trainer.model.train()
+    try:
+        with (
+            torch.no_grad(),
+            torch.amp.autocast(
+                device.type,
+                dtype=torch.bfloat16,
+                enabled=bool(trainer.args.bf16 and device.type == "cuda"),
+            ),
+        ):
+            outputs = trainer.model(**gpu_batch)
+    finally:
+        if not was_training:
+            trainer.model.eval()
+
+    loss_val = float(outputs.loss.detach().cpu())
+    input_shape = list(gpu_batch["input_ids"].shape)
+    has_cu = "cu_seq_lens_q" in gpu_batch
+    del gpu_batch, outputs
+    if device.type == "cuda":
+        torch.cuda.empty_cache()
+    if not torch.isfinite(torch.tensor(loss_val)):
+        raise AssertionError(f"Non-finite loss in preflight forward pass: {loss_val}")
+    return {
+        "status": "passed",
+        "device": str(device),
+        "loss": round(loss_val, 4),
+        "input_shape": input_shape,
+        "packed_cu_seqlens": has_cu,
+    }
+
+
 def resolve_model_snapshot(model_id: str, override: Path | None = None) -> Path:
     """Resolve a local ModelScope Qwen snapshot directory cleanly."""
     if override is not None:

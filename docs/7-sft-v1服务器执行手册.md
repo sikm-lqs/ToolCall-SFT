@@ -70,9 +70,9 @@ runs/envs/train/bin/python -m unittest discover -s tests -v
 
 ## 3. 执行顺序：`Pre-flight → E0 烟囱 → E1 (2B) → E2 (0.8B)`
 
-### 阶段 A：开训前 100% Loss Mask & 模板 Pre-flight 自检
+### 阶段 A：开训前 100% Loss Mask、模板 & GPU Kernel Pre-flight 自检
 
-在不消耗训练步数的前提下，用真实 `SFTTrainer` + `packing=True` 跑通数据加载、DataLoader 打包并把真实 batch 解码落盘检查：
+在不消耗训练步数的前提下，用真实 `SFTTrainer` 跑通数据加载、DataLoader 打包、**1 步真实 GPU 前向探针（验证 `causal_conv1d_fn` + `cu_seq_lens_q`）** 并把 batch 解码落盘检查：
 
 ```bash
 runs/envs/train/bin/toolcall-sft \
@@ -80,8 +80,18 @@ runs/envs/train/bin/toolcall-sft \
   --preflight-only
 ```
 
+- **Kernel 自动激活说明**：配置已开启 `use_kernels: true`，`sft.py` 会在把模型移上 CUDA 并切到 `model.train()` 后显式调用 `model.set_use_kernels(True, mode=Mode.TRAINING)` 激活 `kernels-community/mamba-ssm` 等 Hub kernel（之前仅安装 `kernels` 而未调用 `set_use_kernels` 不会生效）。
+- **如果 `--preflight-only` 在 GPU 前向探针阶段因 Hub kernel / `cu129` ABI 报错**：不要硬调 `causal-conv1d` 源码编译，直接改走已实测验证的零风险非拼接兜底（自动设 `packing=False, padding_free=False, bs=2, accum=16`，避免任何 `cu_seqlens` 依赖与样本串扰，切记不可用 `packing=True + padding_free=False`）：
+  ```bash
+  runs/envs/train/bin/toolcall-sft \
+    --config configs/train/e0_smoke_2b.yaml \
+    --preflight-only --no-packing --no-use-kernels
+  ```
+  *(若兜底方案通过，后续 `E0 / E1 / E2` 统一追加 `--no-packing --no-use-kernels` 运行即可；均值 843 tokens 的 27k 数据集在 A100 上依然很快。)*
+
 检查最新生成的 `runs/train/e0-smoke-2b-*/preflight_loss_mask_check.json` 与 `preflight_loss_mask_batches.txt`：
-- **必须确认 `active_ratio` 在 `0.10 ~ 0.20` 之间**（约 13–14%）；
+- **必须确认 `active_ratio` 在 `0.10 ~ 0.20` 之间**（或 `--no-packing` 下 padded batch `0.06 ~ 0.18`）；
+- **确认 `forward_check.status == "passed"`** 且 loss 为有限正数；
 - **人工抽看 `preflight_loss_mask_batches.txt`**：确认 `[TRAIN]` 区间**严格只有** `<tool_call>...<|im_end|>` 和自然语言回复 `<|im_end|>`，绝无 `<|im_start|>system`、`<|im_start|>user`、`<tool_response>` 或 `<think>\n\n</think>\n\n`。
 
 ---

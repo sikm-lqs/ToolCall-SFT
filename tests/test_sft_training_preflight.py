@@ -21,6 +21,7 @@ from toolcall.training.preflight import (  # noqa: E402
     verify_data_manifest,
     verify_template_contract,
 )
+from toolcall.training.sft import run_sft  # noqa: E402
 
 SFT_V1_DIR = ROOT / "data/processed/sft_v1"
 QWEN35_SNAPSHOT = Path.home() / ".cache/modelscope/models/Qwen--Qwen3.5-2B/snapshots/master"
@@ -84,6 +85,30 @@ class SftTrainingPreflightTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             with self.assertRaises(AssertionError):
                 inspect_dataloader_batches(bad_batch, self.tokenizer, Path(td), num_batches=1)
+
+    def test_packing_without_padding_free_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            cfg_path = Path(td) / "bad_cfg.yaml"
+            cfg_path.write_text(
+                "\n".join(
+                    [
+                        "experiment: bad-cfg",
+                        "model:",
+                        "  model_id: Qwen/Qwen3.5-0.8B",
+                        "data:",
+                        "  dir: data/processed/sft_v1",
+                        "  train_file: val.jsonl",
+                        "  chat_template_file: qwen35_chat_template_train.jinja",
+                        "training:",
+                        "  packing: true",
+                        "  padding_free: false",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            with self.assertRaises(ValueError):
+                run_sft(cfg_path, preflight_only=True)
 
 
 if __name__ == "__main__":

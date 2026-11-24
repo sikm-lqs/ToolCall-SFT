@@ -20,6 +20,7 @@ lora:
 training:
   seed: 42
   max_length: 8192
+  use_kernels: true
   packing: true
   packing_strategy: bfd
   padding_free: true
