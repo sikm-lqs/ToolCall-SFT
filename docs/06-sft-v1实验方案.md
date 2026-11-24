@@ -171,7 +171,7 @@ PY
 ### 4.6 训后评测与晋级决策流程
 
 1. **Step 1：LoRA Merge 与推理启动**
-   - 用 `PeftModel.from_pretrained(...).merge_and_unload()` 导出 `runs/train/<exp>/merged-<ckpt>/`（注意同步复制 tokenizer 与原始 `chat_template.jinja`）。
+   - 用 `PeftModel.from_pretrained(...).merge_and_unload()` 合并到纯文本模型，再放回官方 `Qwen3_5ForConditionalGeneration` 外层导出 `runs/train/<exp>/merged-<ckpt>/`；保留原始推理模板和处理器文件，服务使用 `--language-model-only`。
    - 用与基线**完全一致**的 vLLM 配置启动（64K 上下文、`--tool-call-parser qwen3_coder`、`--enable-prefix-caching`、`chat_template_kwargs: {enable_thinking: false}`）。
 2. **Step 2：Checkpoint 快筛（8 类高性价比 BFCL 子集，1,840 题，每次数分钟）**
    ```bash

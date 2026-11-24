@@ -97,37 +97,41 @@ runs/envs/train/bin/toolcall-sft \
 
 ---
 
-### 阶段 B：`E0-smoke` 全链路烟囱闭环（预计 <10 分钟）
+### 阶段 B：`E0-smoke` 全链路烟囱闭环
 
-验证 `SFT 训练 → SwanLab 记录 → LoRA Merge → vLLM 服务 → BFCL 8 类快速评测` 全流程无坑：
+验证 SFT 训练、SwanLab 记录、LoRA 合并、vLLM 工具解析与 BFCL 8 类快筛。以下长任务从**本地仓库根目录**发起：
 
 ```bash
-runs/envs/train/bin/toolcall-sft --config configs/train/e0_smoke_2b.yaml
+bash scripts/remote/run_tmux.sh --sync sft-e0-2b -- \
+  runs/envs/train/bin/python -m toolcall.training.sft --config configs/train/e0_smoke_2b.yaml
 ```
 
-训练结束会自动合并最佳权重到 `<run_dir>/merged-best/`（`auto_merge_best: true`）。随后拉起 vLLM 验证接口与工具解析（**注意**：merged 模型已存为纯文本 `Qwen3_5ForCausalLM`，**去掉 `--language-model-only`** 参数）：
+训练结束后，`auto_merge_best: true` 将最佳权重导出到该 run 的 `merged-best/`。**训练仍用纯文本 CausalLM；推理导出恢复官方 `Qwen3_5ForConditionalGeneration` 外层、合并后的语言模型权重和底座视觉权重**。vLLM 0.19.1 使用该外层注册模型，文本工具评测以 `--language-model-only` 启动；不能靠给旧纯文本目录改 `config.json` 解决权重键不匹配。
 
 ```bash
-merged_model=$(ls -td runs/train/e0-smoke-2b-*/merged-best | head -n 1)
-runs/envs/serve/bin/vllm serve "$merged_model" --served-model-name sft-v1-e0-smoke-2b \
+# 将路径设为刚完成的远端 run，避免误用历史 run。
+merged_model="runs/train/<本次E0运行目录>/merged-best"
+bash scripts/remote/run_tmux.sh vllm-e0-2b -- \
+  runs/envs/serve/bin/vllm serve "$merged_model" --served-model-name sft-v1-e0-smoke-2b \
   --host 127.0.0.1 --port 18003 --tensor-parallel-size 1 --dtype bfloat16 \
-  --max-model-len 49152 --gpu-memory-utilization 0.85 \
+  --language-model-only --max-model-len 65536 --gpu-memory-utilization 0.85 \
   --max-num-seqs 256 --max-num-batched-tokens 32768 \
   --enable-auto-tool-choice --tool-call-parser qwen3_coder \
   --generation-config vllm --seed 0 --enable-prefix-caching
 ```
 
-在另一终端确认探针与 8 类 BFCL 子集无报错：
+如有历史 checkpoint，仅需用修复后的 `python -m toolcall.training.merge_lora --adapter-dir … --output-dir …` 在新快照中重新导出到独立目录，不需要重训。服务就绪后，检查 `/v1/models`，再用含工具 schema 的请求确认 `tool_choice=auto` 返回结构化 `message.tool_calls`，无原始 XML 泄漏。通过后启动快筛：
+
 ```bash
-.venv/bin/toolcall-eval bfcl-v4 --categories \
+bash scripts/remote/run_tmux.sh eval-e0-bfcl -- \
+  .venv/bin/python -m toolcall.evaluation.cli bfcl-v4 --categories \
   simple_python multiple parallel parallel_multiple irrelevance \
   multi_turn_base multi_turn_miss_func multi_turn_miss_param \
   --variant e0-smoke --model sft-v1-e0-smoke-2b \
   --base-url http://127.0.0.1:18003/v1 --concurrency 128 --timeout 300 --gpu-index 0
 ```
-*(若 E0 烟囱发现任何异常如 OOM、qwen3_coder 解析崩溃、loss 异常，立即停止排查，不进正式训练。)*
 
----
+评测后保留摘要与日志，再停止本次 E0 的 vLLM 会话释放显存。E0 如出现 OOM、服务请求错误、解析失败或 loss 异常，先定位并复测，不直接启动正式训练。实测见 [E0 重跑记录](../reports/03-sft/01-e0-smoke-run.md)。
 
 ### 阶段 C：正式训练 `E1` (`Qwen3.5-2B`) 与 `E2` (`Qwen3.5-0.8B`)
 
