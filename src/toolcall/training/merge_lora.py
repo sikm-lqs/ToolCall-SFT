@@ -1,4 +1,4 @@
-"""Merge trained Qwen3.5 LoRA adapters into standalone CausalLM weights for vLLM serving."""
+"""Merge trained Qwen3.5 LoRA adapters into standalone weights in the official Qwen3.5 vLLM wrapper."""
 
 from __future__ import annotations
 
@@ -10,12 +10,12 @@ from typing import Any
 
 from peft import PeftModel
 import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer, Qwen3_5ForConditionalGeneration
 
 from .preflight import resolve_model_snapshot
 
 
-def _copy_official_inference_tokenizer_files(base_snapshot: Path, out_dir: Path) -> None:
+def _copy_official_inference_files(base_snapshot: Path, out_dir: Path) -> None:
     for fname in (
         "chat_template.jinja",
         "tokenizer_config.json",
@@ -23,6 +23,8 @@ def _copy_official_inference_tokenizer_files(base_snapshot: Path, out_dir: Path)
         "vocab.json",
         "merges.txt",
         "generation_config.json",
+        "preprocessor_config.json",
+        "video_preprocessor_config.json",
     ):
         src = base_snapshot / fname
         if src.is_file():
@@ -32,6 +34,13 @@ def _copy_official_inference_tokenizer_files(base_snapshot: Path, out_dir: Path)
 def verify_merged_inference_contract(merged_dir: Path) -> dict[str, Any]:
     """Verify merged config and unmodified official chat_template.jinja tool-call rendering."""
     cfg = json.loads((merged_dir / "config.json").read_text(encoding="utf-8"))
+    if (
+        cfg.get("architectures") != ["Qwen3_5ForConditionalGeneration"]
+        or cfg.get("model_type") != "qwen3_5"
+        or not cfg.get("text_config")
+        or not cfg.get("vision_config")
+    ):
+        raise ValueError(f"Missing official Qwen3.5 serving wrapper in {merged_dir}")
     tok = AutoTokenizer.from_pretrained(
         merged_dir, local_files_only=True, trust_remote_code=False
     )
@@ -71,8 +80,10 @@ def merge_checkpoint(
     adapter_dir: Path,
     output_dir: Path,
 ) -> dict[str, Any]:
-    """Merge a LoRA adapter checkpoint with its base Qwen3.5 CausalLM and save to `output_dir`."""
-    output_dir.mkdir(parents=True, exist_ok=True)
+    """Merge into the text model, then export under the original serving architecture."""
+    base_cfg = json.loads((base_snapshot / "config.json").read_text(encoding="utf-8"))
+    if "Qwen3_5ForConditionalGeneration" not in (base_cfg.get("architectures") or []):
+        raise ValueError(f"Expected the official Qwen3.5 base snapshot at {base_snapshot}")
     base_model = AutoModelForCausalLM.from_pretrained(
         base_snapshot,
         local_files_only=True,
@@ -81,9 +92,18 @@ def merge_checkpoint(
     )
     peft_model = PeftModel.from_pretrained(base_model, adapter_dir)
     merged = peft_model.merge_and_unload()
-    merged.save_pretrained(output_dir, safe_serialization=True)
+    # vLLM dispatches through the conditional-generation wrapper even in
+    # language-model-only mode. Restore the actual module/key layout, not just config.json.
+    serving_model = Qwen3_5ForConditionalGeneration.from_pretrained(
+        base_snapshot,
+        local_files_only=True,
+        dtype=torch.bfloat16,
+    )
+    serving_model.model.language_model = merged.model
+    serving_model.lm_head = merged.lm_head
+    serving_model.save_pretrained(output_dir, safe_serialization=True)
 
-    _copy_official_inference_tokenizer_files(base_snapshot, output_dir)
+    _copy_official_inference_files(base_snapshot, output_dir)
     contract = verify_merged_inference_contract(output_dir)
 
     info = {
