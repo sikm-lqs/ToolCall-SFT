@@ -294,7 +294,7 @@ def report_run(run, root, *, upload):
     write_json(run / "metrics.json", metrics)
     print(f"Summary: {run / 'summary.json'}", flush=True)
     if upload:
-        from .swanlab_log import PROJECT, publish
+        from .swanlab_log import PROJECT, describe, publish
 
         record = run / "swanlab.json"
         previous = read_json(record) if record.is_file() else {}
@@ -317,6 +317,7 @@ def report_run(run, root, *, upload):
             name=name,
             log_dir=log_dir,
             group=settings["benchmark"],
+            description=describe(settings, summary.get("status"), summary["metrics"]),
         )
         write_json(
             record,
