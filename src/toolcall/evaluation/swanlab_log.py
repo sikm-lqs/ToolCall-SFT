@@ -10,7 +10,7 @@ PROJECT = "toolcall-sft"
 
 PROFILE_NOTES = {
     ("bfcl-v4", "core"): "BFCL V4 core：Non-Live + Live + Multi-turn 共 17 类 4,441 题；未跑 Web Search 与 Memory",
-    ("bfcl-v4", "no-web"): "BFCL V4 no-web：19 类 4,906 题；未跑 Web Search 与 Memory",
+    ("bfcl-v4", "no-web"): "BFCL V4 no-web：20 类 4,906 题（含 Memory）；未跑 Web Search",
     ("bfcl-v4", "full"): "BFCL V4 full：22 类全量（含 Web Search 与 Memory）",
     ("bfcl-v4", "smoke"): "BFCL V4 smoke：冒烟子集（3 题）",
     ("bfcl-v4", "custom"): "BFCL V4 自定义子集（--categories / --case-ids-file，类目见 config）",

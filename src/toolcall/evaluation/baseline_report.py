@@ -179,7 +179,10 @@ def extract_bfcl_failures(
                 if "id" in row:
                     raw_outputs[row["id"]] = row
 
-    seen_types: set[str] = set()
+    seen_single_types: set[str] = set()
+    seen_multi_types: set[str] = set()
+    single_examples = 0
+    multi_examples = 0
     score_root = run_dir / "score"
     if score_root.is_dir():
         for path in sorted(score_root.rglob("BFCL_v4_*_score.json")):
@@ -190,26 +193,56 @@ def extract_bfcl_failures(
                 row = json.loads(line)
                 if row.get("valid", True):
                     continue
-                err_type = str(row.get("error_type") or "unknown_error")
+                err = row.get("error")
+                err_type = str(
+                    row.get("error_type")
+                    or (err.get("error_type") if isinstance(err, dict) else None)
+                    or "unknown_error"
+                )
+                if "inference_error" in err_type:
+                    sys_counts[err_type] += 1
+                    continue
                 llm_counts[err_type] += 1
-                if err_type not in seen_types and len(
-                    [e for e in examples if e["kind"] == "llm"]
-                ) < 5:
-                    seen_types.add(err_type)
+                category = str(row.get("test_category", path.stem))
+                is_multi = category.startswith("multi_turn") or err_type.startswith(
+                    "multi_turn:"
+                )
+                if is_multi:
+                    take = err_type not in seen_multi_types and multi_examples < 4
+                else:
+                    take = err_type not in seen_single_types and single_examples < 4
+                if take:
+                    if is_multi:
+                        seen_multi_types.add(err_type)
+                        multi_examples += 1
+                    else:
+                        seen_single_types.add(err_type)
+                        single_examples += 1
                     case_id = row.get("id", "unknown")
                     prompt_obj = row.get("prompt", {})
-                    question = prompt_obj.get("question", prompt_obj)
-                    raw_res = raw_outputs.get(case_id, {}).get(
-                        "result", row.get("model_result_raw")
+                    question = (
+                        prompt_obj.get("question", prompt_obj)
+                        if isinstance(prompt_obj, dict)
+                        else prompt_obj
                     )
+                    raw_res = raw_outputs.get(case_id, {}).get(
+                        "result",
+                        row.get("model_result_raw", row.get("model_result_decoded")),
+                    )
+                    if is_multi and isinstance(err, dict) and err.get("error_message"):
+                        output_preview = (
+                            f"{err['error_message']} | steps={truncate(raw_res, 140)}"
+                        )
+                    else:
+                        output_preview = truncate(raw_res or "(empty tool_calls)")
                     examples.append(
                         {
                             "kind": "llm",
                             "id": case_id,
-                            "category": row.get("test_category", path.stem),
+                            "category": category,
                             "reason": err_type,
                             "prompt": truncate(question),
-                            "output": truncate(raw_res or "(empty tool_calls)"),
+                            "output": output_preview,
                             "expected": truncate(row.get("possible_answer")),
                         }
                     )
