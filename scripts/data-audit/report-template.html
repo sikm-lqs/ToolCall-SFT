@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ToolCall-SFT · 数据归档与样本图鉴</title>
+<style>
+:root{--bg:#f6f8f4;--ink:#162b24;--dim:#476158;--line:#c9d6cc;--accent:#145d47;--soft:#e7f1e7}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,"Noto Sans CJK SC","Microsoft YaHei",sans-serif}
+main,nav>div{width:min(1050px,calc(100% - 36px));margin:auto}a{color:var(--accent);text-underline-offset:.21em}
+nav{position:sticky;top:0;z-index:3;background:#f6f8f4fa;border-bottom:1px solid var(--line)}
+nav>div{display:flex;align-items:center;gap:clamp(9px,3vw,25px);padding:11px 0;flex-wrap:wrap}nav b{margin-right:auto}nav a{font-size:.86rem;text-decoration:none}
+header{padding:67px 0 35px}h1{font-size:clamp(2.15rem,7vw,4.2rem);letter-spacing:-.05em;line-height:1.12;margin:.32em 0}
+h2{font-size:clamp(1.6rem,4vw,2.2rem);line-height:1.24;margin:.2em 0 .55em}
+h3{font-size:1.05rem;margin:0}.eyebrow,.sectionno{font-size:.78rem;letter-spacing:.11em;color:var(--accent);font-weight:760}.lead{font-size:1.09rem;max-width:47rem}
+.numbers{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);margin-top:30px}
+.numbers>div{padding:14px 15px}.numbers>div+div{border-left:1px solid var(--line)}.numbers strong{display:block;font-size:clamp(1.48rem,5vw,2.65rem);line-height:1.16}.numbers span,.muted{color:var(--dim)}
+section{padding:34px 0 40px;border-top:1px solid var(--line);scroll-margin-top:76px}p{margin:.55em 0 .8em}code{font:500 .9em ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:0;list-style:none}.flow li{background:white;border:1px solid var(--line);border-radius:7px;padding:10px 12px}
+.flow b,.flow small{display:block}figure{margin:20px 0 25px}figcaption{color:var(--dim);font-size:.85rem}.bars{display:grid;gap:8px;margin-top:10px}
+.bar{display:grid;grid-template-columns:130px minmax(0,1fr) 92px;align-items:center;gap:9px}.bar span,.numbers strong,td{font-variant-numeric:tabular-nums}.bar span{text-align:right;font-size:.86rem}
+meter{display:block;width:100%;height:14px}meter::-webkit-meter-bar{background:#e0ebe2;border:0}meter::-webkit-meter-optimum-value{background:#32795e}meter::-moz-meter-bar{background:#32795e}
+details{border:1px solid var(--line);border-radius:7px;background:#fff}details[open]>summary{border-bottom:1px solid var(--line)}
+summary{display:flex;align-items:center;flex-wrap:wrap;gap:10px;padding:11px 13px;cursor:pointer;list-style:none}
+summary::-webkit-details-marker{display:none}summary:before{content:"+";color:var(--accent);font-weight:bold}details[open]>summary:before{content:"−"}.body{padding:9px 13px}.body p:last-child{margin-bottom:2px}
+#training details{margin-top:7px}#training summary b{margin-left:auto}
+.table{overflow:auto;margin:0 13px 13px}table{border-collapse:collapse;width:100%;font-size:.91rem}th,td{padding:5px 9px;border-bottom:1px solid var(--line);text-align:right}th:first-child{text-align:left}
+.controls{display:flex;gap:12px;align-items:end;flex-wrap:wrap;margin:20px 0 10px}.controls label{min-width:155px}.controls label span{display:block;font-size:.84rem;font-weight:650}
+input,select{font:inherit;padding:5px 8px;min-height:39px;width:100%;border:1px solid #80998a;border-radius:5px;background:white;color:var(--ink)}
+:focus-visible{outline:3px solid #3c9979;outline-offset:3px}
+#count,.tag{font-size:.84rem;color:var(--dim)}.tag{background:var(--soft);border-radius:4px;padding:0 5px;white-space:nowrap}
+#cases,.notes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:8px 12px}#cases .body .muted{font-size:.87rem}.notes article{border-top:1px solid var(--line);padding-top:9px}footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--dim);font-size:.86rem}
+@media(max-width:670px){header{padding-top:36px}#cases,.notes{grid-template-columns:1fr}.flow{grid-template-columns:repeat(2,1fr)}.bar{grid-template-columns:113px minmax(0,1fr) 76px}.numbers>div{padding:10px 7px}.numbers span{font-size:.8rem}}
+</style>
+</head>
+<body>
+<nav aria-label="报告导航"><div><b>TOOLCALL / DATA</b><a href="#training">训练源</a><a href="#evaluation">评测案例</a><a href="#notes">口径</a><a href="sft-data-analysis.md">Markdown</a></div></nav>
+<main>
+<header><p class="eyebrow">ToolCall-SFT · 数据核查 · 2026-11-24</p><h1>数据归档与样本图鉴</h1>
+<p class="lead">从原始记录到模型输入，再到评分标签：先看懂数据，再决定用什么训练 Qwen3.5 小模型。</p>
+<div class="numbers"><div><strong>6</strong><span>ModelScope 训练源</span></div><div><strong>$total_gb GB</strong><span>已校验的原始文件</span></div><div><strong>$count</strong><span>带完整首请求的评测样例</span></div></div></header>
+<section id="training"><span class="sectionno">01 / 训练集</span><h2>六套原始训练数据</h2>
+<p>原始数据按源分目录；点开查看样本、字段和出处。</p><figure><figcaption>下载体积（十进制 MB；从零起算）</figcaption><div class="bars">$bars</div></figure>
+$training
+<details><summary><b>SmolTalk 全部配置与 split</b></summary><div class="body">all 是汇总配置，不与独立子集相加。</div>
+<div class="table"><table><thead><tr><th scope="col">配置</th><th scope="col">train 行</th><th scope="col">test 行</th></tr></thead><tbody>$smol_rows</tbody></table></div></details>
+<p class="muted">$measured</p></section>
+<section id="evaluation"><span class="sectionno">02 / 评测集</span><h2>逐类追踪请求与标签</h2>
+<ol class="flow"><li><b>01 原始记录</b><small>题目、工具或任务状态</small></li><li><b>02 模型首请求</b><small>messages · tools · Prompt</small></li><li><b>03 模型输出</b><small>只引用已有实录</small></li><li><b>04 评分标签</b><small>调用、答案或状态</small></li></ol>
+<p><b>例 · 三角形面积：</b>BFCL 的标签不是文本“25”，而是 <code>calculate_triangle_area</code> 加参数约束。2B 某次 smoke 没有输出工具调用。</p>
+<div class="controls"><label><span>评测集与范围</span><select id="suite"><option value="">全部</option><option value="bfcl-v4">BFCL V4</option><option value="core">BFCL core</option><option value="api-bank">API-Bank</option><option value="tau2-bench">τ²-Bench</option></select></label>
+<label><span>搜索子类或 Case ID</span><input type="search" id="search" placeholder="例如 parallel 或 retail"></label><p id="count" role="status">$count 个案例</p></div>
+<div id="cases">$cases</div></section>
+<section id="notes"><span class="sectionno">03 / 阅读口径</span><h2>哪些内容可以比较</h2><div class="notes">$notes</div></section>
+<footer>$sources<p>HTML 不依赖 CDN；完整样本链向当前项目里的本地数据，单独复制 HTML 不会一起复制样本。</p></footer>
+</main>
+<script>
+const select = document.querySelector('#suite');
+const search = document.querySelector('#search');
+const cases = Array.from(document.querySelectorAll('#cases article'));
+const counter = document.querySelector('#count');
+function filter() {
+  const scope = select.value;
+  const query = search.value.trim().toLowerCase();
+  let shown = 0;
+  for (const card of cases) {
+    const matchesScope = !scope || (scope === 'core' ? card.dataset.core === 'true' : card.dataset.suite === scope);
+    card.hidden = !(matchesScope && card.textContent.toLowerCase().includes(query));
+    if (!card.hidden) shown++;
+  }
+  counter.textContent = shown ? shown + ' 个案例' : '没有匹配的案例';
+}
+select.addEventListener('change', filter);
+search.addEventListener('input', filter);
+filter();
+</script>
+</body>
+</html>

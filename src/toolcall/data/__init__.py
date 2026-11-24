@@ -1,1 +1,1 @@
-"""Training-data conversion and validation."""
+"""SFT dataset parsing, normalization, template validation, and mixing utilities."""

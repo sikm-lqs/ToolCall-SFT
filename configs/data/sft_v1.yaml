@@ -1,0 +1,35 @@
+version: sft_v1
+seed: 42
+max_seq_length: 8192
+val_total: 500
+smoke_total: 3000
+
+tokenizer:
+  model_id: Qwen/Qwen3.5-2B
+  snapshot: ~/.cache/modelscope/models/Qwen--Qwen3.5-2B/snapshots/master
+
+output_dir: data/processed/sft_v1
+
+sources:
+  toolace:
+    raw_path: data/raw/toolace/data/train-00000-of-00001.parquet
+    multi_turn_upsample: 3
+    val_counts:
+      toolace_multi_turn: 40
+      toolace_no_call: 40
+      toolace_single_or_parallel: 140
+  xlam_60k:
+    raw_path: data/raw/xlam-60k/xlam_function_calling_60k.json
+    parallel_sample: 10000
+    single_sample: 5000
+    prefer_multi_candidate_single: true
+    val_counts:
+      xlam_parallel: 180
+      xlam_single: 100
+
+smoke_counts:
+  toolace_multi_turn: 400
+  toolace_no_call: 350
+  toolace_single_or_parallel: 750
+  xlam_parallel: 1000
+  xlam_single: 500

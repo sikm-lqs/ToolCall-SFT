@@ -1,0 +1,47 @@
+experiment: sft-v1-0.8b-lora
+description: "E2 跨尺寸实验：Qwen3.5-0.8B + SFT-v1 (xlam+toolace 27k) LoRA r=64，同口径对比 0.8B 工具调用与拒答增益"
+
+model:
+  model_id: Qwen/Qwen3.5-0.8B
+
+data:
+  dir: data/processed/sft_v1
+  train_file: train.jsonl
+  val_file: val.jsonl
+  chat_template_file: qwen35_chat_template_train.jinja
+
+lora:
+  enabled: true
+  r: 64
+  lora_alpha: 128
+  lora_dropout: 0.05
+  target_modules: all-linear
+
+training:
+  seed: 42
+  max_length: 8192
+  packing: true
+  packing_strategy: bfd
+  padding_free: true
+  per_device_train_batch_size: 1
+  per_device_eval_batch_size: 1
+  gradient_accumulation_steps: 8
+  gradient_checkpointing: true
+  learning_rate: 1.5e-4
+  lr_scheduler_type: cosine
+  warmup_steps: 0.05
+  weight_decay: 0.01
+  max_grad_norm: 1.0
+  num_train_epochs: 2
+  logging_steps: 5
+  eval_steps: 0.25
+  save_steps: 0.25
+  save_total_limit: 4
+  load_best_model_at_end: false
+  dataloader_num_workers: 2
+
+auto_merge_best: false
+
+swanlab:
+  project: toolcall-sft
+  mode: online
