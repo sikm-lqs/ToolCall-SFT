@@ -1,117 +1,155 @@
-# ToolCall-SFT 基线评测报告（当前本地已测汇总）
+# ToolCall-SFT 基线评测报告
 
-> 生成时间：2026-11-23 12:14 UTC · 纳入运行数：4
+> 生成时间：2026-11-23 15:22 UTC · 纳入运行数：4
 
 ## 1. 评测范围与主分总览
 
 | 模型 | 评测集 | 范围 (Profile) | 状态 | 指标口径 | 正确/总数 | 主分 | 上下文 / 上限 / 并发 | Run ID |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `Qwen/Qwen3.5-2B` | `api-bank` | `full` | `completed` | Call Accuracy | 499 / 753 | **66.27%** | 32768 / 1024 / 96 | `20261123-104525-867552-api-bank-full` |
-| `Qwen/Qwen3.5-2B` | `bfcl-v4` | `historical` | `historical` | No-Web Weighted (Hist.) | 2480 / 4906 | **25.58%** | N/A / N/A / N/A | `history-bfcl-v4-qwen35-2b-no-web-1024` |
-| `Qwen/Qwen3.5-2B` | `bfcl-v4` | `smoke` | `completed` | Microaccuracy | 1 / 3 | **33.33%** | 32768 / 1024 / 96 | `20261123-104422-628311-bfcl-v4-smoke` |
-| `Qwen/Qwen3.5-2B` | `tau2` | `smoke` | `completed` | Domain Mean Pass^1 | 0 / 2 | **0.00%** | 32768 / 1024 / 1 | `20261123-104431-366707-tau2-smoke` |
+| `Qwen/Qwen3.5-2B` | `bfcl-v4` | `core` | `completed_with_request_errors` | Core Weighted (No-Agentic) | 2632 / 4441 | **43.48%** | 65536 / 1024 / 128 | `core-baseline-20261123T144655.947343Z` |
+| `Qwen/Qwen3.5-2B` | `api-bank` | `full` | `completed` | Call Accuracy | 501 / 753 | **66.53%** | 65536 / 1024 / 96 | `full-baseline-20261123T150622.824657Z` |
+| `Qwen/Qwen3.5-0.8B` | `bfcl-v4` | `core` | `completed_with_request_errors` | Core Weighted (No-Agentic) | 2321 / 4441 | **34.30%** | 65536 / 1024 / 128 | `core-baseline-20261123T150821.031121Z` |
+| `Qwen/Qwen3.5-0.8B` | `api-bank` | `full` | `completed` | Call Accuracy | 431 / 753 | **57.24%** | 65536 / 1024 / 96 | `full-baseline-20261123T152129.962853Z` |
 
 ## 2. 时间、吞吐与延迟指标
 
 | 模型 | 评测集 | Wall (s) | 生成/模拟 (s) | 评分 (s) | 输入 Tokens | 输出 Tokens | 输出 tok/s | 总 tok/s | P95 延迟 (s) |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `Qwen/Qwen3.5-2B` | `api-bank` (`full`) | 116.0 | 98.8 | 13.3 | 1,053,527 | 67,590 | 684.1 | 11,346.8 | 16.89 |
-| `Qwen/Qwen3.5-2B` | `bfcl-v4` (`historical`) | 683.4 | 673.9 | N/A | 5,988,540 | 552,682 | 820.2 | 9,707.2 | 19.66 |
-| `Qwen/Qwen3.5-2B` | `bfcl-v4` (`smoke`) | 7.2 | 4.2 | 3.0 | 1,074 | 339 | 81.2 | 338.3 | 1.61 |
-| `Qwen/Qwen3.5-2B` | `tau2` (`smoke`) | 52.7 | 50.4 | N/A | 125,904 | 2,813 | 55.8 | 2,554.7 | 4.56 |
+| `Qwen/Qwen3.5-2B` | `bfcl-v4` (`core`) | 1,115.3 | 1,110.7 | 4.4 | 98,526,952 | 1,310,854 | 1,180.2 | 89,886.9 | 29.17 |
+| `Qwen/Qwen3.5-2B` | `api-bank` (`full`) | 50.8 | 35.5 | 12.1 | 1,053,527 | 67,759 | 1,910.7 | 31,617.8 | 5.89 |
+| `Qwen/Qwen3.5-0.8B` | `bfcl-v4` (`core`) | 771.9 | 767.6 | 4.1 | 109,269,606 | 1,356,739 | 1,767.5 | 144,116.2 | 15.32 |
+| `Qwen/Qwen3.5-0.8B` | `api-bank` (`full`) | 42.8 | 26.8 | 12.7 | 1,053,527 | 73,066 | 2,730.4 | 42,099.6 | 4.54 |
 
 ## 3. 显卡与 vLLM 服务压力
 
 | 模型 | 评测集 | 初始显存 (MiB) | 峰值显存 (MiB) | GPU 利用率峰值 | KV Cache 峰值 | 运行/排队峰值 | 抢占次数 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `Qwen/Qwen3.5-2B` | `api-bank` (`full`) | 15,374 | 15,471 | 100% | 57.86% | 96 / 55 | 0 |
-| `Qwen/Qwen3.5-2B` | `bfcl-v4` (`historical`) | 14,866 | 15,201 | 98.9% | 74.52% | 96 / 42 | N/A |
-| `Qwen/Qwen3.5-2B` | `bfcl-v4` (`smoke`) | 15,341 | 15,383 | 100% | 0.87% | 2 / 0 | 0 |
-| `Qwen/Qwen3.5-2B` | `tau2` (`smoke`) | 15,325 | 15,570 | 100% | 2.51% | 1 / 0 | 0 |
+| `Qwen/Qwen3.5-2B` | `bfcl-v4` (`core`) | 34,723 | 38,355 | 100% | 78.23% | 128 / 43 | 0 |
+| `Qwen/Qwen3.5-2B` | `api-bank` (`full`) | 38,355 | 38,355 | 100% | 11.78% | 96 / 18 | 0 |
+| `Qwen/Qwen3.5-0.8B` | `bfcl-v4` (`core`) | 35,263 | 38,387 | 100% | 67.05% | 128 / 41 | 0 |
+| `Qwen/Qwen3.5-0.8B` | `api-bank` (`full`) | 38,387 | 38,387 | 99% | 10.09% | 95 / 14 | 0 |
 
 ## 4. 分项得分明细
 
-### Qwen/Qwen3.5-2B · `api-bank` (`full` · `20261123-104525-867552-api-bank-full`)
+### Qwen/Qwen3.5-2B · `bfcl-v4` (`core` · `core-baseline-20261123T144655.947343Z`)
 
 | 子类 / 域 | 正确 / 总数 | 准确率 | 补充指标 |
 | --- | --- | --- | --- |
-| `L1` | 308 / 389 | 79.18% | reference_tool_coverage=100.00%, oracle_accuracy=86.89%, rouge_l_f1=0.3845 |
-| `L2` | 57 / 119 | 47.90% | reference_tool_coverage=89.08%, oracle_accuracy=65.55%, rouge_l_f1=0.2948 |
-| `L3` | 134 / 245 | 54.69% | reference_tool_coverage=100.00%, oracle_accuracy=97.96%, rouge_l_f1=0.3759 |
-
-### Qwen/Qwen3.5-2B · `bfcl-v4` (`historical` · `history-bfcl-v4-qwen35-2b-no-web-1024`)
-
-| 子类 / 域 | 正确 / 总数 | 准确率 | 补充指标 |
-| --- | --- | --- | --- |
-| `memory_kv` | 0 / 155 | 0.00% | — |
-| `memory_rec_sum` | 0 / 155 | 0.00% | — |
-| `memory_vector` | 0 / 155 | 0.00% | — |
-| `live_irrelevance` | 609 / 884 | 68.89% | — |
-| `live_multiple` | 760 / 1053 | 72.17% | — |
-| `live_parallel_multiple` | 11 / 24 | 45.83% | — |
-| `live_parallel` | 10 / 16 | 62.50% | — |
-| `live_relevance` | 14 / 16 | 87.50% | — |
-| `live_simple` | 169 / 258 | 65.50% | — |
-| `multi_turn_base` | 0 / 200 | 0.00% | — |
-| `multi_turn_long_context` | 0 / 200 | 0.00% | — |
-| `multi_turn_miss_func` | 0 / 200 | 0.00% | — |
-| `multi_turn_miss_param` | 0 / 200 | 0.00% | — |
+| `simple_python` | 282 / 400 | 70.50% | — |
+| `simple_java` | 14 / 100 | 14.00% | — |
+| `simple_javascript` | 14 / 50 | 28.00% | — |
+| `multiple` | 165 / 200 | 82.50% | — |
+| `parallel` | 101 / 200 | 50.50% | — |
+| `parallel_multiple` | 142 / 200 | 71.00% | — |
 | `irrelevance` | 189 / 240 | 78.75% | — |
-| `multiple` | 164 / 200 | 82.00% | — |
-| `parallel_multiple` | 141 / 200 | 70.50% | — |
-| `parallel` | 102 / 200 | 51.00% | — |
-| `simple_java` | 15 / 100 | 15.00% | — |
-| `simple_javascript` | 15 / 50 | 30.00% | — |
-| `simple_python` | 281 / 400 | 70.25% | — |
+| `live_simple` | 170 / 258 | 65.89% | — |
+| `live_multiple` | 763 / 1053 | 72.46% | — |
+| `live_parallel` | 10 / 16 | 62.50% | — |
+| `live_parallel_multiple` | 11 / 24 | 45.83% | — |
+| `live_irrelevance` | 607 / 884 | 68.67% | — |
+| `live_relevance` | 14 / 16 | 87.50% | — |
+| `multi_turn_base` | 59 / 200 | 29.50% | — |
+| `multi_turn_miss_func` | 5 / 200 | 2.50% | — |
+| `multi_turn_miss_param` | 30 / 200 | 15.00% | — |
+| `multi_turn_long_context` | 56 / 200 | 28.00% | — |
 
-### Qwen/Qwen3.5-2B · `bfcl-v4` (`smoke` · `20261123-104422-628311-bfcl-v4-smoke`)
-
-| 子类 / 域 | 正确 / 总数 | 准确率 | 补充指标 |
-| --- | --- | --- | --- |
-| `simple_python` | 1 / 3 | 33.33% | — |
-
-### Qwen/Qwen3.5-2B · `tau2` (`smoke` · `20261123-104431-366707-tau2-smoke`)
+### Qwen/Qwen3.5-2B · `api-bank` (`full` · `full-baseline-20261123T150622.824657Z`)
 
 | 子类 / 域 | 正确 / 总数 | 准确率 | 补充指标 |
 | --- | --- | --- | --- |
-| `retail` | 0 / 2 | 0.00% | average_reward=0.0000 |
+| `L1` | 308 / 389 | 79.18% | reference_tool_coverage=100.00%, oracle_accuracy=86.89%, rouge_l_f1=0.3850 |
+| `L2` | 57 / 119 | 47.90% | reference_tool_coverage=89.08%, oracle_accuracy=65.55%, rouge_l_f1=0.2924 |
+| `L3` | 136 / 245 | 55.51% | reference_tool_coverage=100.00%, oracle_accuracy=97.96%, rouge_l_f1=0.3753 |
+
+### Qwen/Qwen3.5-0.8B · `bfcl-v4` (`core` · `core-baseline-20261123T150821.031121Z`)
+
+| 子类 / 域 | 正确 / 总数 | 准确率 | 补充指标 |
+| --- | --- | --- | --- |
+| `simple_python` | 270 / 400 | 67.50% | — |
+| `simple_java` | 29 / 100 | 29.00% | — |
+| `simple_javascript` | 11 / 50 | 22.00% | — |
+| `multiple` | 127 / 200 | 63.50% | — |
+| `parallel` | 63 / 200 | 31.50% | — |
+| `parallel_multiple` | 105 / 200 | 52.50% | — |
+| `irrelevance` | 196 / 240 | 81.67% | — |
+| `live_simple` | 137 / 258 | 53.10% | — |
+| `live_multiple` | 608 / 1053 | 57.74% | — |
+| `live_parallel` | 10 / 16 | 62.50% | — |
+| `live_parallel_multiple` | 10 / 24 | 41.67% | — |
+| `live_irrelevance` | 684 / 884 | 77.38% | — |
+| `live_relevance` | 10 / 16 | 62.50% | — |
+| `multi_turn_base` | 21 / 200 | 10.50% | — |
+| `multi_turn_miss_func` | 4 / 200 | 2.00% | — |
+| `multi_turn_miss_param` | 16 / 200 | 8.00% | — |
+| `multi_turn_long_context` | 20 / 200 | 10.00% | — |
+
+### Qwen/Qwen3.5-0.8B · `api-bank` (`full` · `full-baseline-20261123T152129.962853Z`)
+
+| 子类 / 域 | 正确 / 总数 | 准确率 | 补充指标 |
+| --- | --- | --- | --- |
+| `L1` | 262 / 389 | 67.35% | reference_tool_coverage=100.00%, oracle_accuracy=86.89%, rouge_l_f1=0.3759 |
+| `L2` | 52 / 119 | 43.70% | reference_tool_coverage=89.08%, oracle_accuracy=65.55%, rouge_l_f1=0.3391 |
+| `L3` | 117 / 245 | 47.76% | reference_tool_coverage=100.00%, oracle_accuracy=97.96%, rouge_l_f1=0.3051 |
 
 ## 5. 错误归因与典型错题（系统错误 vs 真实 LLM 错误）
+
+### Qwen/Qwen3.5-2B · `bfcl-v4` (`core`)
+
+- **系统 / 基础设施错误**：`request_errors`: 15, `context_rejections`: 12, `length_stops`: 85
+- **真实 LLM 能力错误**：`unknown_error`: 650, `irrelevance_error:decoder_success`: 328, `value_error:string`: 213, `simple_function_checker:wrong_count`: 190, `parallel_function_checker_no_order:wrong_count`: 145, `value_error:others`: 74, `simple_function_checker:wrong_func_name`: 53, `multiple_function_checker:wrong_count`: 46
+
+| 归因分类 | Case ID | 子类 | 错误原因 | 模型输出摘要 | 期望 / 参考 |
+| --- | --- | --- | --- | --- | --- |
+| 系统/服务 | `irrelevance_24` | `request` | `length_stop` | `output_tokens=1024 (hit cap)` | `finish_reason in {tool_calls, stop}` |
+| 系统/服务 | `irrelevance_43` | `request` | `length_stop` | `output_tokens=1024 (hit cap)` | `finish_reason in {tool_calls, stop}` |
+| 系统/服务 | `irrelevance_72` | `request` | `length_stop` | `output_tokens=1024 (hit cap)` | `finish_reason in {tool_calls, stop}` |
+| LLM 能力 | `live_irrelevance_0-0-0` | `live_irrelevance` | `irrelevance_error:decoder_success` | `[{"requests_get":"{\"url\": \"https://date.nager.at/Api\", \"params\": {\"latitude\": 37.4224764, \"longitude…` | `` |
+| LLM 能力 | `live_multiple_0-0-0` | `live_multiple` | `value_error:dict_key` | `[{"ChaDri_change_drink":"{\"drink_id\": \"latte\", \"new_preferences\": {\"size\": \"large\", \"milk_type\": …` | `[{"ChaDri.change_drink":{"drink_id":["latte"],"new_preferences":[{"size":["large"],"milk_…` |
+| LLM 能力 | `live_multiple_4-2-1` | `live_multiple` | `value_error:string` | `[{"uber_ride":"{\"loc\": \"123 Hanoi Street, Hanoi\", \"type\": \"plus\", \"time\": 10}"}]` | `[{"uber.ride":{"loc":["123 Hanoi Street"],"type":["plus"],"time":[10]}}]` |
+| LLM 能力 | `live_multiple_9-4-1` | `live_multiple` | `multiple_function_checker:wrong_count` | `(empty tool_calls)` | `[{"HNA_WQA.search":{"keyword":["Imjin war"],"result_format":["","text"],"language":["","E…` |
+| LLM 能力 | `live_multiple_22-4-14` | `live_multiple` | `simple_function_checker:wrong_func_name` | `[{"HNA_NEWS_search":"{\"keyword\": \"임진왜란\", \"category\": \"History\", \"language\": \"EN\", \"max_results\"…` | `[{"HNA_WQA.search":{"keyword":["임진왜란"],"result_format":["","text"],"language":["","EN"],"…` |
 
 ### Qwen/Qwen3.5-2B · `api-bank` (`full`)
 
 - **系统 / 基础设施错误**：`length_stops`: 1, `execution_error:KeyError`: 22, `tool_exception`: 7
-- **真实 LLM 能力错误**：`execution_mismatch`: 113, `response_leaked_tool_call`: 106, `wrong_tool`: 47, `missing_tool_call`: 28, `tool_exception`: 20, `execution_error:KeyError`: 10, `fixture_argument_mismatch`: 4, `tool_not_offered`: 2
+- **真实 LLM 能力错误**：`execution_mismatch`: 109, `response_leaked_tool_call`: 106, `wrong_tool`: 49, `missing_tool_call`: 28, `tool_exception`: 20, `execution_error:KeyError`: 10, `fixture_argument_mismatch`: 4, `tool_not_offered`: 2
 
 | 归因分类 | Case ID | 子类 | 错误原因 | 模型输出摘要 | 期望 / 参考 |
 | --- | --- | --- | --- | --- | --- |
 | LLM 能力 | `L1:AddAgenda-AddAlarm-GetUserToken-level-2-1:response:6` | `L1:response` | `response_leaked_tool_call (tool_choice=none)` | `<tool_call> <function=AddAgenda> <parameter=token> o8i7u6y5t4r3e2w1q0 </parameter> <parameter=content> Meetin…` | `Natural language response without <tool_call>` |
-| LLM 能力 | `L1:AddAgenda-AddAlarm-GetUserToken-level-2-1:call:8` | `L1:call` | `execution_mismatch` | `[{"id":"chatcmpl-tool-94c4ff286d3727f7","type":"function","function":{"name":"AddAgenda","arguments":"{\"toke…` | `api=AddAgenda` |
-| LLM 能力 | `L1:AddAgenda-AddMeeting-GetUserToken-level-2-2:call:2` | `L1:call` | `tool_exception` | `[{"id":"chatcmpl-tool-bf4185877674b578","type":"function","function":{"name":"GetUserToken","arguments":"{\"u…` | `api=GetUserToken` |
-| LLM 能力 | `L1:AddAgenda-AddMeeting-GetUserToken-level-2-3:call:3` | `L1:call` | `wrong_tool` | `[{"id":"chatcmpl-tool-97b59ce9dec34093","type":"function","function":{"name":"AddMeeting","arguments":"{\"tok…` | `api=GetUserToken` |
-| 系统/服务 | `L1:AddAgenda-AddMeeting-GetUserToken-level-2-3:call:4` | `L1:call` | `execution_error:KeyError (oracle_correct=False)` | `[{"id":"chatcmpl-tool-a82e6b97712727e6","type":"function","function":{"name":"AddMeeting","arguments":"{\"tok…` | `oracle_reason=execution_mismatch` |
+| LLM 能力 | `L1:AddAgenda-AddAlarm-GetUserToken-level-2-1:call:8` | `L1:call` | `execution_mismatch` | `[{"id":"chatcmpl-tool-90789a64cd63679c","type":"function","function":{"name":"AddAgenda","arguments":"{\"toke…` | `api=AddAgenda` |
+| LLM 能力 | `L1:AddAgenda-AddMeeting-GetUserToken-level-2-2:call:2` | `L1:call` | `tool_exception` | `[{"id":"chatcmpl-tool-b088423b69e99a47","type":"function","function":{"name":"GetUserToken","arguments":"{\"u…` | `api=GetUserToken` |
+| LLM 能力 | `L1:AddAgenda-AddMeeting-GetUserToken-level-2-3:call:3` | `L1:call` | `wrong_tool` | `[{"id":"chatcmpl-tool-a74cfb9494ea4a4e","type":"function","function":{"name":"AddMeeting","arguments":"{\"tok…` | `api=GetUserToken` |
+| 系统/服务 | `L1:AddAgenda-AddMeeting-GetUserToken-level-2-3:call:4` | `L1:call` | `execution_error:KeyError (oracle_correct=False)` | `[{"id":"chatcmpl-tool-a4b14f2156d33a3f","type":"function","function":{"name":"AddMeeting","arguments":"{\"tok…` | `oracle_reason=execution_mismatch` |
 | LLM 能力 | `L1:ModifyPassword-RegisterUser-GetUserToken-level-2-1:call:2` | `L1:call` | `missing_tool_call` | `I will need your username and password to get your token first.` | `api=GetUserToken` |
 
-### Qwen/Qwen3.5-2B · `bfcl-v4` (`historical`)
+### Qwen/Qwen3.5-0.8B · `bfcl-v4` (`core`)
 
-- **系统 / 基础设施错误**：`request_errors`: 1010, `context_rejections`: 905, `length_stops`: 53
-- **真实 LLM 能力错误**：`category_incorrect:live_multiple`: 293, `category_incorrect:live_irrelevance`: 275, `category_incorrect:multi_turn_base`: 200, `category_incorrect:multi_turn_long_context`: 200, `category_incorrect:multi_turn_miss_func`: 200, `category_incorrect:multi_turn_miss_param`: 200, `category_incorrect:memory_kv`: 155, `category_incorrect:memory_rec_sum`: 155
-
-### Qwen/Qwen3.5-2B · `bfcl-v4` (`smoke`)
-
-- **系统 / 基础设施错误**：无
-- **真实 LLM 能力错误**：`simple_function_checker:wrong_count`: 2
+- **系统 / 基础设施错误**：`request_errors`: 26, `context_rejections`: 25, `length_stops`: 123
+- **真实 LLM 能力错误**：`unknown_error`: 739, `value_error:string`: 250, `irrelevance_error:decoder_success`: 244, `simple_function_checker:wrong_count`: 213, `parallel_function_checker_no_order:wrong_count`: 203, `multiple_function_checker:wrong_count`: 166, `value_error:others`: 87, `simple_function_checker:wrong_func_name`: 60
 
 | 归因分类 | Case ID | 子类 | 错误原因 | 模型输出摘要 | 期望 / 参考 |
 | --- | --- | --- | --- | --- | --- |
-| LLM 能力 | `simple_python_0` | `simple_python` | `simple_function_checker:wrong_count` | `(empty tool_calls)` | `[{"calculate_triangle_area":{"base":[10],"height":[5],"unit":["units",""]}}]` |
+| 系统/服务 | `irrelevance_18` | `request` | `length_stop` | `output_tokens=1024 (hit cap)` | `finish_reason in {tool_calls, stop}` |
+| 系统/服务 | `irrelevance_72` | `request` | `length_stop` | `output_tokens=1024 (hit cap)` | `finish_reason in {tool_calls, stop}` |
+| 系统/服务 | `irrelevance_77` | `request` | `length_stop` | `output_tokens=1024 (hit cap)` | `finish_reason in {tool_calls, stop}` |
+| LLM 能力 | `live_irrelevance_15-2-3` | `live_irrelevance` | `irrelevance_error:decoder_success` | `[{"get_current_weather":"{\"location\": \"145.34.45.56, USA\", \"unit\": \"fahrenheit\"}"}]` | `` |
+| LLM 能力 | `live_multiple_0-0-0` | `live_multiple` | `value_error:dict_key` | `[{"ChaDri_change_drink":"{\"new_preferences\": {\"size\": \"large\", \"temperature\": \"hot\", \"sweetness_le…` | `[{"ChaDri.change_drink":{"drink_id":["latte"],"new_preferences":[{"size":["large"],"milk_…` |
+| LLM 能力 | `live_multiple_4-2-1` | `live_multiple` | `value_error:string` | `[{"uber_ride":"{\"loc\": \"123 Hanoi Street, Hanoi, Vietnam\", \"type\": \"plus\", \"time\": 10}"}]` | `[{"uber.ride":{"loc":["123 Hanoi Street"],"type":["plus"],"time":[10]}}]` |
+| LLM 能力 | `live_multiple_9-4-1` | `live_multiple` | `multiple_function_checker:wrong_count` | `(empty tool_calls)` | `[{"HNA_WQA.search":{"keyword":["Imjin war"],"result_format":["","text"],"language":["","E…` |
+| LLM 能力 | `live_multiple_26-6-1` | `live_multiple` | `simple_function_checker:wrong_func_name` | `[{"archival_memory_insert":"{\"content\": \"User: Shishir Patil\\nUser: Birthday\\nUser: Birthday Date\\nUser…` | `[{"recall_memory_search":{"query":["Shishir Patil's birthday","Shishir Patil birthday"],"…` |
 
-### Qwen/Qwen3.5-2B · `tau2` (`smoke`)
+### Qwen/Qwen3.5-0.8B · `api-bank` (`full`)
 
-- **系统 / 基础设施错误**：无
-- **真实 LLM 能力错误**：`retail:max_steps`: 2
+- **系统 / 基础设施错误**：`length_stops`: 2, `execution_error:KeyError`: 22, `tool_exception`: 7
+- **真实 LLM 能力错误**：`execution_mismatch`: 138, `wrong_tool`: 84, `response_leaked_tool_call`: 79, `missing_tool_call`: 30, `tool_exception`: 24, `execution_error:KeyError`: 10, `fixture_argument_mismatch`: 3, `unexpected_multiple_calls`: 2
 
 | 归因分类 | Case ID | 子类 | 错误原因 | 模型输出摘要 | 期望 / 参考 |
 | --- | --- | --- | --- | --- | --- |
-| LLM 能力 | `retail:task_0:trial_0` | `retail` | `termination=max_steps, reward=0.00` | `I understand you want to proceed with an exchange, but I need to clarify that exchanges can only be done for …` | `{"note":"Simulation terminated prematurely. Termination reason: TerminationReason.MAX_STE…` |
+| LLM 能力 | `L1:AddAgenda-AddAlarm-GetUserToken-level-2-1:call:6` | `L1:call` | `wrong_tool` | `[{"id":"chatcmpl-tool-84605678f79c79b1","type":"function","function":{"name":"AddAgenda","arguments":"{\"toke…` | `api=GetUserToken` |
+| LLM 能力 | `L1:AddAgenda-AddAlarm-GetUserToken-level-2-1:response:6` | `L1:response` | `response_leaked_tool_call (tool_choice=none)` | `<tool_call> <function=AddAlarm> <parameter=token> o8i7u6y5t4r3e2w1q0 </parameter> <parameter=time> 2023-09-12…` | `Natural language response without <tool_call>` |
+| LLM 能力 | `L1:AddAgenda-AddAlarm-GetUserToken-level-2-1:call:8` | `L1:call` | `execution_mismatch` | `[{"id":"chatcmpl-tool-a54d1960c4f6a3b9","type":"function","function":{"name":"AddAgenda","arguments":"{\"toke…` | `api=AddAgenda` |
+| 系统/服务 | `L1:AddAgenda-AddMeeting-GetUserToken-level-2-3:call:4` | `L1:call` | `execution_error:KeyError (oracle_correct=False)` | `[{"id":"chatcmpl-tool-b013a4a9963d50fc","type":"function","function":{"name":"AddMeeting","arguments":"{\"tok…` | `oracle_reason=execution_mismatch` |
+| LLM 能力 | `L1:Calculator-QueryHistoryToday-level-2-1:call:6` | `L1:call` | `tool_exception` | `[{"id":"chatcmpl-tool-86605b75476db15c","type":"function","function":{"name":"QueryHistoryToday","arguments":…` | `api=QueryHistoryToday` |
+| LLM 能力 | `L1:DeleteAccount-ModifyPassword-GetUserToken-level-2-4:call:6` | `L1:call` | `missing_tool_call` | `I can help you delete your account. Please provide your username and password again.` | `api=DeleteAccount` |
 
