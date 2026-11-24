@@ -6,7 +6,7 @@ from string import Template
 
 from evaluation import OUT, ROOT, read
 
-REPORTS = ROOT / "reports"
+REPORTS = ROOT / "reports" / "02-data-audit"
 TRAIN = {
     "xlam-60k": (
         "工具选择、参数填充、并行",
@@ -112,7 +112,7 @@ SOURCES = (
         "https://github.com/AlibabaResearch/DAMO-ConvAI/tree/main/api-bank",
     ),
     ("τ²-Bench v0.2.0", "https://github.com/sierra-research/tau2-bench/tree/v0.2.0"),
-    ("目录与复现", "../docs/4-数据归档与样本图鉴.md"),
+    ("目录与复现", "../../docs/04-数据归档与样本图鉴.md"),
 )
 
 
@@ -152,20 +152,20 @@ def main():
             if slug != "smoltalk" or k.startswith("all/")
         )
         md.append(f"| {slug} | {n:,} | {size / 1e6:,.1f} | {skill} | {shape} |")
-        example = f"../data/training-inspection/{slug}/examples.json"
+        example = f"../../data/training-inspection/{slug}/examples.json"
         canon = f"https://huggingface.co/datasets/{item['author_source']}"
         training.append(
             f"<details><summary><code>{slug}</code><span>{escape(skill)}</span><b>{n:,} 行</b></summary>"
             f'<div class="body"><p>{escape(shape)}</p><p class="muted">{escape(item["license"])}</p>'
-            f"<p>{link('完整原始样例', example)} · {link('字段与校验清单', '../' + manifest)} · "
+            f"<p>{link('完整原始样例', example)} · {link('字段与校验清单', '../../' + manifest)} · "
             f"{link('ModelScope', 'https://modelscope.cn/datasets/' + item['modelscope'])} · {link('作者源', canon)}</p></div></details>"
         )
         bars.append((slug, size))
     md += ["", "### 样例、来源与许可", ""]
     for slug in TRAIN:
-        mf = f"../data/manifests/training/{slug}.json"
-        ex = f"../data/training-inspection/{slug}/examples.json"
-        data = read(ROOT / mf[3:])
+        mf = f"../../data/manifests/training/{slug}.json"
+        ex = f"../../data/training-inspection/{slug}/examples.json"
+        data = read(ROOT / f"data/manifests/training/{slug}.json")
         md.append(
             f"- **{slug}**：{data['license']}。{markdown_link('样例', ex)} · {markdown_link('归档校验', mf)}。"
         )
@@ -215,7 +215,7 @@ def main():
         for row in index["subsets"]:
             name = row["category"]
             case = read(ROOT / row["path"])
-            payload, prompt = ("../" + row[k] for k in ("path", "prompt_file"))
+            payload, prompt = ("../../" + row[k] for k in ("path", "prompt_file"))
             md.append(
                 f"| {name} | {row['rows']:,} | {PURPOSE[name]} | {markdown_link('JSON', payload)} · {markdown_link('Prompt', prompt)} | {row['tools']} / {row['prompt_tokens']:,} |"
             )
@@ -253,7 +253,8 @@ def main():
         *(f"- {markdown_link(*s)}" for s in SOURCES),
         "",
     ]
-    (REPORTS / "sft-data-analysis.md").write_text("\n".join(md))
+    REPORTS.mkdir(parents=True, exist_ok=True)
+    (REPORTS / "01-sft-data-analysis.md").write_text("\n".join(md))
     max_size = max(size for _, size in bars)
     bars_html = "".join(
         f'<div class="bar"><code>{name}</code><meter min="0" max="{max_size}" value="{size}" '
@@ -276,7 +277,7 @@ def main():
         ),
         sources=" · ".join(link(*s) for s in SOURCES),
     )
-    (REPORTS / "sft-data-analysis.html").write_text(page)
+    (REPORTS / "01-sft-data-analysis.html").write_text(page)
 
 
 if __name__ == "__main__":

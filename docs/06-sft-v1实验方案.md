@@ -183,7 +183,7 @@ PY
    ```
    - 比较 `0.5 / 1.0 / 1.5 / 2.0 epoch` 四个 checkpoint 在 8 类上的得分，**兼顾工具调用提升与 `irrelevance` 不掉点**选出最佳 checkpoint。
 3. **Step 3：最佳 Checkpoint 正式全量验收**
-   - 补跑完整 **`BFCL --profile core`（4,441 题）** 与 **`API-Bank --profile full`（1,281 步）**，并与 [baseline-report.md](../reports/baseline-report.md)（2B `core_weighted=43.48%` / `API-Bank=66.53%`；0.8B `34.30%` / `57.24%`）逐类对照。
+   - 补跑完整 **`BFCL --profile core`（4,441 题）** 与 **`API-Bank --profile full`（1,281 步）**，并与 [01-baseline-report.md](../reports/01-baseline/01-baseline-report.md)（2B `core_weighted=43.48%` / `API-Bank=66.53%`；0.8B `34.30%` / `57.24%`）逐类对照。
 4. **Step 4：下一阶段分叉决策**
    - **情况 A（符合预期）**：`parallel` / `parallel_multiple` / `multiple` / `simple_python` 明显大幅高于基线，`irrelevance` 与 `response_leaked_tool_call` 持平或改善 → 冻结当前模型为 **`SFT-v1` 成品基座**，直接进入 **OPD + Agentic GRPO** 攻克 `multi_turn_*`（尤其是 `miss_func` 2.5% / `miss_param` 15%）。
    - **情况 B（暴露短板）**：若发现 `irrelevance` / `live_irrelevance` 退化超过 `3%`，或 `multi_turn_base` 几乎停滞 → 立即启动 **`SFT-v2` 消融实验**（保持训练框架不变，仅在数据中增补本地已备好的 `apigen-mt-5k` + `smoltalk` 通用无工具子集），直接对比 `SFT-v1` vs `SFT-v2` 数据收益。

@@ -1,6 +1,6 @@
 # ToolCall-SFT 基线评测报告
 
-> 生成时间：2026-11-23 15:22 UTC · 纳入运行数：4
+> 生成时间：2026-11-24 07:37 UTC · 纳入运行数：4
 
 ## 1. 评测范围与主分总览
 
@@ -95,8 +95,8 @@
 
 ### Qwen/Qwen3.5-2B · `bfcl-v4` (`core`)
 
-- **系统 / 基础设施错误**：`request_errors`: 15, `context_rejections`: 12, `length_stops`: 85
-- **真实 LLM 能力错误**：`unknown_error`: 650, `irrelevance_error:decoder_success`: 328, `value_error:string`: 213, `simple_function_checker:wrong_count`: 190, `parallel_function_checker_no_order:wrong_count`: 145, `value_error:others`: 74, `simple_function_checker:wrong_func_name`: 53, `multiple_function_checker:wrong_count`: 46
+- **系统 / 基础设施错误**：`request_errors`: 15, `context_rejections`: 12, `length_stops`: 85, `multi_turn:inference_error`: 15
+- **真实 LLM 能力错误**：`irrelevance_error:decoder_success`: 328, `multi_turn:instance_state_mismatch`: 283, `value_error:string`: 213, `simple_function_checker:wrong_count`: 190, `parallel_function_checker_no_order:wrong_count`: 145, `multi_turn:force_terminated`: 133, `multi_turn:empty_turn_model_response`: 127, `multi_turn:execution_response_mismatch`: 92
 
 | 归因分类 | Case ID | 子类 | 错误原因 | 模型输出摘要 | 期望 / 参考 |
 | --- | --- | --- | --- | --- | --- |
@@ -107,7 +107,10 @@
 | LLM 能力 | `live_multiple_0-0-0` | `live_multiple` | `value_error:dict_key` | `[{"ChaDri_change_drink":"{\"drink_id\": \"latte\", \"new_preferences\": {\"size\": \"large\", \"milk_type\": …` | `[{"ChaDri.change_drink":{"drink_id":["latte"],"new_preferences":[{"size":["large"],"milk_…` |
 | LLM 能力 | `live_multiple_4-2-1` | `live_multiple` | `value_error:string` | `[{"uber_ride":"{\"loc\": \"123 Hanoi Street, Hanoi\", \"type\": \"plus\", \"time\": 10}"}]` | `[{"uber.ride":{"loc":["123 Hanoi Street"],"type":["plus"],"time":[10]}}]` |
 | LLM 能力 | `live_multiple_9-4-1` | `live_multiple` | `multiple_function_checker:wrong_count` | `(empty tool_calls)` | `[{"HNA_WQA.search":{"keyword":["Imjin war"],"result_format":["","text"],"language":["","E…` |
-| LLM 能力 | `live_multiple_22-4-14` | `live_multiple` | `simple_function_checker:wrong_func_name` | `[{"HNA_NEWS_search":"{\"keyword\": \"임진왜란\", \"category\": \"History\", \"language\": \"EN\", \"max_results\"…` | `[{"HNA_WQA.search":{"keyword":["임진왜란"],"result_format":["","text"],"language":["","EN"],"…` |
+| LLM 能力 | `multi_turn_base_0` | `multi_turn_base` | `multi_turn:instance_state_mismatch` | `Model instance for GorillaFileSystem does not match the state with ground truth instance. \| steps=[[[{"cd":"{…` | `[["cd(folder='document')","mkdir(dir_name='temp')","mv(source='final_report.pdf', destina…` |
+| LLM 能力 | `multi_turn_base_1` | `multi_turn_base` | `multi_turn:execution_response_mismatch` | `Model response execution results so far does not contain all the ground truth response execution results for …` | `[["ls(a=True)"],["cd(folder='workspace')","mv(source='log.txt',destination='archive')"],[…` |
+| LLM 能力 | `multi_turn_base_2` | `multi_turn_base` | `multi_turn:force_terminated` | `['Model was force-terminated during inference phase. The length of the model result turns (3) does not match …` | `[["cd(folder='documents')","touch(file_name='TeamNotes.txt')"],["echo(content='Collaborat…` |
+| LLM 能力 | `multi_turn_base_39` | `multi_turn_base` | `multi_turn:empty_turn_model_response` | `Model response list is empty for turn 2 \| steps=[[[{"mkdir":"{\"dir_name\": \"WebDevProjects\"}"}],[]],[[{"cd…` | `[["mkdir(dir_name='WebDevProjects')"],["cd(folder='WebDevProjects')","touch(file_name='st…` |
 
 ### Qwen/Qwen3.5-2B · `api-bank` (`full`)
 
@@ -125,8 +128,8 @@
 
 ### Qwen/Qwen3.5-0.8B · `bfcl-v4` (`core`)
 
-- **系统 / 基础设施错误**：`request_errors`: 26, `context_rejections`: 25, `length_stops`: 123
-- **真实 LLM 能力错误**：`unknown_error`: 739, `value_error:string`: 250, `irrelevance_error:decoder_success`: 244, `simple_function_checker:wrong_count`: 213, `parallel_function_checker_no_order:wrong_count`: 203, `multiple_function_checker:wrong_count`: 166, `value_error:others`: 87, `simple_function_checker:wrong_func_name`: 60
+- **系统 / 基础设施错误**：`request_errors`: 26, `context_rejections`: 25, `length_stops`: 123, `multi_turn:inference_error`: 26
+- **真实 LLM 能力错误**：`multi_turn:force_terminated`: 266, `multi_turn:instance_state_mismatch`: 256, `value_error:string`: 250, `irrelevance_error:decoder_success`: 244, `simple_function_checker:wrong_count`: 213, `parallel_function_checker_no_order:wrong_count`: 203, `multiple_function_checker:wrong_count`: 166, `multi_turn:execution_response_mismatch`: 101
 
 | 归因分类 | Case ID | 子类 | 错误原因 | 模型输出摘要 | 期望 / 参考 |
 | --- | --- | --- | --- | --- | --- |
@@ -137,7 +140,10 @@
 | LLM 能力 | `live_multiple_0-0-0` | `live_multiple` | `value_error:dict_key` | `[{"ChaDri_change_drink":"{\"new_preferences\": {\"size\": \"large\", \"temperature\": \"hot\", \"sweetness_le…` | `[{"ChaDri.change_drink":{"drink_id":["latte"],"new_preferences":[{"size":["large"],"milk_…` |
 | LLM 能力 | `live_multiple_4-2-1` | `live_multiple` | `value_error:string` | `[{"uber_ride":"{\"loc\": \"123 Hanoi Street, Hanoi, Vietnam\", \"type\": \"plus\", \"time\": 10}"}]` | `[{"uber.ride":{"loc":["123 Hanoi Street"],"type":["plus"],"time":[10]}}]` |
 | LLM 能力 | `live_multiple_9-4-1` | `live_multiple` | `multiple_function_checker:wrong_count` | `(empty tool_calls)` | `[{"HNA_WQA.search":{"keyword":["Imjin war"],"result_format":["","text"],"language":["","E…` |
-| LLM 能力 | `live_multiple_26-6-1` | `live_multiple` | `simple_function_checker:wrong_func_name` | `[{"archival_memory_insert":"{\"content\": \"User: Shishir Patil\\nUser: Birthday\\nUser: Birthday Date\\nUser…` | `[{"recall_memory_search":{"query":["Shishir Patil's birthday","Shishir Patil birthday"],"…` |
+| LLM 能力 | `multi_turn_base_0` | `multi_turn_base` | `multi_turn:instance_state_mismatch` | `Model instance for GorillaFileSystem does not match the state with ground truth instance. \| steps=[[[{"cd":"{…` | `[["cd(folder='document')","mkdir(dir_name='temp')","mv(source='final_report.pdf', destina…` |
+| LLM 能力 | `multi_turn_base_1` | `multi_turn_base` | `multi_turn:force_terminated` | `['Model was force-terminated during inference phase. The length of the model result turns (1) does not match …` | `[["ls(a=True)"],["cd(folder='workspace')","mv(source='log.txt',destination='archive')"],[…` |
+| LLM 能力 | `multi_turn_base_14` | `multi_turn_base` | `multi_turn:execution_response_mismatch` | `Model response execution results so far does not contain all the ground truth response execution results for …` | `[["cd(folder='ResearchDocs')","find(path='.',name='report.csv')"],["grep(file_name='repor…` |
+| LLM 能力 | `multi_turn_base_72` | `multi_turn_base` | `multi_turn:empty_turn_model_response` | `Model response list is empty for turn 0 \| steps=[[[]],[[{"fillFuelTank":"{\"fuelAmount\": 50}"}],[{"startEngi…` | `[["fillFuelTank(fuelAmount=10.0)"],["lockDoors(unlock=False, door=['driver', 'passenger',…` |
 
 ### Qwen/Qwen3.5-0.8B · `api-bank` (`full`)
 

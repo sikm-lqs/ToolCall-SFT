@@ -1,6 +1,6 @@
 # 5. SFT 训练管线设计
 
-本文档定义 `Qwen/Qwen3.5-2B` 与 `Qwen/Qwen3.5-0.8B` 第一阶段监督微调（SFT）的工程与实验方案，承接[基线评测](2-基线评测.md)、[数据集调研](3-sft数据集调研.md)与[数据归档与样本图鉴](4-数据归档与样本图鉴.md)。
+本文档定义 `Qwen/Qwen3.5-2B` 与 `Qwen/Qwen3.5-0.8B` 第一阶段监督微调（SFT）的工程与实验方案，承接[基线评测](02-基线评测.md)、[数据集调研](03-sft数据集调研.md)与[数据归档与样本图鉴](04-数据归档与样本图鉴.md)。
 
 为兼顾**研发迭代速度、数据纯净度与清晰的数据消融实验**，SFT 按 **V0（链路烟囱）→ `SFT-v1`（仅 `xlam-60k + toolace` 精选）→ `SFT-v2`（按需增量补 `apigen-mt-5k` 与通用保持）** 递进实施，为后续 **OPD** 与 **Agentic RL（GRPO）** 打底。
 
@@ -8,7 +8,7 @@
 
 ## 1. 基线问题映射：SFT 要解决什么、怎么分步打
 
-结合 64K 正式基线（[baseline-report.md](../reports/baseline-report.md)）暴露出的真实错因与本地样本盘点（[sft-data-analysis.md](../reports/sft-data-analysis.md)）：
+结合 64K 正式基线（[01-baseline-report.md](../reports/01-baseline/01-baseline-report.md)）暴露出的真实错因与本地样本盘点（[01-sft-data-analysis.md](../reports/02-data-audit/01-sft-data-analysis.md)）：
 
 | 基线表现与核心病灶 | 2B / 0.8B 基线水平 | 分步解决策略 |
 | --- | --- | --- |
@@ -96,7 +96,7 @@ tests/                      格式转换、Chat Template 与 Loss Mask 单元测
 
 ### 3.2 `SFT-v1` 主力数据源实测格式与清洗细则
 
-结合本地 `data/raw/` 实测归档（[sft-data-analysis.md](../reports/sft-data-analysis.md)）逐项处理：
+结合本地 `data/raw/` 实测归档（[01-sft-data-analysis.md](../reports/02-data-audit/01-sft-data-analysis.md)）逐项处理：
 
 | 数据集 | 实测规模与原始结构 | 关键清洗与防坑规则 |
 | --- | --- | --- |
@@ -131,7 +131,7 @@ tests/                      格式转换、Chat Template 与 Loss Mask 单元测
      - **参与 loss（`labels != -100`）**：仅包含 `assistant` 的 `<tool_call>` 与自然语言回复（含轮末 `<|im_end|>`）。
      - **严格 mask（`labels == -100`）**：`system`（含 tools 声明）、`user` 输入、`tool` 返回（`<tool_response>`）以及 `<|im_start|>assistant\n<think>\n\n</think>\n\n` 前缀全部屏蔽。
 
-> `SFT-v1` 的本地完整构建统计与详细实验方案已落地于 [6. SFT-v1 实验方案](6-sft-v1实验方案.md)。
+> `SFT-v1` 的本地完整构建统计与详细实验方案已落地于 [06. SFT-v1 实验方案](06-sft-v1实验方案.md)。
 
 ---
 

@@ -1,12 +1,12 @@
-# 7. `SFT-v1` 服务器端执行与验收手册
+# 07. `SFT-v1` 服务器端执行与验收手册
 
-本文档面向远程 **A100-SXM4-40GB** 服务器上的执行 Agent。请按顺序执行，严禁跳过 Pre-flight 校验或更改数据配比，确保实验过程、指标记录与评测验收 100% 可复现。
+本文档记录在远程 **A100-SXM4-40GB**（`rl-server`）上执行 `SFT-v1` 训练与验收的标准步骤。按照 [科研协作范式规范](../AGENTS.md)，本地 Agent 通过 `scripts/remote/sync_code.sh` 推送代码与配置，使用 `scripts/remote/run_tmux.sh` 在独立代码快照中启动 `tmux` 长任务，再经 `scripts/remote/pull_artifacts.sh` 拉回日志与指标到本地分析存档。请按顺序执行，严禁跳过 Pre-flight 校验或更改数据配比。
 
 ---
 
 ## 1. 实验设计背景与核心认知（做之前先读懂为什么）
 
-1. **我们要修哪些基线短板？**（详见 [2-基线评测.md](2-基线评测.md) 与 [6-sft-v1实验方案.md](6-sft-v1实验方案.md)）
+1. **我们要修哪些基线短板？**（详见 [02-基线评测.md](02-基线评测.md) 与 [06-sft-v1实验方案.md](06-sft-v1实验方案.md)）
    - `Qwen3.5-2B`（64K 基线）：`BFCL core_weighted = 43.48%`，`API-Bank full = 66.53%`；主要病灶是 `parallel = 50.5%`、参数忠实度错 287 次、`live_irrelevance` 误调用 328 次、`API-Bank` 回复轮泄漏 `<tool_call>` 106 次，以及多轮短板（`multi_turn_base = 29.5%` / `miss_param = 15.0%` / `miss_func = 2.5%`）。
    - `Qwen3.5-0.8B`（64K 基线）：`BFCL core_weighted = 34.30%`，`API-Bank full = 57.24%`；`parallel = 31.5%`、`multiple = 63.5%`、`multi_turn_base = 10.5%`。
 2. **为什么 `SFT-v1` 只选用 `xlam-60k + toolace`（27,058 条）？**
@@ -22,13 +22,14 @@
 
 ## 2. 同步代码、更新 `.venv` 与核验冻结数据集
 
-### Step 2.1 拉取代码并更新 CLI 入口
+### Step 2.1 同步本地代码并更新远端 CLI 入口
 
 ```bash
-cd ~/ToolCall-SFT   # 或服务器实际仓库路径
-git pull origin main
+# 1. 在本地执行（不要在服务器 git pull/commit）
+bash scripts/remote/sync_code.sh
 
-# 将新增的 toolcall-build-data / toolcall-sft / toolcall-merge-lora 命令注册进 .venv 与 runs/envs/train
+# 2. 在 rl-server 上确认新命令已注册进 .venv 与 runs/envs/train
+cd /root/ToolCall-SFT
 uv pip install --python .venv/bin/python --no-deps -e .
 uv pip install --python runs/envs/train/bin/python --no-deps -e .
 
@@ -182,7 +183,7 @@ runs/envs/serve/bin/vllm serve "$merged_model" --served-model-name sft-v1-e0-smo
 
 ## 4. 关键监控指标与验收标准清单
 
-请服务器 Agent 在训练、验收及汇报时逐项核对并记录以下指标：
+本地 Agent 在跟踪远端 `tmux` 运行、验收并生成本地报告时逐项核对以下指标：
 
 ### 4.1 训练期必须记录与核对的指标（来自 `train_summary.json` 与 SwanLab）
 - **Pre-flight Loss Mask 校验**：`active_ratio`（预期 `0.11–0.18`）、`has_cu_seq_lens_q=true`、`byte_identical=true`、`status="passed"`。
@@ -190,18 +191,19 @@ runs/envs/serve/bin/vllm serve "$merged_model" --served-model-name sft-v1-e0-smo
 - **Token 准确率与梯度稳定性**：`train/mean_token_accuracy`、`eval/mean_token_accuracy`、`train/grad_norm`（是否平稳无连续 `>5` 尖峰或 NaN）、`train/learning_rate`。
 - **硬件与效率**：`peak_vram_gib`（应 `< 24 GiB`）、`wall_seconds`、`train_samples_per_second`、`flash_linear_attention=true`。
 
-### 4.2 评测验收标准（对比 `reports/baseline-report.md`）
+### 4.2 评测验收标准（对比 `reports/01-baseline/01-baseline-report.md`）
 - **2B 基线参考**：`BFCL core_weighted = 43.48%`（`parallel 50.5%` / `multiple 82.5%` / `irrelevance 78.75%` / `live_irrelevance 68.67%` / `multi_turn_base 29.5%`）、`API-Bank full = 66.53%`（`response_leaked_tool_call = 106`）。
 - **0.8B 基线参考**：`BFCL core_weighted = 34.30%`（`parallel 31.5%` / `multiple 63.5%` / `multi_turn_base 10.5%`）、`API-Bank full = 57.24%`（`response_leaked_tool_call = 79`）。
 - **验收与选优原则**：
   1. 绝不可仅看 `eval_loss` 选 ckpt，必须结合 8 类 BFCL 快筛分数（尤其是 `parallel` 涨幅 vs `irrelevance` 留存）。
   2. 全量补跑必须记录 **0 系统级报错**（或逐一归因 `request_errors` / `context_rejections` / `length_stops`），重点对比 `response_leaked_tool_call` 是否下降及 `multi_turn_*` 的净增益。
 
-### 4.3 完成后的产物整理与 Git 回传要求
-- **勿将模型权重、`runs/` 或 `data/` 提交到 Git**（保持 `.gitignore` 规则）。
-- 在 `reports/` 新增一份简明的 `SFT-v1` 实验与评测汇总报告（例如 `reports/sft-v1-report.md`），附带：
+### 4.3 完成后的产物回收与本地 Git 存档要求
+- **勿将模型权重、`runs/` 或 `data/` 提交到 Git**（保持 `.gitignore` 规则），且**不要在服务器上执行 Git commit / push**。
+- 通过 `bash scripts/remote/pull_artifacts.sh` 将远端 `runs/train/` 摘要、`runs/services/` 日志和 `runs/eval/` 指标拉回本地分析。
+- 在本地 `reports/03-sft/` 新增一份按序号编排的 `SFT-v1` 实验与评测汇总报告（例如 `reports/03-sft/01-sft-v1-report.md`），附带：
   - `E0 / E1(2B) / E2(0.8B)` 的 `train_summary.json` 核心指标、`val_loss` 曲线与最佳 ckpt 判定依据；
   - `BFCL 8 类快筛（4 个 ckpt 对比表）`；
   - 最佳 ckpt 的 **`BFCL --profile core`（4,441 题）+ `API-Bank --profile full`（1,281 步）** 全量逐类对比基线表与错误归因；
   - 所有 SwanLab Run ID（训练 + 评测）。
-- 将 `reports/` 文档 commit + push 回 `origin/main`，供本地审阅并决策进 **OPD/GRPO** 还是补 **`SFT-v2`**。
+- 在本地将代码改动与 `reports/03-sft/` 文档 commit + push 到 `origin/main` 存档，并据此决策进 **OPD/GRPO** 还是补 **`SFT-v2`**。

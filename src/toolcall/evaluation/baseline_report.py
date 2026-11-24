@@ -991,8 +991,8 @@ def main() -> None:
     )
     cli.add_argument("--eval-root", type=Path, default=Path("runs/eval"))
     cli.add_argument("--title", default="ToolCall-SFT 基线评测报告")
-    cli.add_argument("--out-md", type=Path, default=Path("reports/baseline-report.md"))
-    cli.add_argument("--out-html", type=Path, default=Path("reports/baseline-report.html"))
+    cli.add_argument("--out-md", type=Path, default=Path("reports/01-baseline/01-baseline-report.md"))
+    cli.add_argument("--out-html", type=Path, default=Path("reports/01-baseline/01-baseline-report.html"))
     args = cli.parse_args()
 
     run_dirs = (
