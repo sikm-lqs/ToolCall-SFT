@@ -25,6 +25,59 @@ _TOOLACE_RETURN_ONLY_RE = re.compile(
     re.IGNORECASE,
 )
 _TOOLACE_NOTE_RE = re.compile(r"(Note that the provided function is in [^\n.]+\.)")
+_TOOLACE_POLICY_RE = re.compile(
+    r"You are an expert in composing functions\.\s*"
+    r"You are given a question and a set of possible functions\.\s*"
+    r"Based on the question, you will need to make one or more function/tool calls to achieve the purpose\.\s*"
+    r"(?:If none of the function can be used, point it out\.\s*)?"
+    r"(?:If the given question lacks the parameters required by the function, also point it out\.\s*)?",
+    re.IGNORECASE,
+)
+_NO_CALL_SUSPECT_RE = re.compile(
+    r"(\[No Need to Ask\]|```(?:json)?\s*[\[\{]|\"name\"\s*:\s*\"|<tool_call>|<function=|"
+    r"sufficient information to call|all the necessary information to call|"
+    r"you have provided all the required)",
+    re.IGNORECASE,
+)
+_NL_PSEUDO_CALL_RE = re.compile(
+    r"(<tool_call>|</tool_call>|<function=|\"id\"\s*:\s*\"call_|\"arguments\"\s*:\s*\"?\{)",
+    re.IGNORECASE,
+)
+_NO_CALL_IRRELEVANT_RE = re.compile(
+    r"\b(?:do(?:es)? not|don't|doesn't)\s+(?:include|provide|offer|support|have|contain)\b"
+    r"|\bnone of the (?:provided |available |listed |given )?(?:function|tool|api)s?\b"
+    r"|\bno (?:suitable |available |relevant |matching |specific )?(?:function|tool|api)s?\s+(?:is|are|can|to|for)\b"
+    r"|\bno function(?:s)? (?:is |are )?(?:available|provided|listed|relevant|capable)\b"
+    r"|\bdifferent set of (?:functions|tools|apis)\b"
+    r"|\bnot (?:achievable|supported|possible|capable) with (?:the )?(?:provided|available|given)\b",
+    re.IGNORECASE,
+)
+_STRICT_IRR_RE = re.compile(
+    r"\b(?:do(?:es)? not|don't|doesn't)\s+(?:include|provide\s+(?:any|a|the)?\s*(?:function|tool|api|capabilit|method|way|mechanism|option)|offer|support|have\s+(?:any|a)?\s*(?:function|tool|api|capabilit)|contain)\b"
+    r"|\bnone of the (?:provided |available |listed |given )?(?:function|tool|api)s?\b"
+    r"|\bno (?:suitable |available |relevant |matching |specific )?(?:function|tool|api)s?\s+(?:is|are|can|to|for)\b"
+    r"|\bno function(?:s)? (?:is |are )?(?:available|provided|listed|relevant|capable)\b"
+    r"|\bdifferent set of (?:functions|tools|apis)\b"
+    r"|\bnot (?:achievable|supported|possible|capable) with (?:the )?(?:provided|available|given)\b"
+    r"|\brelated to [^.\n]{1,60},\s*not\b"
+    r"|\bdesigned (?:only |specifically )?(?:to|for) [^.\n]{1,60},?\s*(?:not|rather than)\b",
+    re.IGNORECASE,
+)
+_NO_CALL_MISSING_PARAM_RE = re.compile(
+    r"\b(lack(?:s|ing)?|missing|required (?:parameter|argument|field)|please provide|"
+    r"need(?:s)? to (?:provide|specify)|must specify|"
+    r"not provide(?:d)? (?:the |enough )?(?:parameter|argument|value|info))\b",
+    re.IGNORECASE,
+)
+_STRICT_MP_RE = re.compile(
+    r"\b(?:requires?(?: the)? (?:required )?(?:parameter|argument|field)|"
+    r"lacks? the (?:required |necessary )?(?:parameter|argument|field)|"
+    r"missing (?:the )?(?:required |necessary )?(?:parameter|argument|field)|"
+    r"required (?:parameter|argument|field)s? (?:for|of|are|is)|"
+    r"please provide (?:the |a )?(?:specific |valid |required )?(?:[a-z_]+|value|parameter|argument)|"
+    r"need(?:s)? to (?:provide|specify))\b",
+    re.IGNORECASE,
+)
 
 
 @dataclass
@@ -203,7 +256,11 @@ def _extract_toolace_system_and_tools(
     return clean_prefix, raw_tools
 
 
-def load_xlam_60k(path: Path) -> tuple[list[dict[str, Any]], ParseStats]:
+def load_xlam_60k(
+    path: Path,
+    *,
+    strict_validation: bool = False,
+) -> tuple[list[dict[str, Any]], ParseStats]:
     """Load, deserialize, and normalize `Salesforce/xlam-function-calling-60k`."""
     stats = ParseStats()
     records: list[dict[str, Any]] = []
@@ -285,7 +342,11 @@ def load_xlam_60k(path: Path) -> tuple[list[dict[str, Any]], ParseStats]:
                 "is_refusal": False,
             },
         }
-        ok, reason = validate_record(record)
+        ok, reason = validate_record(
+            record,
+            strict_arg_types=strict_validation,
+            reject_duplicate_tools=strict_validation,
+        )
         if not ok:
             stats.dropped[reason] += 1
             continue
@@ -297,7 +358,75 @@ def load_xlam_60k(path: Path) -> tuple[list[dict[str, Any]], ParseStats]:
     return records, stats
 
 
-def load_toolace(path: Path) -> tuple[list[dict[str, Any]], ParseStats]:
+def strip_toolace_policy_prompt(sys_prompt: str) -> str:
+    """Remove ToolACE's generic policy boilerplate while keeping real date/language constraints."""
+    cleaned = _TOOLACE_POLICY_RE.sub("", sys_prompt)
+    cleaned = re.sub(r"\n{2,}", "\n", cleaned).strip()
+    if cleaned.endswith(".."):
+        cleaned = cleaned[:-1]
+    return cleaned
+
+
+def classify_toolace_no_call(
+    messages: list[dict[str, Any]],
+    tools: list[dict[str, Any]],
+    *,
+    strict_boundary: bool = False,
+) -> tuple[str | None, str | None]:
+    """Classify a zero-call ToolACE record into clean sub-buckets or quarantine reasons."""
+    if not tools:
+        return None, "no_call_empty_tools"
+
+    asst_text = "\n".join(
+        str(m.get("content") or "") for m in messages if m.get("role") == "assistant"
+    )
+    if _NO_CALL_SUSPECT_RE.search(asst_text):
+        return None, "no_call_suspect_leak"
+
+    names = [re.escape(t["function"]["name"]) for t in tools if t.get("function", {}).get("name")]
+    if names and re.search(r"\[\s*(?:" + "|".join(names) + r")\s*\(", asst_text):
+        return None, "no_call_suspect_leak"
+
+    if strict_boundary:
+        raw_names = [t["function"]["name"] for t in tools if t.get("function", {}).get("name")]
+        req_params = {
+            p
+            for t in tools
+            for p in ((t.get("function", {}).get("parameters") or {}).get("required") or [])
+        }
+        mentions_tool = any(
+            n.lower() in asst_text.lower() or n.replace("_", " ").lower() in asst_text.lower()
+            for n in raw_names
+        )
+        mentions_req_param = any(
+            re.search(r"\b" + re.escape(p) + r"\b", asst_text)
+            for p in req_params
+            if len(p) >= 3
+        )
+        has_irr = bool(_STRICT_IRR_RE.search(asst_text))
+        has_mp = bool(_STRICT_MP_RE.search(asst_text))
+        if has_irr and not has_mp and not mentions_req_param:
+            return "toolace_irrelevant_refusal", None
+        if has_mp and (mentions_tool or mentions_req_param) and not has_irr:
+            return "toolace_missing_param", None
+        if has_irr and (has_mp or mentions_req_param):
+            return None, "no_call_boundary_conflict"
+        return None, "no_call_ambiguous"
+
+    if _NO_CALL_IRRELEVANT_RE.search(asst_text):
+        return "toolace_irrelevant_refusal", None
+    if _NO_CALL_MISSING_PARAM_RE.search(asst_text):
+        return "toolace_missing_param", None
+    return None, "no_call_ambiguous"
+
+
+def load_toolace(
+    path: Path,
+    *,
+    strip_policy_prompt: bool = False,
+    split_no_call_subtypes: bool = False,
+    strict_validation: bool = False,
+) -> tuple[list[dict[str, Any]], ParseStats]:
     """Load, deserialize, and normalize `mlabonne/ToolACE` parquet."""
     stats = ParseStats()
     records: list[dict[str, Any]] = []
@@ -316,6 +445,9 @@ def load_toolace(path: Path) -> tuple[list[dict[str, Any]], ParseStats]:
         except Exception as exc:
             stats.dropped[str(exc) if "non_json" in str(exc) else "system_parse_error"] += 1
             continue
+
+        if strip_policy_prompt and sys_prompt:
+            sys_prompt = strip_toolace_policy_prompt(sys_prompt)
 
         raw_names = [str(t.get("name", "")).strip() for t in raw_tools]
         if any(not n for n in raw_names):
@@ -427,11 +559,33 @@ def load_toolace(path: Path) -> tuple[list[dict[str, Any]], ParseStats]:
             stats.dropped["turn_parse_error"] += 1
             continue
 
+        if (split_no_call_subtypes or strict_validation) and total_tool_calls > 0:
+            asst_nl = "\n".join(
+                str(m.get("content") or "")
+                for m in messages
+                if m.get("role") == "assistant" and not m.get("tool_calls")
+            )
+            if asst_nl and (
+                _NO_CALL_SUSPECT_RE.search(asst_nl)
+                or (strict_validation and _NL_PSEUDO_CALL_RE.search(asst_nl))
+            ):
+                stats.dropped["suspect_assistant_text"] += 1
+                continue
+
         is_refusal = total_tool_calls == 0
         if has_tool_response:
             bucket = "toolace_multi_turn"
         elif is_refusal:
-            bucket = "toolace_no_call"
+            if split_no_call_subtypes:
+                sub_bucket, drop_reason = classify_toolace_no_call(
+                    messages, tools, strict_boundary=strict_validation
+                )
+                if drop_reason is not None or sub_bucket is None:
+                    stats.dropped[drop_reason or "no_call_quarantined"] += 1
+                    continue
+                bucket = sub_bucket
+            else:
+                bucket = "toolace_no_call"
         else:
             bucket = "toolace_single_or_parallel"
 
@@ -453,13 +607,223 @@ def load_toolace(path: Path) -> tuple[list[dict[str, Any]], ParseStats]:
                 "is_refusal": is_refusal,
             },
         }
-        ok, reason = validate_record(record)
+        ok, reason = validate_record(
+            record,
+            strict_arg_types=strict_validation,
+            reject_duplicate_tools=strict_validation,
+        )
         if not ok:
             stats.dropped[reason] += 1
             continue
 
         stats.kept_rows += 1
         stats.buckets[bucket] += 1
+        records.append(record)
+
+    return records, stats
+
+
+def load_apigen_mt_5k(
+    path: Path,
+    *,
+    excluded_first_turns: set[str] | None = None,
+    excluded_entities: set[str] | None = None,
+    require_final_nl: bool = True,
+    strict_validation: bool = False,
+) -> tuple[list[dict[str, Any]], ParseStats]:
+    """Load, filter, and normalize `Salesforce/APIGen-MT-5k` multi-turn trajectories."""
+    stats = ParseStats()
+    records: list[dict[str, Any]] = []
+
+    raw_rows = json.loads(path.read_text(encoding="utf-8"))
+    stats.raw_rows = len(raw_rows)
+
+    for idx, row in enumerate(raw_rows):
+        conv = row.get("conversations") or []
+        sys_prompt = str(row.get("system") or "").strip()
+        try:
+            raw_tools = (
+                json.loads(row["tools"]) if isinstance(row["tools"], str) else row["tools"]
+            )
+            assert isinstance(raw_tools, list)
+        except Exception:
+            stats.dropped["tools_json_error"] += 1
+            continue
+
+        # Drop trajectories calling pseudo-tool `think` to prevent hallucinated tool calls.
+        if any(
+            m.get("from") == "function_call" and '"think"' in str(m.get("value") or "")
+            for m in conv
+        ):
+            has_think_call = False
+            for m in conv:
+                if m.get("from") == "function_call":
+                    try:
+                        if json.loads(m["value"]).get("name") == "think":
+                            has_think_call = True
+                            break
+                    except Exception:
+                        pass
+            if has_think_call:
+                stats.dropped["has_think_call"] += 1
+                continue
+
+        filtered_tools = [t for t in raw_tools if str(t.get("name", "")).strip() != "think"]
+        raw_names = [str(t.get("name", "")).strip() for t in filtered_tools]
+        if not raw_names or any(not n for n in raw_names):
+            stats.dropped["empty_tool_name"] += 1
+            continue
+        name_map = build_tool_name_mapping(raw_names)
+
+        tools = [
+            {
+                "type": "function",
+                "function": {
+                    "name": name_map[str(t["name"]).strip()],
+                    "description": str(t.get("description") or "").strip(),
+                    "parameters": normalize_toolace_parameters(t.get("parameters")),
+                },
+            }
+            for t in filtered_tools
+        ]
+
+        messages: list[dict[str, Any]] = []
+        if sys_prompt:
+            messages.append({"role": "system", "content": sys_prompt})
+
+        total_tool_calls = 0
+        num_tool_messages = 0
+        has_tool_response = False
+        parse_failed: str | None = None
+        prev_from: str | None = None
+
+        for turn in conv:
+            role = turn.get("from")
+            value = str(turn.get("value") or "")
+            if role == "human":
+                if prev_from == "human":
+                    parse_failed = "consecutive_human"
+                    break
+                text = value.strip()
+                if not text:
+                    parse_failed = "empty_human"
+                    break
+                messages.append({"role": "user", "content": text})
+            elif role == "gpt":
+                if prev_from == "gpt":
+                    parse_failed = "consecutive_gpt"
+                    break
+                text = value.strip()
+                if not text:
+                    parse_failed = "empty_gpt"
+                    break
+                if _NL_PSEUDO_CALL_RE.search(text):
+                    parse_failed = "pseudo_call_in_nl"
+                    break
+                messages.append({"role": "assistant", "content": text})
+            elif role == "function_call":
+                try:
+                    call_obj = json.loads(value)
+                    raw_name = str(call_obj.get("name", "")).strip()
+                    args = call_obj.get("arguments")
+                    if isinstance(args, str):
+                        args = json.loads(args)
+                    assert raw_name in name_map and isinstance(args, dict)
+                except Exception:
+                    parse_failed = "bad_function_call"
+                    break
+                total_tool_calls += 1
+                messages.append(
+                    {
+                        "role": "assistant",
+                        "content": "",
+                        "tool_calls": [
+                            {
+                                "type": "function",
+                                "function": {
+                                    "name": name_map[raw_name],
+                                    "arguments": args,
+                                },
+                            }
+                        ],
+                    }
+                )
+            elif role == "observation":
+                obs_text = value.strip()
+                if not obs_text:
+                    parse_failed = "empty_observation"
+                    break
+                prev_msg = messages[-1] if messages else {}
+                if prev_msg.get("role") != "assistant" or not prev_msg.get("tool_calls"):
+                    parse_failed = "orphan_observation"
+                    break
+                has_tool_response = True
+                num_tool_messages += 1
+                obs_name = prev_msg["tool_calls"][0]["function"]["name"]
+                messages.append({"role": "tool", "name": obs_name, "content": obs_text})
+            else:
+                parse_failed = f"unexpected_from:{role}"
+                break
+            prev_from = role
+
+        if parse_failed:
+            stats.dropped[parse_failed] += 1
+            continue
+        if not has_tool_response or total_tool_calls == 0:
+            stats.dropped["no_tool_interaction"] += 1
+            continue
+        if require_final_nl and (
+            messages[-1].get("role") != "assistant" or messages[-1].get("tool_calls")
+        ):
+            stats.dropped["missing_final_nl"] += 1
+            continue
+
+        if excluded_first_turns:
+            first_user = next(
+                (m["content"] for m in messages if m["role"] == "user"), ""
+            )
+            norm_first = re.sub(r"\s+", " ", first_user.strip().lower())
+            if norm_first in excluded_first_turns:
+                stats.dropped["eval_overlap"] += 1
+                continue
+
+        if excluded_entities:
+            msg_blob = json.dumps(messages, ensure_ascii=False)
+            if any(ent in msg_blob for ent in excluded_entities):
+                stats.dropped["tau2_task_entity_overlap"] += 1
+                continue
+
+        domain = "airline" if "airline" in sys_prompt.lower() else "retail"
+        num_user_turns = sum(1 for m in messages if m["role"] == "user")
+        record = {
+            "messages": messages,
+            "tools": tools,
+            "meta": {
+                "source": "apigen-mt-5k",
+                "source_id": idx,
+                "domain": domain,
+                "bucket": "apigen_multi_turn",
+                "num_turns": num_user_turns,
+                "num_user_turns": num_user_turns,
+                "num_tool_messages": num_tool_messages,
+                "num_tool_calls": total_tool_calls,
+                "num_candidate_tools": len(tools),
+                "has_tool_response": True,
+                "is_parallel": False,
+                "is_refusal": False,
+            },
+        }
+        ok, reason = validate_record(
+            record,
+            strict_arg_types=strict_validation,
+            reject_duplicate_tools=strict_validation,
+        )
+        if not ok:
+            stats.dropped[reason] += 1
+            continue
+
+        stats.kept_rows += 1
+        stats.buckets["apigen_multi_turn"] += 1
         records.append(record)
 
     return records, stats

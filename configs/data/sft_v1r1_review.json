@@ -1,0 +1,704 @@
+{
+  "input_manifest_sha256": "7e51b1f3872d6e22dd08dad9c2c9bc5fb99100d42e7057e209fd3f76b92b72a4",
+  "review_scope": "Curated 244 candidate questions with tool descriptions and answer screening; explicit approvals only. Other synthetic negatives remain excluded until reviewed.",
+  "approved": [
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00088",
+      "sha256": "7131a1a67f83c2ebc2febf311cc8ddb1c3722db1f90d2f368cab78692437097d"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00089",
+      "sha256": "a0f16a9ffb30229b26b939c04322e213d5c7cd231317f48b059d8182ac250924"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00093",
+      "sha256": "571ee5fcc9dfa79fea5ac65eb21bc552e0ebc81dbf27c21718ae4dfa9b5ba541"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00094",
+      "sha256": "a12afc7bdca903b1f1016bd38b31552d926fbe73a90ffcc99053d5b5feabe99d"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00096",
+      "sha256": "3361ae72804f4d2cf1ebedb7a7ee43385512182346747e3b014e9d0b08465287"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00100",
+      "sha256": "97f8fa3b3ed597367a7d15cbe4ce39589cfd5a36ac71a51fb56f9f66b7a50437"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00107",
+      "sha256": "eca1f21dc8703b3b5a355e23d304a729c300df1943cba6dedf1a65a1a128f407"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00108",
+      "sha256": "20ecaa904066c7fc193d24eb0a23cc748be3a4b1713ff4b406c259dc1d723e0f"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00111",
+      "sha256": "ed03f7772d20e14ebfc01164d4a14aec4ecf47eca052e6b078b90f16b6aaa19d"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00119",
+      "sha256": "d24d160ceb0530fcfa6d6e5981ba7eda038abfcd6b65065681c6bbc5f63111db"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00123",
+      "sha256": "50bde70ee612674740b53fa5aae9ec980b991e81868f235445461e73a4bb77bf"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00127",
+      "sha256": "9131f5d928979f8584363064fbc59d7eadc496d4a91f8e56efbee96eff28714c"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00134",
+      "sha256": "aee68755bc703c0bbdb12657fa47a8d9370f467043c9375fc7d8574f6702387d"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00135",
+      "sha256": "17910ce41f48aed11be8f0595dcf94981af645f956f76cef0edff43a43a558f4"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00136",
+      "sha256": "188eca02e5863563ea996138132d6f6740ed12def7fa05b165b7d5e89bc8e134"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00142",
+      "sha256": "d5e9312c527ea427779125f50017ac6739450fa6969c682ccdd44fc7203b4c9f"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00143",
+      "sha256": "109cd5c72f9e5951309eb56fe4653e52794f97d1977463d2bfc7e8cf0588ec6d"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00145",
+      "sha256": "ba9c0c60b6feaebfe7456164d11c5cff44aaed22897d237c43dc5b45608fb109"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00147",
+      "sha256": "47b528f5b93ed7b0aeaa0bdb0eca97f59366f2fbf3c77f435be52234e097e68e"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00149",
+      "sha256": "c5321567a4184fe574a5b0722808a5262073aa4b36f69a8ef4c80905bc1a4f65"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00154",
+      "sha256": "666efc0e49600fe2ee9a4424e5746e4b86090fe9767302d7c85ad175315c5e23"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00155",
+      "sha256": "86c67db7b3ccd7135fa5d5cc7c64e05f3888e153b702f03ef598944a397f1b22"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00157",
+      "sha256": "eb4fbb6bc5cd062f8cd3f644dbfbf01d048fb1c1d029fbdb68eee84cfe8d46e6"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00159",
+      "sha256": "4817d95551a333d09d729e59d1686c77c9f99df7e909140040f36919e7c1e87b"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00160",
+      "sha256": "e738d15c0a762c51847091b7f398c43795afc26dad178e0571f2fbabfe535d13"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00163",
+      "sha256": "4a378ead2ba13c33766f1ab97ec11a99f1ae7d5bb0b076e18956b4b29a584ca6"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00164",
+      "sha256": "1d3c8b11ef49a8a3f5f994fc081c026e70608bee2014b59773373e6124319ba5"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00167",
+      "sha256": "8ffb9970d74582d44cec08f37b0534f2dd3bfd6f4b9a0b9c4ba62ee7b4576b39"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00170",
+      "sha256": "88ac14301128b9e88e8a78ad77d0a5e9dc09d3e299171e865f93428bd1c5c785"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00171",
+      "sha256": "867f13a5d54ce41794d15d1b24e355a5343f1322a15003c9f22d276837ab3d8a"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00179",
+      "sha256": "1ecbfba1690ba5920c6d1126d0b303a5116e3d8e1c2e4ed10d48fe1bca9c1679"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00180",
+      "sha256": "535bf609d2435be3ce67661f6f8c3edf7d1b140a4cafa30866ad01b2c06b42d6"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00181",
+      "sha256": "d9a9c23c8f2ed1c35e1442cbc716c90889e52ad4c498a8b94122f7925c1789a4"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00182",
+      "sha256": "69f494f4505a9a1edba307de3a576448ac4f9b682591dced4fdec4cd49d706e1"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00183",
+      "sha256": "449eb208305b6b3dd1d330fa59ab1e4865c6b7e9a16b2a14cb6fcb9c58c5c20d"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00191",
+      "sha256": "2de9b31dd0106cf6f42843455082419f9fdfbd7e814cfa78c98590ab14aa388d"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00192",
+      "sha256": "a7f7c3830b871a0ab51433607ef8b50c5178a5e1e1c4d478dba82805b647ad1e"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00194",
+      "sha256": "5688659f14489f2df7a9cbbcf12a653f3370963c45549f8001ab260b22abdb20"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00197",
+      "sha256": "b9b605817d6378d81289865fe76321501e0c5512eb3a0e7e939b5b7e81cf0c7e"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00198",
+      "sha256": "8dcdbeaf6e2074a85591263904017af50245377888f48027f7ea26849886f77b"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00203",
+      "sha256": "a9763da477d4eaa0e3d59153f2276ea476c000898de6c40449e505a66595ca0b"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00208",
+      "sha256": "cbf82b500cf3ae5cfe315c4163060f4b1b1dc7e39368caef75ab8b68789b28f8"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00209",
+      "sha256": "760b627c1515586f4f611827a34425c50340a82c720e8aa65fc545b3d05a0255"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00211",
+      "sha256": "0930232a7bee9940e307fc3931012fc47e9220763627572eb0b669bf011fc717"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00212",
+      "sha256": "b3371c576ed4534c4b2e4a1a310bf9d67924acc5ddfe40b04d254aa8a1297abf"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00214",
+      "sha256": "ba612130d97dbd0e7f186a67f967fdc799482cfda3bd4f261c3ee033eb9ce707"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00216",
+      "sha256": "117c919edb2b69491647245cd8ca87c1fccf53989084b90afa23777024794583"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00222",
+      "sha256": "9bc9aef195ac1132a737ea32da856da5caab455ac56eb04057daff742b1c641e"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00226",
+      "sha256": "9ca8ce5c2c911c59aaa9aba93e789c4ab344e7b16c93ad63efac8463c2150f87"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00234",
+      "sha256": "56118f4f8b90f4d3514b969a67cca0afaea67498a68c8c5b3582349532618a88"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00249",
+      "sha256": "5a257e6f00d41205f99f9fffd2ec70a7ab2fc6ff3e156dd447a9c1fc4e46a871"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00271",
+      "sha256": "b25fe6183fae5562fbeaa4c666ef9d2e3f064adcb0fd4fc9f237d20bd69c2da5"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00280",
+      "sha256": "be02f32a88077154a43a309caff263380d92d573da9779599ed6db303105ed16"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00289",
+      "sha256": "161f6e1b91a0d1eced8cada6432289f0473a537e9c834525537dc7fc4b3262cd"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00290",
+      "sha256": "1cbb33bcebc0fc828f54aa580dbddb586d0d4b9908762e3fb4bf14e8ed01b776"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00303",
+      "sha256": "0e12f25e8db17b3e95675d42c48a14e4cd97025e10a9961930bfb3bbe171b3e6"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00305",
+      "sha256": "bda8d1a99555651cc93cb2b8ac0a309596667a3191c2f7f1762455d7ab4004fd"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00309",
+      "sha256": "2f197721751fd90fd61d3e5153359d7f59226462d5b3a4c7b829b3c113a90e3d"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00313",
+      "sha256": "1d596dfa85ba0ccbcb9aeeb4dde389ad66441fcc14a40a43c81a6d8123846ae9"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00316",
+      "sha256": "b82c14cde3d566e90111981c09d24d0da86fe62bc23a4b10e3d11987e3540adb"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00322",
+      "sha256": "5a88d6fee8d58e10f2bf14aa1372eb3f8a375d4c471e7ff770defb68ecb4b64b"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00343",
+      "sha256": "bdf7c6052601379f9fbe8b92e2c242ac1d271a7dbc6fde75739c7343fc14adb8"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00344",
+      "sha256": "ab487890a73656b911e5c976203b083b39c78baa7f6601a6ca5d0ab19fb405be"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00353",
+      "sha256": "1cd2e63ec6cfb08ccf0bf060d8f63892562802ae08333a2c01eea5ad07d94cd0"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00370",
+      "sha256": "edb73a87e6ca4f2f25a5851a5a059ab18ef435cb0436f77f0ba4778c02833c74"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00371",
+      "sha256": "7d6ee98b11aad1f74b7fc8225b19d52c3bc1c8691fd7cc60b8647966e6fbef31"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00399",
+      "sha256": "38b30e2ad469cc1d970e7f4612498a92afdd255a086a0bbb4e799d75133f5ee1"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00406",
+      "sha256": "b799452a59e4f2f280de305c6fdc46f505bfca8634a36ed26b4718522229b828"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00410",
+      "sha256": "23a6c459929a65607eed6715b65fe91c25c2be05b0fc67eba4b24e685af73c6b"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00432",
+      "sha256": "1a5af9fcd56dc0efda5cb4fe109c72e969b56be0eb8b399fce664bffdb887c3d"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00466",
+      "sha256": "6ac0a930dee419b8dc3bcb8e832b01dc22802b440bb4ac946c6607acdd0fd51c"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_00806",
+      "sha256": "59bc74fcbdc1b30ec1b9a9d219c92c294611b4b9f19e74af2f6f4237a6ec1fab"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_00816",
+      "sha256": "c45666018a5af8670f133bfe7a6aa961f99084ac5b7374a59ab24d57c23fd993"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_00850",
+      "sha256": "08878d9795ac1db64cf1710d7dc4e6fa9b3bbaace763b7f3820f9de17c1c8dca"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_00858",
+      "sha256": "2b5135e83ca698119bb61fd7059d3e143de0f15be740a274ff796ac75c0cdf74"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_00863",
+      "sha256": "fb31977663fa25dd5a49a0fb5c729fb58761c9fa58b5482da6f3816db4c60324"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_00891",
+      "sha256": "2648d1b68b9845a87791090a5ce1136904a0a8084de0ebe11278c28f3f1acf1b"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_00902",
+      "sha256": "8c97cb0be84589d0b001cca0da65bb6937ab09efc32ecc4598adbf79f92b6ca3"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_00912",
+      "sha256": "9cd54ad865c47fc83696356d32ab089ef36ae4be978dc064d73b37427a88861e"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_00917",
+      "sha256": "4a2a0c20e11e847f1a1bdba7b6549dba27faf8e73874b247eaa3c145035ab135"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_00955",
+      "sha256": "6269e3691c6dd89988da79dc2b97b53beec2b7cd9d116230c4656301c602e388"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_00983",
+      "sha256": "46ce19695f0d3b6e32a8d145b60fc0cf7eb7ae7a07299a9ebefd2a3aa3dbf731"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_00992",
+      "sha256": "8886123a1f0053c58ef0c0bff637e23a706afa0ae69bb3513717cafca8ea5668"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_00998",
+      "sha256": "bbecd11a0198b9fb4c10814b08268a6fc40e362ea38148e13534760e31237ce8"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01020",
+      "sha256": "6553781883bec0a5c0bfd5bd2c4cafc2eed945c807166de467d5a1a280637ae9"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01081",
+      "sha256": "507e49e52b64df36241683a3971afbf117375417277e4db2972ee2a669eeacf7"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01105",
+      "sha256": "623f4fd7dc474beced8b6f21b16771a9f4d422f8ec8b54caa1435fdafaae898a"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01146",
+      "sha256": "e8423ffef3cf17b1c6f60fa596078c99c1c1586c648280604d390cbcc3d047e3"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01158",
+      "sha256": "568b7fbf996fb5f84d6d9a5917b3fe58b84df4ce5ec369da70d41a43a54d2333"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01162",
+      "sha256": "dd600baa1854e5c74d4a2db8ddd3384a70282bc42b892253db09e97de2ca55f5"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01167",
+      "sha256": "04e17a3d306c7ebd9633c6ccb2d52967485b00f2d3551d3fe3f1717637dbb26d"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01172",
+      "sha256": "ed8d0dd41e31d34ac47a44ca5e4dac09d1c28cf6f10d866a4fc3ec36451c5f45"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01174",
+      "sha256": "f7adc96cadc41d010dd07342080972ae26a7860776e903dabd28dcc63f263fc8"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01175",
+      "sha256": "aca87bf6d1c15e4cfffdc3cc129fa5e27e2f800c3f003e4e0f638098a93e30c7"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01176",
+      "sha256": "e24c2114683e3abbbc42c0735f31fda7a440544c621f2b675dd32b922348e5c0"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01186",
+      "sha256": "118a49a3ed8d9fbaac84cf84886421c906750a2b2677e8e77eff9332f8d43a2d"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01253",
+      "sha256": "029b043dcae6c41df394001ef858952bae3554e16088fbd822b44bff1b6293d6"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01260",
+      "sha256": "b34b3923291b84a30d11c51043adb013185b10a49bd6eae17caebb902f8a89db"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01277",
+      "sha256": "27f04c33375228d07abfd89caf605296e26e725489768cabf0fd44d9e8903fd3"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01285",
+      "sha256": "f6f2f05e10e4cd571f74ba2a265738cea04cc5edcc07ffe9e604c5083a93defd"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01320",
+      "sha256": "976e19159945539ec4cf7b8650cd56b9ddca8d1a06786aba36a89ef721a15e45"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01342",
+      "sha256": "81d18b7a0863d18aad85ca2e476e5249634f00dcf33a1e1da7fdeb601c9bb368"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01373",
+      "sha256": "e648de6b26e3d4f410cf278fe46daea927ee814810f56021e851a6fb03cd58e1"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01384",
+      "sha256": "c47b73cc99a7bd6f817b279aed195cb7470d4254fb9d7b0c7f3f12ca3b2fcf45"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01411",
+      "sha256": "35ddd59aabb28e349dce191886709b5b6a5262189032fdd2a7b8dd6e2bd31a72"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01433",
+      "sha256": "5ee27152d0a5ad7dff633f541479373e5b8d6d6a8e9dd246674080379f99f508"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01536",
+      "sha256": "adcf5312da30a1c9affbb8eff3c83578b649614fc31ba8dafa36d4c898026438"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01539",
+      "sha256": "e68607d8c475a85ab601be4c4cf00e0c19dc04c457144fd36ef69362f507f355"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01558",
+      "sha256": "ae0b73f3a41ed2220520b95b200f8c1cd0c2d005a50cca746eedbf87d864b8da"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01571",
+      "sha256": "400f12af2984de21fd8f0b5dcbae91c362e96ce2be42de5d1513b7b411eaf68d"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01602",
+      "sha256": "faab0a227ab13fa34dd64fbc7d11cda0bd4dbbcccf8f76347089b05614faf260"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01748",
+      "sha256": "79aab5fc9cf301ce97ef176ee67bee9ba1f414be9da6e6f8e194dea142dc0218"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01749",
+      "sha256": "a8a9925bc0b00f99d0b47d97572dcd7b2c98f62bc82389a8ec4bce1bbfdca200"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01765",
+      "sha256": "1be3acd5dbe018103d4ba3c65b85a8a0faf10ce181e224e634da5900a3d56ef0"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01787",
+      "sha256": "26c27463ccafeb786ce0c0146cc123d57e5575616f6753c5bcd9303ffe0eae9f"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01802",
+      "sha256": "47d0568f575b83ab6eb50a78c663a3ee53e147226407645484f8db33dc57941a"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01814",
+      "sha256": "b23616a6abdbd7a404788a1f0f41bee5570eeafa1219f8c50decfca318b464a0"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01889",
+      "sha256": "c9f4b9172788046cd75e3cac8aa220e4d9aa4a00e7ddcbfffc215f1dbbcb4894"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01896",
+      "sha256": "03e7864a050a17949551bb90f3df202747289bc8b526f7383a0c664579e81d6d"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01909",
+      "sha256": "480cb6618c76a58af14e69689959ded0334759d8629226dc7f7d29fb6a39c715"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_01931",
+      "sha256": "99a59105dfb942e9c738b62d47d4f2f92eb3f7bddc7234b1f66ab2c2773dddb9"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_02060",
+      "sha256": "85c231b284da29f3b0c4de3746117a36de64a0549c3bcd74c5ae0be950b0e107"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_02166",
+      "sha256": "af609919375dab7b8d67d3468248c2da546a1ec1b6c858d840e703cd63faf961"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_02271",
+      "sha256": "c03ffb9a45c9b581e7ff943b9918723c69d6448ee9f9f4f5f2e20a44d212b4b7"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_02449",
+      "sha256": "9a1c01579da560c3017ad0054b52bbd3e78fb8b06a1f6fa512bbea9c36c421a7"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_02514",
+      "sha256": "847baa5c14182bf2a9ac976d8e8fa8db04814964349034598c15c1067c42c8c0"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_02534",
+      "sha256": "476b5da56b09457b30df36c5740f43f2c804e29fc180f5f253eea3575b28345b"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_02589",
+      "sha256": "a4b2ee1188f8f941ffe915514a7c6be626738bcffe552f65f0536bfdead139d1"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_02602",
+      "sha256": "5263b4abd79bfc74610f9428c09475c13814f7d5209a674455dca435a3a86321"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_02611",
+      "sha256": "6c376311d4f3ed28d7a2509b994f60025af9f650c1c071e876c70b6bda911dd9"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_02724",
+      "sha256": "e019b445c828ad8bcfb3993b658046528abe0626739b7e6d4ab55b8ff6a1eaad"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_02746",
+      "sha256": "c37e445e8294c62c7b788433054b28c3b58dfaf490962b24f4738abe2362e2a1"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_02857",
+      "sha256": "5545c3064f98fa5af6ae150ae34e26ea8e4443261f5e9fe66d51e4a73948fc4e"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_02906",
+      "sha256": "23cff0ce6c030df7ef9003078cfb218f5268960dfb40787b623e614d91872397"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_02984",
+      "sha256": "a4857198fe87715e93c0f09fcaa00dd88342c03f2e78b23ae9c15440267c77b4"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_03150",
+      "sha256": "d451426caa9cba56cc78a151f2da0f0a89bb6746264e4866b18911981d9ed8cb"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_03163",
+      "sha256": "23e5647b6dd565079875703b48264927a0a384ad5d1c9eeaaeeec505ef62a637"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_03165",
+      "sha256": "ee6430c135f9ee3bd2331e69f37256ae0f65ef463329758d1363bb57463a2a5b"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_03210",
+      "sha256": "9af6eb77a67ee4324034bc0f0802dd4e47215afce86ce6f742c990e0d0f36a50"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_03230",
+      "sha256": "b4c858d7818432ac063d17380e4c4611163e2d72eb2eed2acf2ee97a4ca8b8be"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_03243",
+      "sha256": "0dc4e32467106edc45139a26960d8c644dcf4dac97b848e996d1885121fc43fb"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_03299",
+      "sha256": "299428f3ceec2c5fc44306a6da7c95516c18201fb7e40a2e819aa532911523a2"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_03305",
+      "sha256": "40f8715036b0b692024f57c5163c18d11545cc48bd204febbd147c06dcbca440"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_03618",
+      "sha256": "e417d598ea14ca756a70c3ec37444477707b1d6c99a8670c0cbbfd7270304320"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_04113",
+      "sha256": "880624ff70291e00cf679ae3cc44080fa782ac351569b6f64034f887620004c5"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_04114",
+      "sha256": "b006019ab7af955f1771d2727626408c3813420557dd396c92b7e335c89205e8"
+    },
+    {
+      "sample_id": "sft_v1r1_val_smoltalk_irrelevant_tools_00030",
+      "sha256": "cabe2abd91ae411f26213e3505d775be3bcbf43ab70b230f3ca88c6b3596645c"
+    },
+    {
+      "sample_id": "sft_v1r1_val_smoltalk_irrelevant_tools_00035",
+      "sha256": "5a7accf241b66f8175198b8862e70e996bdd177cb9dd226a029ea2937a8d6ffb"
+    },
+    {
+      "sample_id": "sft_v1r1_val_smoltalk_irrelevant_tools_00040",
+      "sha256": "43906d45b6a6b5d2f9698639bb27570310eed132bb13bd296020cb8c0cea34b3"
+    },
+    {
+      "sample_id": "sft_v1r1_val_smoltalk_irrelevant_tools_00044",
+      "sha256": "8ff970260c19ca2e422c82e5d4b6b2c02508222745650eb5b4e843cada64cde7"
+    },
+    {
+      "sample_id": "sft_v1r1_val_smoltalk_irrelevant_tools_00045",
+      "sha256": "cb63ff95e6f037497e12bc0e6426353e5b3ca98deb6b9c03237a3b4c8e5a4a16"
+    },
+    {
+      "sample_id": "sft_v1r1_val_smoltalk_irrelevant_tools_00047",
+      "sha256": "8ed65c661e3d85b91a9ef91138edb82075e589a3ebe7b85fb149337bacfc0949"
+    },
+    {
+      "sample_id": "sft_v1r1_val_smoltalk_irrelevant_tools_00050",
+      "sha256": "769f57e599d94037a421911c67ff23f44685069800fd2de40c4aba7e9dca016e"
+    },
+    {
+      "sample_id": "sft_v1r1_val_smoltalk_irrelevant_tools_00053",
+      "sha256": "8ddd48073215ae19e7b0c55bc61aa111f8cd92cadbdc4dd22c2a58ab9185e359"
+    },
+    {
+      "sample_id": "sft_v1r1_val_smoltalk_irrelevant_tools_00058",
+      "sha256": "82b16b4c9ddbff2a88a694b297339c83c1e2e88b702834d4280635158679f168"
+    },
+    {
+      "sample_id": "sft_v1r1_val_smoltalk_irrelevant_tools_00065",
+      "sha256": "2258bc9f99c20658e92d6b180fbb915e65f07d087370765c2af3c8bb2a6e5499"
+    },
+    {
+      "sample_id": "sft_v1r1_val_smoltalk_irrelevant_tools_00069",
+      "sha256": "d78fd4042d9c174589d5bd4728cc8d1f05d53991980977167b4934485ff83861"
+    },
+    {
+      "sample_id": "sft_v1r1_val_smoltalk_irrelevant_tools_00095",
+      "sha256": "3390c32b8ec168147e28f3dc559b33c73a1844b30a5684f21e4c90a8fd178410"
+    },
+    {
+      "sample_id": "sft_v1r1_val_smoltalk_irrelevant_tools_00104",
+      "sha256": "c79b3c5008039e21a36e7cd3aff1cded40c26f254e4f42c556148e11eec703d9"
+    }
+  ],
+  "rejected": [
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00040",
+      "sha256": "5ece9a2c4eded81776d8ee94fb3a48dd8c9ab2f9fff127ba1b42aeafaceee73e",
+      "reason": "applicable_tool_or_missing_location"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00044",
+      "sha256": "22df93d7db89f9bbb12a7ad0ec741b076c6a37bea2738c7f393f32fb289e95cd",
+      "reason": "applicable_tool"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00133",
+      "sha256": "a54c397702ab0692099c940bef7b3d6d9d38b7c175a15630daa632d7b355b56b",
+      "reason": "answer_quality"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00166",
+      "sha256": "999f4b39b798f8ab334cdae7b0a96bb1bec1490582be2c9879ea22e93e129afb",
+      "reason": "answer_quality"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00196",
+      "sha256": "9702c63a3d2effdce8f4559e52cb83f5691a8180e1ed7d5cd1159efae4ce8b47",
+      "reason": "answer_quality"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00200",
+      "sha256": "9f36124a2c37504e67b67545f5ab0f0f23687e1035bc16addf9032f10d8647d1",
+      "reason": "answer_quality"
+    },
+    {
+      "sample_id": "sft_v1r1_smoke_smoltalk_irrelevant_tools_00299",
+      "sha256": "ea3384da8bcb21bb1406186f87981daa32bcf7afcd1433b96373da156d23c7ef",
+      "reason": "answer_quality"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_00643",
+      "sha256": "16c4812b5264011be8bc6b84dcb24f72538b87c7269fef81e7be6b0821ea2b15",
+      "reason": "applicable_tool_or_missing_location"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_02493",
+      "sha256": "1d3f4bb86272c0b97c7cb2cf991d3241e909cc99cd2b8a2ca3a43fb5f68e7efd",
+      "reason": "answer_quality"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_02667",
+      "sha256": "017d232cf7e6ac2b6f6b7a8b61204059f8a15ce38c0b8525f7014c53b49525c0",
+      "reason": "applicable_tool"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_03692",
+      "sha256": "883d4810d05447270eaacb4d420a5d74bec70cdb8036e364a0386b96470b5270",
+      "reason": "applicable_tool"
+    },
+    {
+      "sample_id": "sft_v1r1_smoltalk_irrelevant_tools_04115",
+      "sha256": "f1409c49ba1797a5a95d3b1c2536f68af2ad45d72e6d1d592c0409a50e65dd4e",
+      "reason": "applicable_tool"
+    }
+  ]
+}

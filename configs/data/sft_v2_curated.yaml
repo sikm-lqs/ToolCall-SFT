@@ -1,0 +1,67 @@
+version: sft_v2_curated
+seed: 42
+max_seq_length: 8192
+
+tokenizer:
+  model_id: Qwen/Qwen3.5-2B
+  snapshot: ~/.cache/modelscope/models/Qwen--Qwen3.5-2B/snapshots/master
+
+output_dir: data/processed/sft_v2_curated
+
+sources:
+  toolace:
+    raw_path: data/raw/toolace/data/train-00000-of-00001.parquet
+    strip_policy_prompt: true
+    split_no_call_subtypes: true
+    train_counts:
+      toolace_multi_turn: 750
+      toolace_parallel: 650
+      toolace_single: 750
+      toolace_irrelevant_refusal: 450
+      toolace_missing_param: 400
+    val_counts:
+      toolace_multi_turn: 40
+      toolace_parallel: 50
+      toolace_single: 60
+      toolace_irrelevant_refusal: 50
+      toolace_missing_param: 50
+
+  xlam_60k:
+    raw_path: data/raw/xlam-60k/xlam_function_calling_60k.json
+    require_multi_candidate_single: true
+    train_counts:
+      xlam_parallel: 850
+      xlam_single: 750
+    val_counts:
+      xlam_parallel: 70
+      xlam_single: 60
+
+  apigen_mt_5k:
+    raw_path: data/raw/apigen-mt-5k/apigen-mt_5k.json
+    max_seq_length: 7500
+    require_final_nl: true
+    tau2_domains_dir: runs/upstream/tau2-sparse/data/tau2/domains
+    train_count: 600
+    val_count: 60
+
+  smoltalk_irrelevant:
+    raw_dir: data/raw/smoltalk/data
+    approved_clean_dir: data/processed/sft_v1r1_clean
+    max_total_chars: 3000
+    min_assistant_chars: 12
+    # Cap math QA strictly so irrelevance does not bias against simple_python math tools
+    train_subset_targets:
+      metamathqa-50k: 55
+      openhermes-100k: 145
+      smol-constraints: 40
+      everyday-conversations: 60
+    val_subset_targets:
+      metamathqa-50k: 10
+      openhermes-100k: 26
+      smol-constraints: 10
+      everyday-conversations: 14
+
+eval_inspection_dirs:
+  - data/eval-inspection/bfcl-v4
+  - data/eval-inspection/api-bank
+  - data/eval-inspection/tau2-bench

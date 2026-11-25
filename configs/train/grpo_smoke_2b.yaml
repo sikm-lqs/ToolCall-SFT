@@ -1,0 +1,57 @@
+experiment: grpo-smoke-2b
+description: "GRPO Smoke (300 prompts, G=4): starting from merged SFT-v3 r=64 ckpt-68 + LoRA r=16, ToolRL + 3.4-B symmetric reward"
+
+model:
+  model_id: Qwen/Qwen3.5-2B
+  local_path: runs/train/sft-v3-2b-lora-20261124T143953Z/merged-checkpoint-68
+
+data:
+  dir: data/processed/grpo_smoke
+  train_file: train.jsonl
+  val_file: val.jsonl
+
+lora:
+  enabled: true
+  r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  target_modules: all-linear
+
+vllm:
+  enabled: true
+  mode: server
+  server_base_url: http://127.0.0.1:8000
+  server_timeout: 300.0
+  group_port: 51216
+  importance_sampling_correction: true
+
+training:
+  seed: 42
+  use_kernels: true
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  gradient_accumulation_steps: 8
+  gradient_checkpointing: true
+  num_generations: 4
+  num_generations_eval: 4
+  max_completion_length: 512
+  temperature: 0.7
+  top_p: 0.95
+  top_k: 512
+  learning_rate: 1.0e-5
+  lr_scheduler_type: cosine
+  warmup_steps: 0.05
+  weight_decay: 0.01
+  max_grad_norm: 1.0
+  num_train_epochs: 1.0
+  beta: 0.02
+  loss_type: grpo
+  logging_steps: 2
+  eval_steps: 0.5
+  save_steps: 0.5
+  save_total_limit: 4
+  dataloader_num_workers: 2
+
+swanlab:
+  project: toolcall-sft
+  mode: online

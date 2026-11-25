@@ -8,6 +8,7 @@ import sys
 import tempfile
 import unittest
 
+from datasets import Dataset
 import torch
 from transformers import AutoTokenizer
 from trl.trainer.sft_trainer import DataCollatorForLanguageModeling, pack_dataset
@@ -16,6 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from toolcall.data.loader import load_tokenized_sft_dataset  # noqa: E402
+from toolcall.data.template import render_and_mask  # noqa: E402
 from toolcall.training.preflight import (  # noqa: E402
     inspect_dataloader_batches,
     verify_data_manifest,
@@ -73,6 +75,44 @@ class SftTrainingPreflightTests(unittest.TestCase):
             self.assertEqual(report["status"], "passed")
             self.assertTrue(report["batches"][0]["has_cu_seq_lens_q"])
             self.assertTrue((Path(td) / "preflight_loss_mask_batches.txt").is_file())
+
+    def test_assistant_heavy_pack_requires_exact_source_labels(self) -> None:
+        rendered = render_and_mask(
+            self.tokenizer,
+            {"messages": [
+                {"role": "user", "content": "Give a long answer."},
+                {"role": "assistant", "content": "A long natural answer. " * 60},
+            ]},
+            self.patched_tpl,
+        )
+        ids = rendered["input_ids"]
+        labels = [
+            token if active else -100
+            for token, active in zip(ids, rendered["assistant_masks"], strict=True)
+        ]
+        reference = Dataset.from_list([{"input_ids": ids, "labels": labels}])
+        packed = pack_dataset(reference, seq_length=512, strategy="bfd")
+        collator = DataCollatorForLanguageModeling(
+            pad_token_id=self.tokenizer.pad_token_id, padding_free=True
+        )
+        batch = collator([packed[0]])
+        with tempfile.TemporaryDirectory() as td:
+            with self.assertRaisesRegex(AssertionError, "trainable ratio"):
+                inspect_dataloader_batches([batch], self.tokenizer, Path(td), num_batches=1)
+            report = inspect_dataloader_batches(
+                [batch], self.tokenizer, Path(td), num_batches=1, reference_dataset=reference
+            )
+            checked = report["batches"][0]
+            self.assertGreater(checked["active_ratio"], 0.45)
+            self.assertEqual(checked["source_verified_sequences"], 1)
+
+            first_active = rendered["assistant_masks"].index(1)
+            altered = {**batch, "labels": batch["labels"].clone()}
+            altered["labels"][0, first_active] = -100
+            with self.assertRaisesRegex(AssertionError, "source labels"):
+                inspect_dataloader_batches(
+                    [altered], self.tokenizer, Path(td), num_batches=1, reference_dataset=reference
+                )
 
     def test_dataloader_inspection_rejects_leaked_user_tokens(self) -> None:
         ids = self.tokenizer.encode("<|im_start|>user\nhi<|im_end|>\n", add_special_tokens=False)

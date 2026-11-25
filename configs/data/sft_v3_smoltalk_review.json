@@ -1,0 +1,3771 @@
+{
+  "version": "sft_v3",
+  "policy": "Zero everyday-conversations; capped metamathqa (43); strict camelCase distractor exclusions; SHA-256 locked allowlist.",
+  "counts_by_source": {
+    "smoltalk:metamathqa-50k": 43,
+    "smoltalk:openhermes-100k": 183,
+    "smoltalk:smol-constraints": 44
+  },
+  "approved": [
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:5142",
+      "tool_names": [
+        "Set_Contribution",
+        "Aircraft_Scatter_Data"
+      ],
+      "tool_hashes": [
+        "93141adc24f6755b8ad0a8a5fab9d7f4b79c44b1ef3ea88ea2bc0701733b7b01",
+        "d75ff5a27541c3fddfb95e8158758f69c419c5d1ff6acbc31d870a959d29bf5e"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "cabe2abd91ae411f26213e3505d775be3bcbf43ab70b230f3ca88c6b3596645c"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:44447",
+      "tool_names": [
+        "art_exhibition_layout"
+      ],
+      "tool_hashes": [
+        "c0c97c3c55a09140597222c1318cdf634e5e6386a373c61199ec68aa130e26b6"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "cb63ff95e6f037497e12bc0e6426353e5b3ca98deb6b9c03237a3b4c8e5a4a16"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:35188",
+      "tool_names": [
+        "Symbols_Faq",
+        "market-trends",
+        "analyzeGeneMutations"
+      ],
+      "tool_hashes": [
+        "4c47679960a4c4b59a1be5ba59a851313315784e31c01ca0fb32bea00a917f49",
+        "2fc7b06ad5182fbfbf3cf2e68581598bc5d02ac8a89a0bb168c7351f0273842d",
+        "2e380729ed9df143035600a18cea6f9cb003c033fcef141deb96ca93a1322b14"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "82b16b4c9ddbff2a88a694b297339c83c1e2e88b702834d4280635158679f168"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:30315",
+      "tool_names": [
+        "timeline"
+      ],
+      "tool_hashes": [
+        "9b817704acd4422578ed0bc7bef42aa9eb574f6cc0ad83c1155da0551d10d000"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "3390c32b8ec168147e28f3dc559b33c73a1844b30a5684f21e4c90a8fd178410"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:15895",
+      "tool_names": [
+        "TrainingModuleSelector.selectModule"
+      ],
+      "tool_hashes": [
+        "978547e7c2e8a390c95202a538053698860264712d4ca9b5cfc37294c167209d"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "8ddd48073215ae19e7b0c55bc61aa111f8cd92cadbdc4dd22c2a58ab9185e359"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:21407",
+      "tool_names": [
+        "addCrop"
+      ],
+      "tool_hashes": [
+        "18296ae9857402acd0c4c97e1c909666778e9a8b03884d11b123b16b8e751b21"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "43906d45b6a6b5d2f9698639bb27570310eed132bb13bd296020cb8c0cea34b3"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:19831",
+      "tool_names": [
+        "overview"
+      ],
+      "tool_hashes": [
+        "583d86cfda3f397de2288104f79102a35020eafb0124e0c17a2657678733a890"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "5a7accf241b66f8175198b8862e70e996bdd177cb9dd226a029ea2937a8d6ffb"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:2176",
+      "tool_names": [
+        "Get_Social_Change_Posts"
+      ],
+      "tool_hashes": [
+        "430c8bdabeae448cfcfa13a8495afcfc45da9b0dee6798f2c49a5fbec5176c9e"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "2258bc9f99c20658e92d6b180fbb915e65f07d087370765c2af3c8bb2a6e5499"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:26252",
+      "tool_names": [
+        "GetPageStampAnnotations"
+      ],
+      "tool_hashes": [
+        "9a518ce1ad1cdf4d7152e6b2b59b2c0bd8086210c3901237ab560ad768cf48c9"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "769f57e599d94037a421911c67ff23f44685069800fd2de40c4aba7e9dca016e"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:50595",
+      "tool_names": [
+        "Status_for_Key_Sentence_Extraction"
+      ],
+      "tool_hashes": [
+        "0b2ee42707574a9d2714b7cb63034a45d505a986cd854491ad2953367e25abae"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "d78fd4042d9c174589d5bd4728cc8d1f05d53991980977167b4934485ff83861"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:14912",
+      "tool_names": [
+        "Movie_News_API"
+      ],
+      "tool_hashes": [
+        "e8d31b7c41f428abb85b668a09a907eedfd1f1f1a73aec0d3215265badc706f5"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "8ed65c661e3d85b91a9ef91138edb82075e589a3ebe7b85fb149337bacfc0949"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:26248",
+      "tool_names": [
+        "Encode_Geohash"
+      ],
+      "tool_hashes": [
+        "813deeb3aec611d04cb9b5faa3ec379cca0619412f65255b58f131a8668d5df7"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "8ff970260c19ca2e422c82e5d4b6b2c02508222745650eb5b4e843cada64cde7"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:23205",
+      "tool_names": [
+        "List_Webcams_by_Category"
+      ],
+      "tool_hashes": [
+        "172ef06c54191787a54f5de67ee96f30f6ebd4046f03e35a4d8549113ea6ed3c"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "c79b3c5008039e21a36e7cd3aff1cded40c26f254e4f42c556148e11eec703d9"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:38204",
+      "tool_names": [
+        "getGraphClusteringCoefficient"
+      ],
+      "tool_hashes": [
+        "b0a3dc1e83e297b17061c91f530802c38c94dfaf59cecaac3c6986115a3da6e4"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "a0f16a9ffb30229b26b939c04322e213d5c7cd231317f48b059d8182ac250924"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:27915",
+      "tool_names": [
+        "Data_Events"
+      ],
+      "tool_hashes": [
+        "1853fd45e28283cdcadd6ac398d356d061c8c76adf8ffdccc3e130420b46d76e"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "17910ce41f48aed11be8f0595dcf94981af645f956f76cef0edff43a43a558f4"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:19771",
+      "tool_names": [
+        "statAnalysis.correlationMatrix",
+        "Get_Today_s_Word"
+      ],
+      "tool_hashes": [
+        "85e2b226e6270df163053f96337ab0328aba96a548c7b6524d338d02436f2a3d",
+        "2547e16bfe106184cf9ef086e2e138b9b4218e5fd37e559e1cf8c07a43e599f2"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "d9a9c23c8f2ed1c35e1442cbc716c90889e52ad4c498a8b94122f7925c1789a4"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:20263",
+      "tool_names": [
+        "Top_Headlines_API"
+      ],
+      "tool_hashes": [
+        "013ee5a802e85616290a1980b61c8816c1201dce341839dc49301b515bcd376e"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "9ca8ce5c2c911c59aaa9aba93e789c4ab344e7b16c93ad63efac8463c2150f87"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:4150",
+      "tool_names": [
+        "analyzeSkeleton",
+        "ChordProgressionAnalyzer.analyzeProgression",
+        "list-archives"
+      ],
+      "tool_hashes": [
+        "0a1db414224bbf7137098425e3276b04162da169e275d620b3a573c4c2f1d8fd",
+        "c370bcdd57b5a72bd0a91a18e75fcddc0643503eb672d254d52a3e151490b438",
+        "00968d9241f70dd65084417c545725b7b1dcbd9ff0e689a9e03bb1204334c4c6"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "7131a1a67f83c2ebc2febf311cc8ddb1c3722db1f90d2f368cab78692437097d"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:79347",
+      "tool_names": [
+        "reinforcement_learning.q_learning"
+      ],
+      "tool_hashes": [
+        "6f36ba7ac2a06b9f3dd19a0ffd71ef3253a3fd1ed18935b1d6140510155a3685"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "38b30e2ad469cc1d970e7f4612498a92afdd255a086a0bbb4e799d75133f5ee1"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:34746",
+      "tool_names": [
+        "DatabaseConstraintValidator.checkUniqueConstraint",
+        "course_details.get"
+      ],
+      "tool_hashes": [
+        "1fd02200eaf4e728d0e65147b2987488e20d8ddf2f712ceee6808efbed7d68a4",
+        "9a16fad62428ef2eda84be3b401a5685a63e78aa53c995d9cc17d0cbda67dcd1"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "bdf7c6052601379f9fbe8b92e2c242ac1d271a7dbc6fde75739c7343fc14adb8"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:166",
+      "tool_names": [
+        "Retrieve_Active_User_Lend_ETH_Offers"
+      ],
+      "tool_hashes": [
+        "0bdcb9f03356d68f1593d39407c26ed566471705b476d69dbea2e5b76236ba3c"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "1d3c8b11ef49a8a3f5f994fc081c026e70608bee2014b59773373e6124319ba5"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:36487",
+      "tool_names": [
+        "Get_Order_List"
+      ],
+      "tool_hashes": [
+        "30418347d7d22449bb52034d34a2902acddd7beff48a1ee62ee3bcb6fbdf7cc3"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "ba612130d97dbd0e7f186a67f967fdc799482cfda3bd4f261c3ee033eb9ce707"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:26259",
+      "tool_names": [
+        "UEFAClubRankings",
+        "Tennis_Tour_Rankings_API",
+        "LeagueRegularSeasonPerGameTopPlayers"
+      ],
+      "tool_hashes": [
+        "f54052ea2d78cd7c50fddc39694bf7b66121fcf8f250cff621e786f8a99269a1",
+        "c39fb1c442a694c2dcfb66a3d7963c02970be4de54745151156a220a0f40c2c2",
+        "d608c34b8303cb980fe2716aa2bbe72bd85173fffd79fd1792a6280d9765a659"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "1ecbfba1690ba5920c6d1126d0b303a5116e3d8e1c2e4ed10d48fe1bca9c1679"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:14422",
+      "tool_names": [
+        "M4.5_Earthquakes_Past_7_Days"
+      ],
+      "tool_hashes": [
+        "46f9743ec4eb700f6c6d3c8cc8d6de6f88056f66da8c651cae3b97f4e4a84b0a"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "188eca02e5863563ea996138132d6f6740ed12def7fa05b165b7d5e89bc8e134"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:16305",
+      "tool_names": [
+        "generate_password"
+      ],
+      "tool_hashes": [
+        "c555288779a66d4dd8ec95bbe6cd9d316ce3600552d22fad986e93e70c3f93f2"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "0e12f25e8db17b3e95675d42c48a14e4cd97025e10a9961930bfb3bbe171b3e6"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:12842",
+      "tool_names": [
+        "DataTransfer.sendData",
+        "Download_Uurrooster",
+        "monthly_mortgage_payment"
+      ],
+      "tool_hashes": [
+        "d245cb5604e52731d42c663bfbf239fb64cc06b49935c358b16438df45f674db",
+        "4f4bfad728adbb0023afd9239ce84338bdff8616e6868a66f34f206e5e9e8d90",
+        "c038cc79d7d314aeae4f3b873d5286ff4928c477278f445f39e7e4922ade470b"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "86c67db7b3ccd7135fa5d5cc7c64e05f3888e153b702f03ef598944a397f1b22"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:38339",
+      "tool_names": [
+        "MatrixOperations.multiplyMatrices",
+        "robotic_arm_operation_schedule"
+      ],
+      "tool_hashes": [
+        "b5ab61cf1172dbaf18c0c65bf31517c9f971798b7a3f215cd56220241d2579d7",
+        "b04036da887edce12ff2237f822cf0bfa7fcfdb25b7130afcd8739e223425fcb"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "cbf82b500cf3ae5cfe315c4163060f4b1b1dc7e39368caef75ab8b68789b28f8"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:18150",
+      "tool_names": [
+        "Get_Random_Riddle"
+      ],
+      "tool_hashes": [
+        "d222c2bb67ef48b3e19aa2538ec74404f941d1b85afad4f82fc9246781974440"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "c5321567a4184fe574a5b0722808a5262073aa4b36f69a8ef4c80905bc1a4f65"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:3662",
+      "tool_names": [
+        "Get_Instagram_Media"
+      ],
+      "tool_hashes": [
+        "d20d6145babe0626de948f3a1ea37048eac305edfb7f5d4751a9a551e7f035d9"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "ed03f7772d20e14ebfc01164d4a14aec4ecf47eca052e6b078b90f16b6aaa19d"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:11010",
+      "tool_names": [
+        "storeAutocomplete"
+      ],
+      "tool_hashes": [
+        "b8aaaba720676cadae9411077660db68a791202f2d76f74fe9985fd863fc33ef"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "e24c2114683e3abbbc42c0735f31fda7a440544c621f2b675dd32b922348e5c0"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:58232",
+      "tool_names": [
+        "getPresidentialTermLimits"
+      ],
+      "tool_hashes": [
+        "e9bbe45bacf62b71e18f9c53ce30ffffbe31496f5a2c1a22533b42e73755f3f2"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "2f197721751fd90fd61d3e5153359d7f59226462d5b3a4c7b829b3c113a90e3d"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:32979",
+      "tool_names": [
+        "stochrsi"
+      ],
+      "tool_hashes": [
+        "6fed995dbf05f47e82e939c63cdbc58f2f8030214ea2c70c596a6dceed7dc0d7"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "6ac0a930dee419b8dc3bcb8e832b01dc22802b440bb4ac946c6607acdd0fd51c"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:11918",
+      "tool_names": [
+        "GameEventLogger.logEvents",
+        "logErrors"
+      ],
+      "tool_hashes": [
+        "c386fec23da7a422832ffb4564a1bdad4392133997fcf93c8e8e50c657f0c7b4",
+        "4a0fdf0b71d098dac83a98463023816c7a1f42c85777e58d3700154abf469c89"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "8ffb9970d74582d44cec08f37b0534f2dd3bfd6f4b9a0b9c4ba62ee7b4576b39"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:4565",
+      "tool_names": [
+        "Get_Bybit_User_Accounts_Long-Short_Ratio"
+      ],
+      "tool_hashes": [
+        "4978f29ccb8bfaae762f376003e9c683fbb5b19f96a41bc2ad7c7b779c046ed4"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "4817d95551a333d09d729e59d1686c77c9f99df7e909140040f36919e7c1e87b"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:23082",
+      "tool_names": [
+        "radical_stroke_number",
+        "sentimentAnalysis.textEvaluation"
+      ],
+      "tool_hashes": [
+        "09e4d1a778a1864a07bab994344f0e9ddc46d49884d0e8743ba2802f95e6922a",
+        "561f9c421e083e6b59f1049eda0f6aa3a75ba81f737ba0fde0ec0a32207e7dc6"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "47b528f5b93ed7b0aeaa0bdb0eca97f59366f2fbf3c77f435be52234e097e68e"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:81308",
+      "tool_names": [
+        "AiNameExpand",
+        "AiNameGenderize"
+      ],
+      "tool_hashes": [
+        "f1dc749b8d76c521af7fe026288678b35d1ecb23d7bef951579adf2e3693d82a",
+        "3463abfa954fcf86ed09db4e6d6b5feec7c6fe7b5e2db021b0bc502372640880"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "ab487890a73656b911e5c976203b083b39c78baa7f6601a6ca5d0ab19fb405be"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:61022",
+      "tool_names": [
+        "Keywords"
+      ],
+      "tool_hashes": [
+        "36fc32bb03a32e6c1eb5051db741ca46e8379636900f20b79fe2538e981de5f1"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "1cbb33bcebc0fc828f54aa580dbddb586d0d4b9908762e3fb4bf14e8ed01b776"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:38512",
+      "tool_names": [
+        "Submit_Test_Answer",
+        "year_fractions",
+        "Get_Statuses"
+      ],
+      "tool_hashes": [
+        "347f31ab083d47fb3729f1ef417bc2cdd688e23eb890686510ae705baec61a20",
+        "d233f85c9aa20f937dc07d3006ce91037552ef7ae2110dfbcf86d6a6f22e1feb",
+        "3d485cf760829aea6a563f82e65a6709869f6e82f09f1dc482ffb6d7c75cdc71"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "69f494f4505a9a1edba307de3a576448ac4f9b682591dced4fdec4cd49d706e1"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:18087",
+      "tool_names": [
+        "calculateStrength"
+      ],
+      "tool_hashes": [
+        "5c7e6cc0829e7a0b314b4b312f25b2bb732055c203526383b4ad2c0440feed98"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "bda8d1a99555651cc93cb2b8ac0a309596667a3191c2f7f1762455d7ab4004fd"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:44525",
+      "tool_names": [
+        "PotteryDesignSelector.selectClayType"
+      ],
+      "tool_hashes": [
+        "9d39432d35ef2ddfa6b511db93986ced33a41f9c8752a47a2fcea7ee2a1826ae"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "867f13a5d54ce41794d15d1b24e355a5343f1322a15003c9f22d276837ab3d8a"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:8780",
+      "tool_names": [
+        "Daily_Horoscope_API"
+      ],
+      "tool_hashes": [
+        "0dbd7a53acfb2ab43a1f85ab7dddda0c127b973d4c06dba63a6600e1e6324d5a"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "e738d15c0a762c51847091b7f398c43795afc26dad178e0571f2fbabfe535d13"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:80333",
+      "tool_names": [
+        "IP_Address_to_Income"
+      ],
+      "tool_hashes": [
+        "1f7fc9b9bf2fedc2ee80fa93e07454e3a9415ee8284735e82adb8660b0960087"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "1d596dfa85ba0ccbcb9aeeb4dde389ad66441fcc14a40a43c81a6d8123846ae9"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:34448",
+      "tool_names": [
+        "Get_Teams_by_Season"
+      ],
+      "tool_hashes": [
+        "461a7e3a5a43cb4043d8b899f9fe2f01f67e7b6f1b6770bca104f18ed16275e9"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "7d6ee98b11aad1f74b7fc8225b19d52c3bc1c8691fd7cc60b8647966e6fbef31"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:25244",
+      "tool_names": [
+        "Get_Adverse_Event_Information_by_Reaction_Sex_Age_Group_and_Drug_Name",
+        "statAnalysis.regressionAnalysis"
+      ],
+      "tool_hashes": [
+        "0b5f0c6e6fdef8007731e0ab5b02a87ce5cd2527a82d7dac6385ce81988a8d1a",
+        "d4735cf8e058132c6f01ba11df7643640fc4b1610db1b009df8edb1a0f3d5cdf"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "97f8fa3b3ed597367a7d15cbe4ce39589cfd5a36ac71a51fb56f9f66b7a50437"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:20266",
+      "tool_names": [
+        "suggestAcquisition",
+        "create_email"
+      ],
+      "tool_hashes": [
+        "d04c8924f00ea9211dbeb0f80f42f770e72d435cb7c1c8a2f3873d26efd40b6d",
+        "1789391a69194be9037b63caa742401258220783320186c71ae5eb9e1fb79876"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "b9b605817d6378d81289865fe76321501e0c5512eb3a0e7e939b5b7e81cf0c7e"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:42725",
+      "tool_names": [
+        "Get_Men_s_Marks",
+        "is_anagram"
+      ],
+      "tool_hashes": [
+        "b114c31d2a795e6d92cc5ec0e4c78dc74110618f030a17b33ef5998d198ec946",
+        "467616aadf97f7e18174b5d96944510e04ed16919e198e403d64bf081b0733eb"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "535bf609d2435be3ce67661f6f8c3edf7d1b140a4cafa30866ad01b2c06b42d6"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:41223",
+      "tool_names": [
+        "generateGraph"
+      ],
+      "tool_hashes": [
+        "7dc4c513ca22fe3585e444d8f9ed747d711928f73a27528c520d1705f4e1fd22"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "760b627c1515586f4f611827a34425c50340a82c720e8aa65fc545b3d05a0255"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:23884",
+      "tool_names": [
+        "Get_User_Followers",
+        "Get_TikTok_User_IDs"
+      ],
+      "tool_hashes": [
+        "477f3a18ff6e66dc648e66e01275eea8ab45e930c42c31304d4c8e426517d6d0",
+        "6384bfa79bab06870434c18fdd7ff5cde1a9d7b6d206dab58782300426540958"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "a9763da477d4eaa0e3d59153f2276ea476c000898de6c40449e505a66595ca0b"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:88591",
+      "tool_names": [
+        "generate_playlist"
+      ],
+      "tool_hashes": [
+        "31c20e8731800c55bc1eea202de147d02864acdaf7906f2cebe12284f1c07d45"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "1cd2e63ec6cfb08ccf0bf060d8f63892562802ae08333a2c01eea5ad07d94cd0"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:18669",
+      "tool_names": [
+        "Get_Open_Markets",
+        "navigations_get_tabs",
+        "get_user_follower_list"
+      ],
+      "tool_hashes": [
+        "9338ffba2652eb54df48f860f96a97e831d8e0aa9b3f7df5ad18ba8447e9002a",
+        "782ad7c9f364f5a77c325590731cd80c1e71c7b53e6ee6980cc23afc1400db91",
+        "6d1348cf5a4adce9669534a46c836d6cacec53b5e1465ba8192e26ba9fcff992"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "b3371c576ed4534c4b2e4a1a310bf9d67924acc5ddfe40b04d254aa8a1297abf"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:41889",
+      "tool_names": [
+        "v1_stars"
+      ],
+      "tool_hashes": [
+        "30b29fdbf7eab32701cc236c200eb2c2acc29827b6cda82947b9d2b0075c3949"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "109cd5c72f9e5951309eb56fe4653e52794f97d1977463d2bfc7e8cf0588ec6d"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:6051",
+      "tool_names": [
+        "Balance_of_Power_BOP",
+        "Auto_Suggest"
+      ],
+      "tool_hashes": [
+        "c0165cd8e7d6b9cbb3717375be9360d851687dd0f38b5bac6108ab191fa85b39",
+        "e79d75cc760e4ac2419ccd304077970d849ba531a9f500a57549d5570457df6d"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "b82c14cde3d566e90111981c09d24d0da86fe62bc23a4b10e3d11987e3540adb"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:73292",
+      "tool_names": [
+        "exercise.video_library"
+      ],
+      "tool_hashes": [
+        "14a0804432154e0342bcda2ed72395da49771b49a10f24afd511a39adcc79715"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "5a88d6fee8d58e10f2bf14aa1372eb3f8a375d4c471e7ff770defb68ecb4b64b"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:11616",
+      "tool_names": [
+        "getCropHarvestTime"
+      ],
+      "tool_hashes": [
+        "c7d16663cc96f5fbe01fe1b6ecb7e38d0f28dfaa9edb1825db8dbfe7fbb90b3a"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "117c919edb2b69491647245cd8ca87c1fccf53989084b90afa23777024794583"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:25263",
+      "tool_names": [
+        "Traveling_Salesman_API"
+      ],
+      "tool_hashes": [
+        "754e294b0a7c73c1a95ad131bdc6f0d57c151986039ad368afcf653853d6041b"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "1a5af9fcd56dc0efda5cb4fe109c72e969b56be0eb8b399fce664bffdb887c3d"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:18993",
+      "tool_names": [
+        "ReservoirCapacityEstimator.estimateCapacity"
+      ],
+      "tool_hashes": [
+        "8b107af4cf54be0a0fc9ae03dbf42b5f5994dc85da06502d85ea9a545bd9e909"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "666efc0e49600fe2ee9a4424e5746e4b86090fe9767302d7c85ad175315c5e23"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:81969",
+      "tool_names": [
+        "Daily_Match_List-All"
+      ],
+      "tool_hashes": [
+        "607aa1f8aab25c126233d8c7181390d53211a6f587372b89cad0ec2b7a036109"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "476b5da56b09457b30df36c5740f43f2c804e29fc180f5f253eea3575b28345b"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:81947",
+      "tool_names": [
+        "transform_units_using_the_get_method"
+      ],
+      "tool_hashes": [
+        "51864a1fd199bb2312b89c21ded593e2d2c35fdd389b3da860fcd13b671101f5"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "23a6c459929a65607eed6715b65fe91c25c2be05b0fc67eba4b24e685af73c6b"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:6730",
+      "tool_names": [
+        "getMotorcycleInsuranceQuote"
+      ],
+      "tool_hashes": [
+        "d20a510c0549e003723b58d3b90cb00246e888c7a216e3910086239e2b2e0fbc"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "571ee5fcc9dfa79fea5ac65eb21bc552e0ebc81dbf27c21718ae4dfa9b5ba541"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:21537",
+      "tool_names": [
+        "Phone_Number_Validation_and_Formatting"
+      ],
+      "tool_hashes": [
+        "89ba46c6f575019bca9152e54adf21af2544228f6610be3adfec33c2a881e186"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "ba9c0c60b6feaebfe7456164d11c5cff44aaed22897d237c43dc5b45608fb109"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:9073",
+      "tool_names": [
+        "fitness.workout_planner"
+      ],
+      "tool_hashes": [
+        "b4098875955f606a299b8beea3364a8bd3e03de2c971520c139d3f997a188668"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "eca1f21dc8703b3b5a355e23d304a729c300df1943cba6dedf1a65a1a128f407"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:9104",
+      "tool_names": [
+        "ultosc",
+        "Calendar_of_Prices_for_a_Month"
+      ],
+      "tool_hashes": [
+        "c604958c17d474541632a0ce016e75defe86fb4f39d53452964a17e79324a2ce",
+        "5b407f8436042e09e1e8ba1dd22d6bd245c2f4c7210c4e01b4bcdf1b05d93cd4"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "5a257e6f00d41205f99f9fffd2ec70a7ab2fc6ff3e156dd447a9c1fc4e46a871"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:68559",
+      "tool_names": [
+        "mailCheck"
+      ],
+      "tool_hashes": [
+        "3bdc65e9120e120bb15a5be113a4857452a84810ddd21ed49eb831e1d66e4f6f"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "b799452a59e4f2f280de305c6fdc46f505bfca8634a36ed26b4718522229b828"
+    },
+    {
+      "source": "smoltalk:metamathqa-50k",
+      "source_id": "metamathqa-50k:23975",
+      "tool_names": [
+        "calculateMedianSurvivalTime",
+        "Get_Customer_Survey_Response",
+        "Get_Riddle_of_the_Day"
+      ],
+      "tool_hashes": [
+        "93f2f7450e0c41f55c994b63b9e89d95d0bffaa265190ae7e2f219593e73a9dc",
+        "1a2ec8cfa4a987324899ea7298f12d347211991950d4171326aa5bce3bfb1eba",
+        "ae1472b0d01c4eb5779ef4c03ffae46599037f76485b81c6c18bfe63b191c5ba"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "8dcdbeaf6e2074a85591263904017af50245377888f48027f7ea26849886f77b"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:38237",
+      "tool_names": [
+        "knitting.pattern_feedback"
+      ],
+      "tool_hashes": [
+        "ae56aad8bc9f6c771330e8be34b8a74711966c77a60223f564d1a6f419b1721d"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "b25fe6183fae5562fbeaa4c666ef9d2e3f064adcb0fd4fc9f237d20bd69c2da5"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:25789",
+      "tool_names": [
+        "Get_Answer_Form_by_ID",
+        "lighting.adjust_brightness"
+      ],
+      "tool_hashes": [
+        "6aa56236720d7365acd6f1394c70356194503cea50e61d083f47808433a3859a",
+        "64f825fb9a2ab3c54e11e07f3ab72b8c7a553bc531b22407c0273ea95abf2b40"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "be02f32a88077154a43a309caff263380d92d573da9779599ed6db303105ed16"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:19850",
+      "tool_names": [
+        "data_migration_planner",
+        "friendship.activity_suggestion"
+      ],
+      "tool_hashes": [
+        "691fe4ed76ee40f4af618856e9c016f9ffcdf54c33c8d8fa31a6a0a81da9bf14",
+        "d9f0c8f22a038360fae1cba932a73c9ea91a98f1dac55041448a6a1c9317ec0c"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "edb73a87e6ca4f2f25a5851a5a059ab18ef435cb0436f77f0ba4778c02833c74"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:36880",
+      "tool_names": [
+        "Symbols_Brief_Metrics",
+        "Get_Intraday_Index_Data"
+      ],
+      "tool_hashes": [
+        "2e73f9d6ef37fd833f9e1081f7278643bdba2a705b8988aacbb56742cbfef9ed",
+        "1a8fba17ef5b91d8f6f9cf93018dc42e60cf4c2d4e4f5ebec66af466a6d8ebf9"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "161f6e1b91a0d1eced8cada6432289f0473a537e9c834525537dc7fc4b3262cd"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:8553",
+      "tool_names": [
+        "FindUserOrganization"
+      ],
+      "tool_hashes": [
+        "245c8398fba4d910e722bae8a1965e0cd47b4248fe2fcbdbd971ceb9435d28b6"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "c03ffb9a45c9b581e7ff943b9918723c69d6448ee9f9f4f5f2e20a44d212b4b7"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:36119",
+      "tool_names": [
+        "Get_List_of_Payments",
+        "purchaseItem",
+        "Get_Consumer_Sentiment_Index"
+      ],
+      "tool_hashes": [
+        "c3488347bbfc8cd2ae113613d5fe089f276f3380a979e0f7e4a541ef760201bb",
+        "8a16af2147b4789496fb58983475306d74435396be43e8a1d5637f6a35c1744b",
+        "3eea4a5de32ba0e3f3bb0e2df5271aa7db92b8446c2f05a40a60a58852509322"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "23cff0ce6c030df7ef9003078cfb218f5268960dfb40787b623e614d91872397"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:19799",
+      "tool_names": [
+        "Cat_Facts"
+      ],
+      "tool_hashes": [
+        "7da3922c43865c3f8c0ddd485bff631ef2dfad3845e1bc2b3c9e2597aebd88da"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "6c376311d4f3ed28d7a2509b994f60025af9f650c1c071e876c70b6bda911dd9"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:19696",
+      "tool_names": [
+        "sequenceAlignment"
+      ],
+      "tool_hashes": [
+        "646504926e03219b33c0e704f9906b8ca165910d1ba21aa5aecfde77f0d60d1f"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "5263b4abd79bfc74610f9428c09475c13814f7d5209a674455dca435a3a86321"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:5502",
+      "tool_names": [
+        "Market_Movers_-_Stocks"
+      ],
+      "tool_hashes": [
+        "bbcd03961963577f66c5e8fd66856e0358d960c414938fe17c2db10afeedc478"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "0dc4e32467106edc45139a26960d8c644dcf4dac97b848e996d1885121fc43fb"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:18526",
+      "tool_names": [
+        "ResponseTemplateGenerator.generate"
+      ],
+      "tool_hashes": [
+        "369a114ffe39e72fe7a0ebec4e962ac42c4ba69c73c15a00bdd27ead1fe47aad"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "e417d598ea14ca756a70c3ec37444477707b1d6c99a8670c0cbbfd7270304320"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:52176",
+      "tool_names": [
+        "getCyclingCaloriesBurned"
+      ],
+      "tool_hashes": [
+        "7a3e384f9691763303e5fd7f55e063ef6b5b1b41218cf9c35cb67327c3896410"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "9af6eb77a67ee4324034bc0f0802dd4e47215afce86ce6f742c990e0d0f36a50"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:75858",
+      "tool_names": [
+        "UpstringImage"
+      ],
+      "tool_hashes": [
+        "a534d61bd3c85d2a92b4ebbaf40e6752a385b2236d21199f64ad1db0d3aee221"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "299428f3ceec2c5fc44306a6da7c95516c18201fb7e40a2e819aa532911523a2"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:30822",
+      "tool_names": [
+        "countNucleotides",
+        "SequenceAlignmentTool.alignSequences",
+        "Get_Verses"
+      ],
+      "tool_hashes": [
+        "372a4f5c23228eea25b37f639c97a0ea3a50a96e049ba2e22f7c0dba8f0b7557",
+        "1ab6c3693f555219b5a053d3c426cc3956140f8c7067fec88740dcbcbf4f2275",
+        "91c8cc18af1249aead8b75ce3a05de999b1554d9cad58f06b7046d3759a60e44"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "5545c3064f98fa5af6ae150ae34e26ea8e4443261f5e9fe66d51e4a73948fc4e"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:27574",
+      "tool_names": [
+        "Filter_Keto_Recipes_by_Protein",
+        "filter_cook_time_in_minutes",
+        "generateScienceFictionStory"
+      ],
+      "tool_hashes": [
+        "d622e60266178a979bccbae8968331408eabf092f495e4383bb6bb1c8142be74",
+        "c7ef5abeea248e31a0b65e23bee8671081f40a630d3a37e03cce575a2599a321",
+        "c2abc107cd4d260a6126711d9597bea538a6eff20717303a8886cdecb1838d32"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "b006019ab7af955f1771d2727626408c3813420557dd396c92b7e335c89205e8"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:20199",
+      "tool_names": [
+        "radical_stroke_number"
+      ],
+      "tool_hashes": [
+        "09e4d1a778a1864a07bab994344f0e9ddc46d49884d0e8743ba2802f95e6922a"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "40f8715036b0b692024f57c5163c18d11545cc48bd204febbd147c06dcbca440"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:77281",
+      "tool_names": [
+        "Competitions"
+      ],
+      "tool_hashes": [
+        "bb9fe86a152a384e8af273a54fc63f855f2591501d7797fb25d220b5a3317524"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "ee6430c135f9ee3bd2331e69f37256ae0f65ef463329758d1363bb57463a2a5b"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:19720",
+      "tool_names": [
+        "Get_Question_by_ID",
+        "Get_Difficulty_by_ID",
+        "Retrieve_Next_Test_Question"
+      ],
+      "tool_hashes": [
+        "e7d3396d5f40de5c0b90b2daa2cbbfe34394dc8b6b779a063ac5ff5431a5a469",
+        "a9aeac6bddbf12a2df377c3016e3af5c57cf4c483a22b1366bd997268d029191",
+        "2261421d09c022561db13a4b547e2df4242695da9292bbf3a5cc716a7101114c"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "c37e445e8294c62c7b788433054b28c3b58dfaf490962b24f4738abe2362e2a1"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:11394",
+      "tool_names": [
+        "Historical_Exchange_Rates"
+      ],
+      "tool_hashes": [
+        "aa91be6f9d8c88a3971c40591f14b52915f187caac8a839a9d1a2a92a4964ffa"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "d451426caa9cba56cc78a151f2da0f0a89bb6746264e4866b18911981d9ed8cb"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:41502",
+      "tool_names": [
+        "Pair_Strength"
+      ],
+      "tool_hashes": [
+        "bd12464dfcca05a12431f5bb5569f5a88d76b8aeca2f17b699e2ff7332847d3d"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "23e5647b6dd565079875703b48264927a0a384ad5d1c9eeaaeeec505ef62a637"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:64083",
+      "tool_names": [
+        "Traveling_Salesman_API",
+        "Get_Mentions",
+        "Hashtag_Metadata_V2"
+      ],
+      "tool_hashes": [
+        "754e294b0a7c73c1a95ad131bdc6f0d57c151986039ad368afcf653853d6041b",
+        "08b01e3178751cfd43f79b9e1aa8059ca16054de865b47d33cc57026123167b9",
+        "3277b1a84eb89d7d9201480d6149b5c408053b38e0e770b9d5daccbbc2214c3c"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "9a1c01579da560c3017ad0054b52bbd3e78fb8b06a1f6fa512bbea9c36c421a7"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:42231",
+      "tool_names": [
+        "encryptText",
+        "rgb-to-cmyk"
+      ],
+      "tool_hashes": [
+        "c241d4e8a4ce0e527539dcc51316a7fa591d51a145a4b611347fc505b5d65e7c",
+        "7604d7f01bb050c7cfcb72c89af333106c9de768ddf4082fed5d2d5e660cb15f"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "af609919375dab7b8d67d3468248c2da546a1ec1b6c858d840e703cd63faf961"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:25453",
+      "tool_names": [
+        "curveAreaCalculator"
+      ],
+      "tool_hashes": [
+        "ff8a7fa175e7e0b8d2c060e199e781e3828a73f13d5aa7f5df61d4ca5bcd0951"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "b4c858d7818432ac063d17380e4c4611163e2d72eb2eed2acf2ee97a4ca8b8be"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:50458",
+      "tool_names": [
+        "createDesktopApp",
+        "LambdaExpressionDebugger.debug",
+        "creditScore.get_improvement_tips"
+      ],
+      "tool_hashes": [
+        "cae07bbc67d8c99fb7eb99e96bc1f0c6d7e66221ddf19a12de384d55fbca3187",
+        "bffe1d50d00e153e45a4703a59d07e429dd077b5e3dcf4f5f0375b4f146d0f58",
+        "ee591445230592b7a3d1b758a29394ded977626922fe96406a139820a682df57"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "847baa5c14182bf2a9ac976d8e8fa8db04814964349034598c15c1067c42c8c0"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:78107",
+      "tool_names": [
+        "least_common_multiple"
+      ],
+      "tool_hashes": [
+        "85cb2c0c0576285e2ebcac22ad739ce255dc2b2f18cae3ceb28693c38fa73b06"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "e019b445c828ad8bcfb3993b658046528abe0626739b7e6d4ab55b8ff6a1eaad"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:34151",
+      "tool_names": [
+        "DynamicScaleVisualizer",
+        "curveAreaCalculator"
+      ],
+      "tool_hashes": [
+        "44784c01ba1276479b90d0512c160ec65f9de1d3293681b9069d704f36dd9f8b",
+        "ff8a7fa175e7e0b8d2c060e199e781e3828a73f13d5aa7f5df61d4ca5bcd0951"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "a4857198fe87715e93c0f09fcaa00dd88342c03f2e78b23ae9c15440267c77b4"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:35390",
+      "tool_names": [
+        "createPaaSInstance",
+        "playercount_185_225_233_110_30015",
+        "submitJob"
+      ],
+      "tool_hashes": [
+        "9102464eaaf0c11176030db9bb9a15b9311af923a214d83d347d0830208b2499",
+        "d0da3956d22d492ab400e48f551970253576a8a8b86dff37a1dbdcc2fc6c708b",
+        "dcda689f03d9dc97e8977355d4549c240e072b685da0f9c0ef60ffc65c5b5760"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "a4b2ee1188f8f941ffe915514a7c6be626738bcffe552f65f0536bfdead139d1"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:6840",
+      "tool_names": [
+        "Autocomplete_Places",
+        "Get_Friends_Stream",
+        "streams_investor_relations"
+      ],
+      "tool_hashes": [
+        "c17c710656f338d9e973b1f48053002086a43cfe3bce6bdea86bd802a1afeaef",
+        "ce70368ec3882a14c4cdd633823295543167389ec60be23a3d2388e10a6d02d5",
+        "9902807ad1a8d74432e131fb8d395fade67a2a1ef7fbe2d0801755949668fe94"
+      ],
+      "origin": "v1r1_human_approved",
+      "sha256": "880624ff70291e00cf679ae3cc44080fa782ac351569b6f64034f887620004c5"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:84914",
+      "tool_names": [
+        "policy_analysis.generate_report"
+      ],
+      "tool_hashes": [
+        "19d9322d0c4c2d9538df672fde5741a5ea615c6cfb6674cc30d024405c70bbab"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "88de2e4292a6ffe56880a4d7964b08706cbc9590eaa6ce5e547926ab304359d5"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:54114",
+      "tool_names": [
+        "campaign.createEvent",
+        "Generate_Advance_-_Base64",
+        "infographicDesign001.create",
+        "VideoCategories"
+      ],
+      "tool_hashes": [
+        "6cf3d0c9856e0b87b9251e32d6e14536e4777e780cf1f30f7c3cfd2035a09151",
+        "8deb97b65e80b0d644a67d9f88bfbf8514d00998cc393f6fa2ae82d25af66128",
+        "62525dd99a573f219ab009c4242fa078cd6eec752f5db2ff855e48802eb11cdc",
+        "1d3d55fd756f761e100475ca02bb4bec509053ca5dbb782192b31eca70aad251"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "fc73155219b6a0ccf14db02e0206ab2a3d10d279ef9ef4a3e1298c91d50acd39"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:77283",
+      "tool_names": [
+        "Create_Retro_Meme"
+      ],
+      "tool_hashes": [
+        "4c50c12beed5b5e00b638e75aaab9979fa5453f67bae0f42649c17acddea3bec"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "5dc0aa9407e88cc556ecf4c997d220249220294b677c63b876e8eb9d2335849e"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:51715",
+      "tool_names": [
+        "Get_All_NBA_Stats"
+      ],
+      "tool_hashes": [
+        "c38f610673772a6a37f5a742913e246f803dc6ef4bfe61bd9eace515770c0e2a"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "f9d6d95aee8717b2314a5bd6dd95274e86cb7762be2a08776bd3d1b9c4921123"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:17806",
+      "tool_names": [
+        "teams_detail"
+      ],
+      "tool_hashes": [
+        "99f86481d26aa2f0ddb9a64f07d6b25802ca839269086df61bdbba72b85a6a0d"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "b698f70a4dff603eec12788c2d86e0a45f841a1cdc2898f140fbc68fc697c609"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:35067",
+      "tool_names": [
+        "sendsms"
+      ],
+      "tool_hashes": [
+        "25f63a4627f6b055cf06f86130b1a4d2691849607e5e127a8ec3c7ba813f6aa1"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "807195d0ef1f23cebe6214097b0c67d1c534d7ed774e844da33e680eb18baed7"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:87154",
+      "tool_names": [
+        "SMA",
+        "religion.holiday_countdown",
+        "evolution.get_survival_probability"
+      ],
+      "tool_hashes": [
+        "354b53b7ff1f5ee1aeca93ddb4e832194cf9c05d0c218084e25f9784b3bc24f5",
+        "3cfe6f6b77323e2ccd92636626effc2252082095f0cbda549e7d88da39037d69",
+        "cb8f675adca7bb7e0df159873a9df0726a22da2aefdc4af800644135feaf73cb"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "f7bed7ebdfdb2b6974b0153557bea079ff99d9f966ea80b95724d54ffed0c24b"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:15045",
+      "tool_names": [
+        "Get_Categories",
+        "Get_Taxonomies",
+        "trending_games",
+        "transactions"
+      ],
+      "tool_hashes": [
+        "b13b397bf53e9f1d7110c4f338f01d03412ff673b4da3690c7b723f5d2b3a06f",
+        "bd66da768b4da69513a404f107b4fb962fab5bbd3d9cc492af9158c51727cd4f",
+        "fcbbfedeb22a7510441e3c10e8a4e366e42c647c9129df81aac4997d49c352ab",
+        "3cf6afb9b510a66c5913461f3f7208f9530aa564f711a02360c45ceb34802ba7"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "91aaa7a0b8c912c70bbeee88af29de4338bceefe2b47cbfcba4fdcc044a4c25f"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:38158",
+      "tool_names": [
+        "getLineTypes"
+      ],
+      "tool_hashes": [
+        "3eac77eb145b4aea2417eceecb6a33ae1b00c2ac1debc59c275e5f51e2a1a54f"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "d73ad703b1ffa24053745f64471ad2bdca942e9ff8004f3070fc4847d7d48449"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:36153",
+      "tool_names": [
+        "getSpecialEdLaw",
+        "get_all",
+        "getIHLGuidelines"
+      ],
+      "tool_hashes": [
+        "fe21cf0e57f757b78597ed4daa325c32a8986852230b9b975914e42ec1051cf0",
+        "27d1985c1c505eb59055319e333a14dc11d710afe873262c6efd68fa211974e4",
+        "767a00079da40960c26add745758f7a0934d65c52d1335c11c23e6bcf7a87df6"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "88c155c168705d4be700b52115de8de0af568c80000aed62b6ab2cb5f6762767"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:32733",
+      "tool_names": [
+        "coins_list",
+        "DataPreprocessor.configurePipeline",
+        "geocodingsearch",
+        "getNetworkRepresentation"
+      ],
+      "tool_hashes": [
+        "c46f0accf943be4bda634ca78425865e64a18e84d40c8b463ad5751a5ca77207",
+        "18bd28f31364a708add1b98bf469896ff500ef5a9a897ba20d9bf243383f7922",
+        "bec9031f01e1401dee1274b959cd7553f7f9135becbd436f4dc3c64a696e9ad4",
+        "1706dec8487dbad003a8d4610a0072a43eccae269d94fc5b1af02ffd0bf3d82e"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "ade79eb585eac5e8c3056448ae1cd505604c5f674cff49f847e2b1b4a55ba7cf"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:9534",
+      "tool_names": [
+        "aircraft",
+        "Get_Route",
+        "Single_Name_Generator"
+      ],
+      "tool_hashes": [
+        "9e7636fefd6b6dd3a320eebcdb013451930a59fa869ba8cee710c10ee1501823",
+        "998150750e94102f6e522d459ce157913aeb719b6c02807c2c230ca3eb3bdf37",
+        "e787d7669dfb57688abaf326cd99b1df9f602ec0356153855b95bb56ca480754"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "e854ae2b021550c3509f440f70e3a8f423f5fc7ad1748ecda48ac79d1dae3a0d"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:9227",
+      "tool_names": [
+        "Get_3D_Services",
+        "Get_Instagram_Prostring_Photo",
+        "jsConfigValueDeterminer"
+      ],
+      "tool_hashes": [
+        "1ee2cf2a44fc4e42a54aec293b9c0568345b67965724e91a33b9330dcd7bd288",
+        "9ca9842bf2911edbbf94df355f7d5281ab9bd43597082560788f3f32efe987bb",
+        "1305bb706f21da199c7d1beaf4ef200b31fd2f5cb4018034f0e688dd39ba4eec"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "a1d020cdc6643447c33baf8ae2ea224b481b543a13c8e6242ff9135df2119db0"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:11689",
+      "tool_names": [
+        "urbanExploration.findCafes",
+        "getPrintAdvertising",
+        "PetFoods"
+      ],
+      "tool_hashes": [
+        "3ddd1f87c9800a9d94e07683edb2c2206dfa68f330c465abcf72f33875c1d5fb",
+        "2b8a7bc32c2880c6d2e5a9c84572542834a7db9b5469adbc25e05181e7cfe004",
+        "7928f12c4f6d4a067d1a0e482922080740a8c56068be9eb734b5b71af047b306"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "959dd5ffa90d6a3dbbd4e623d2449bdbce6c6aa6978693a03031292eba24ddb8"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:53663",
+      "tool_names": [
+        "Product_Reviews_API",
+        "Virginia_Gas_Prices_API",
+        "Pipeline_Management"
+      ],
+      "tool_hashes": [
+        "979d2fbd11bb56bc2cbbc117e06fe3f63c436d6808f50b3ed5239f8ba2253bc5",
+        "42a41e6b8ed7070c570285ab78e83215252504b3a0fa209d523b7c1cad5d073d",
+        "6d5d199fd534571f2011813c50ebd6c2436bacb8efd9bc29a11bb075a21d573a"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "bffb98781c543150e1b433026a7fe767824aa0431f58691100cece470c26ced2"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:34621",
+      "tool_names": [
+        "theater.stageDesignSimulation",
+        "getRheumatologyStatus",
+        "sendSurvey"
+      ],
+      "tool_hashes": [
+        "d61cb514b007e04941a0619f610f772902165430a37ad15fb0b0aefcd571abbb",
+        "1289e11c69d7c111eccc4df4ab26efaca482a724a5f15b05e71dc72466454254",
+        "45ccb318e9208658da85cd5b963fa4e919f924daa19d3a2fb5fbf9b4812f9b0c"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "df067b326f3ac7e2bbe4b6a8a310228ea6648131a90cdec93285c5b77a24b989"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:91769",
+      "tool_names": [
+        "getGraphClusteringCoefficient",
+        "GetBooks",
+        "List_of_Supported_Crypto_Markets",
+        "retrieveMemory"
+      ],
+      "tool_hashes": [
+        "b0a3dc1e83e297b17061c91f530802c38c94dfaf59cecaac3c6986115a3da6e4",
+        "af1d839c3bb156dca62e9359f7a101aa7fe954c8ef2b1e4e1f224cfd9c389032",
+        "1f96cbd3b49f8547c45abf4060705ad335bd0f4ff352f1208e9e5f734a17311e",
+        "8c37f578a60c76a67562b1c1990e4c3b4512c1d4adaf6b24f8532d7d15da9d68"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "e16daadc5b914dca7375324a08bc148026515e9e6491e40fa9849b00b1d8536e"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:88041",
+      "tool_names": [
+        "QRDecoder",
+        "qrcodepro",
+        "Retrieve_Bids",
+        "Valistring_WA_Number_Free"
+      ],
+      "tool_hashes": [
+        "21990829782059246066c61bb55c56cac378f648488fdc3bd0b2f035b3519c3a",
+        "6f128c030e062701afbc1568ab92dace6eba584a3f3028673f7155c8484bae8a",
+        "035b6b7ebc8286d59e75e6e898c3d8510dd5d93166615c9138927d6e8d194e7e",
+        "aa07915ca6a0bc6411a7292e6590c8f624f0dbd218a1fed16cf7a81f09f41e8e"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "b6c42a1539b4942b6e24e507b43e428499bdb129751b1e222dfe09d6a9552e0f"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:62350",
+      "tool_names": [
+        "Get_Random_Cat_Facts",
+        "List_source_languages",
+        "scheduleDelivery",
+        "Lists_Tweets_Continuation"
+      ],
+      "tool_hashes": [
+        "1840d4309c96cb0b8bab1c4d7c726871b84b6db744679412e0e9f06270e16a2c",
+        "c139ecebad54e18b773b25c0e63bde48fea1df9899de338133fc2bd6aacf5d5d",
+        "c4749e2817fb164243d3f29ff06a39ecfeaf8a526ac962273d215074873504dc",
+        "f1d47c60432e1659070ef0719dea58b36bdcbacfafe6fe42c47b14082c3f5f71"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "af43e9e569ee256260f5acf03d25f2d1891a187fd9d9a4be93232ff23d2e655a"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:43325",
+      "tool_names": [
+        "SpeciesTracker.identifySpecies"
+      ],
+      "tool_hashes": [
+        "c5643893fb4b7e32c070b7a8dc0a2c477d8d553767e893aafd8c28c3cd83045e"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "1af809453bf872a4df7f001240f5090a31ee32c380ddd4e0bf43f876b5fdab44"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:39697",
+      "tool_names": [
+        "Get_Custom_Scores",
+        "airQualityIndex"
+      ],
+      "tool_hashes": [
+        "502fd36f0cab77062b6e379083c965ce48cb36acdc442907129fb839695c718a",
+        "ab28a98a4f6d58522ab3737e5e743f69adf211ce3f60bd52d7eb756dbb624c63"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "f39850a84b6d6f866f63f79b806b614ed609c9b9756adf306164cdb7c1a0ea1a"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:36242",
+      "tool_names": [
+        "checkEthicality",
+        "Standard_Deviation"
+      ],
+      "tool_hashes": [
+        "5d2a7f5846b1941e530cc96651b8c87611cdfc28015998496c7c9e3056fc3ae6",
+        "a66cd35e3466db7d4c202a777f8a54ec6fbbf1f70acca8b93600391d729bc61e"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "de1b59caaa0b9c9f94596bac8a77833fcd05939d1d7edcbb5f54e4610288daf8"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:18382",
+      "tool_names": [
+        "indexOptimizer",
+        "analyze_instagram_engagement"
+      ],
+      "tool_hashes": [
+        "30fb0e8bf379b436bbb5edd18edd21002f0e2237ab0d3876e500ced3c17c0f92",
+        "a5ae9ad12214aec26ad4144343620f9ed5f43f090f3f5f4324dd9bda1e6e3216"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "2be73cd24e7ff3a663d7440ba8ba5202d00e875f22124ce8fab91ced88e84100"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:54249",
+      "tool_names": [
+        "GetGolfLeaderboard",
+        "Get_Nearest_Stores",
+        "highway_type",
+        "find_nearest_park"
+      ],
+      "tool_hashes": [
+        "bf0836b71d6287d3b208838bd8d4d6e9b9aa754e8627995b50ace2b975d5a694",
+        "088ae3554fa9e9db8d70d2820f04bdd38e109881f8962ccc1c1610963908591e",
+        "6d1380493f427eeee4ba397e8fc802b16972db890634e8fc5fb0ca9da2da3663",
+        "381952311bf3b3a8fbc7c2e73af667537d84d1e12d99582f30f31b75e904759b"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "4b3cf778dfef4ff40696e8207410d9d476a0920f8d4a24e4d5608699639ed245"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:20643",
+      "tool_names": [
+        "find_recipes"
+      ],
+      "tool_hashes": [
+        "c56d1a8bdd2614603bf7b9cf8bbc3dc0c87b3300813e8a2d834e410e0c607b89"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "1155a40f1382a16e900f33451c9d94ee7d5fe64024b1fcc3120d33aa64b55370"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:33604",
+      "tool_names": [
+        "createDesktopApp"
+      ],
+      "tool_hashes": [
+        "cae07bbc67d8c99fb7eb99e96bc1f0c6d7e66221ddf19a12de384d55fbca3187"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "640670101e419d0cf03ceaf73a48bc672ce3ef00a3adaa1e0bcc7ff16c8b4711"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:42357",
+      "tool_names": [
+        "Google_Places_API",
+        "Mega_Millions_History_API"
+      ],
+      "tool_hashes": [
+        "54bc53d5b107c8c6ef0452deb7e52c69b62c2201a8bf1f38f656c480e1d011fa",
+        "0c4e83f53a1342118080448e4bf7558cb1af020325fbf47f610504ab4c324b82"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "c78fd0c06d1bdb289d4b067f04fc5047741236250db6955010b60f057a3e2922"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:90866",
+      "tool_names": [
+        "Get_Product_Detail",
+        "Chinese_Firewall_Test"
+      ],
+      "tool_hashes": [
+        "fd2c06b07f740cdaf9339735e689c954942d02b7ddaf9fe16ba6420e01e460a6",
+        "bbb33534eb6fe1eacc9340f9ec7cc8d987bf58588abc636ccf2a3d737a359681"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "2f4c50503b0a435270942113e97b868468d566684fe205c7508da6e3aa395c7a"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:36788",
+      "tool_names": [
+        "Retrieve_Collections",
+        "getEmails",
+        "getBrandPositioning"
+      ],
+      "tool_hashes": [
+        "7b0fdd45aa9caeac60af9d36731f4f4c423098a1962a15e6dd3d99e140ab3ac9",
+        "af996bae0eae22eabd44bcdddd98f73e61415d79b44196507f22617c0725a85b",
+        "c736a546540bba33d619bff35eb2587e761f168f6da1d51d6033163ce3ab2f92"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "c0e9c8ea0a1bc6f335a700f5831212278a1024e62258e9a5c521d030b625a38b"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:40341",
+      "tool_names": [
+        "getGameContent"
+      ],
+      "tool_hashes": [
+        "59790427cc33d89cfebc8d0bbcb8815c7bb8ce9b3d9c30045edb20f4122797f4"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "53b188289d2312d93e673ac834103b2b500a954a9e50ac89a11bc8ceadd0f25e"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:21208",
+      "tool_names": [
+        "getCarbonFootprint",
+        "martialArts.technique"
+      ],
+      "tool_hashes": [
+        "0b606b70c3ed8a8da73e7ea463a940f552db38bf191e5cb1bc70e6c6774f6f72",
+        "e5c0ce1c07358b063ee3fdc2a4b76b25941d224076fd2b8b4896af5578c583a9"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "ddc3ee673ad2915faa3551005749341d9032c59a5d67487a219f5262ecc0ac50"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:73039",
+      "tool_names": [
+        "Verify_PAN-Aadhaar_Link",
+        "Random_Number_Fact",
+        "Get_Order_List"
+      ],
+      "tool_hashes": [
+        "d99c2b07b90361f9cb60af093a5042e1e3812b6683f04fc3ccd02d12a784cfbd",
+        "77f2b74b2d3a68e2b0ba4bbc0f643ebc8556db141598086d7a87ce8c48366768",
+        "30418347d7d22449bb52034d34a2902acddd7beff48a1ee62ee3bcb6fbdf7cc3"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "3f630c700f8b7bed571f0ce447598b1ba17ba655238762ec80f371c39dfb67b3"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:25058",
+      "tool_names": [
+        "Get_State_Symbols"
+      ],
+      "tool_hashes": [
+        "5ac22a860d9ba1d1b57b8eb9da8334eff37cb2851a9238cf97d84f9391ef1bcf"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "2fad29ff5c7b83d499b7d616b6c8abaea9e8c96bd16fcef5453c324b928933aa"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:357",
+      "tool_names": [
+        "getEmbeddedSystemInfo",
+        "US_Gas_Prices_for_Indiana"
+      ],
+      "tool_hashes": [
+        "2a63b0b79ac9c42c845be21d4310ceffd209a80e4eb3e743f1c8f7c4901f3021",
+        "add734676edb714a20593d5c604290a17328bd91aea869df6daa7f2d3a40c31d"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "499921ea4341784c7242a2044b3362bba1ff521687454ea1fa604854b790fef9"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:6158",
+      "tool_names": [
+        "analyzeMathematicalLinguistics",
+        "interpretNonverbalCues",
+        "Generate_Random_Username"
+      ],
+      "tool_hashes": [
+        "b26b5dafd446be00606b85916c4935c2973d78c6474aa54f9db123aa4869eb98",
+        "6160dc92b019e28d1d97442d9ef3a7201ba77511564ebc091baddfe640b0c78f",
+        "5c59c82f9801655401d732cb5b76835fb6065549bb74093d3d5020ef5e6f0871"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "952a799ea0c3185bbcecb5cae03ed9b524434593775a330e3128df6c4b49f024"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:46231",
+      "tool_names": [
+        "runPublicityCampaign",
+        "v1_holidays",
+        "Get_Open_Prostring_Status",
+        "createTelecomApp"
+      ],
+      "tool_hashes": [
+        "f50b73d05b4fb4efb21e4ab4ac9fbc46282142e3798f096adaba81179153b8d6",
+        "9b2db654f596bca2d7ce3d114a715f0306d27dadaed180d8c9f97f2127f5869e",
+        "f89ecf9c42eca57d28b2f95cdffcc3b9c833b47f8c91f3b797a12aa9377c5620",
+        "598892522d63bae5dea75c35bbe56db6c23a61cf2410446c97e572738d952509"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "5abbe0841a4884f58652e7a81401acc1aabf7cb78f0f2d217d90711089827e20"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:53697",
+      "tool_names": [
+        "Card_Draw_Simulator",
+        "Get_Categories",
+        "incident.respond_breach",
+        "wilderness.injury_response"
+      ],
+      "tool_hashes": [
+        "6a79189d9337d2aa250f7c3044d2f7d5527b4287b7c724bdc1598c16839e2159",
+        "ce5ea650c1c4c0560737c7456b914209a5edc7c3e1659332d2a8d7b00540fc8c",
+        "bc0672f647248da748ddd8c869405754240cd7a0a811c78b978326fd1079ad16",
+        "5ce48b819cf24a0d26ffa376f2b7666749de4ce7861cc73e2e3df72ae8bfa23d"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "f954fecfacf4019e07217de64e5170c43897164a62c45856ccb5bfe7e108dc8e"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:34413",
+      "tool_names": [
+        "Get_Related_Videos_with_Keywords",
+        "skincare.routine_builder",
+        "transfer_funds",
+        "GameChallenge.startCompletionistRun"
+      ],
+      "tool_hashes": [
+        "18f9dd1e99c7778bdbba3952feefa4b9c4e5a75a3a8977ffec6642c5d088dc4d",
+        "ec17d9cc934fe897246e75f53a8c96f346691bbe7bd1a7607cab6ce101143737",
+        "1d9f9dde353e9974458f2ef04b47d637b2e043fc9f62f413453bac9138a6de0b",
+        "8133ff52d14f33de0ef57cbc326a2f48eb0a8175e22802b81785790477ab6d7e"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "4e5cdd7b332b88e6242151b2d0e85b7525a8f2c3941ec462b4bd6dba523cbf14"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:61272",
+      "tool_names": [
+        "Keywords",
+        "Generate_Avatar"
+      ],
+      "tool_hashes": [
+        "36fc32bb03a32e6c1eb5051db741ca46e8379636900f20b79fe2538e981de5f1",
+        "dba5cdc248fbd2e12bdb2c9ca0fcdf0db1f6ef137d534eb519b709d0d949fa10"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "3e29993452d5c03fae1d3767af2772fca4cddc35d6617f8997740dac64f04b5a"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:881",
+      "tool_names": [
+        "TreeEquivalent"
+      ],
+      "tool_hashes": [
+        "c5c2c40997b680e209fe6510f77e2bff0394bb9687bbec81d5908c6531c4f543"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "418969c0128ae5c7b79ef03d52d2026cb4b742cfa06e86dfc64b9930607b0f1d"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:13500",
+      "tool_names": [
+        "potential_energy",
+        "placeObject",
+        "getGender",
+        "Get_Coin_Price_Difference"
+      ],
+      "tool_hashes": [
+        "460d2913095a20abf7c4240e7b955b71487c609d62099227f4800559a1f3eae4",
+        "727a19bb942b6697d9ce702fddf6079b0b8df7617b9798fc681ac71cb4e5e868",
+        "56155ff25338f6a611fe606020a92b606643dcd48ef59479dc2b212cd472445b",
+        "3a301915b47de61185bdd0be9a9866f0e70c13f316553a3ba7112b904a281373"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "333fe99fcdca1c206ba7a8197a3839124673d22d3b0cca68027326cf59124c1c"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:84275",
+      "tool_names": [
+        "DNA2mRNA"
+      ],
+      "tool_hashes": [
+        "40b202353d038a66d6e523a4d04d67281841e2ad07327eda74e48bc170673b90"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "90753fe42902114e06dfa589dbf09d90a4f02a82938db074c4d602752fa16a0a"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:65905",
+      "tool_names": [
+        "getArtisticExpression",
+        "IsValidExpression",
+        "interpretNonverbalCues"
+      ],
+      "tool_hashes": [
+        "3b623522f690ae188104142a05a9337d81b532b05a8a1df49d1647b420e1af44",
+        "2e3e4ada6c534e8254fd29ec297d6f34128739033fe700ea49822acf71fa8e2a",
+        "6160dc92b019e28d1d97442d9ef3a7201ba77511564ebc091baddfe640b0c78f"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "1c7d50a1f99e75bdf83e6971ea0289d101cfc641f8a66eb77f7872ec3cd58b76"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:29054",
+      "tool_names": [
+        "Verify_Phone_Number"
+      ],
+      "tool_hashes": [
+        "6ebbd275aa9b2a4ac4f93afbff80244f7d68f3379367f8ad82d7f704934a6671"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "7f666abe93b3981686efdaf71102ba3056b1a696a56391efef44472cf3dc4bd6"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:66297",
+      "tool_names": [
+        "ModifySvg",
+        "Get_Friends_Stream",
+        "palletizer_optimal_sequence",
+        "streams_investor_relations"
+      ],
+      "tool_hashes": [
+        "27be0c51980312005450cbaa9dea92a63c94f17c1b8ab0ee635e186a013fcb4f",
+        "ce70368ec3882a14c4cdd633823295543167389ec60be23a3d2388e10a6d02d5",
+        "fd0693ead21d8cdfbdaf20291250b01d5f840c99a5bb0a26bbeb6211ee21cf38",
+        "9902807ad1a8d74432e131fb8d395fade67a2a1ef7fbe2d0801755949668fe94"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "0ddef22191f70075f7bc011ed73351bff17a025e4a6546883edf8f53883b0921"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:37641",
+      "tool_names": [
+        "Get_Friends_Stream",
+        "Filter_Keto_Recipes_by_Protein"
+      ],
+      "tool_hashes": [
+        "ce70368ec3882a14c4cdd633823295543167389ec60be23a3d2388e10a6d02d5",
+        "d622e60266178a979bccbae8968331408eabf092f495e4383bb6bb1c8142be74"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "e26e68c79b4da51280c964f69bebf7c49c81a47eb6c7d52918cdd1910fba074e"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:90228",
+      "tool_names": [
+        "vr_healthcare.training_modules.get",
+        "physicsClassroom.manageAttendance"
+      ],
+      "tool_hashes": [
+        "ed7914a63710dfd94d67a0d64889dcc4b49facf7e755a1b8603cbfd519762e62",
+        "2c65ee00f106cd9560858668ab98146f24fb4ee360ef948d51e9db4299e7f3b4"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "d91f6d9b6cd7a981aa727cd4d66aee8b89cfa2d9d8af013f2a6a11362fa62221"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:84279",
+      "tool_names": [
+        "takeScreenshot",
+        "Double_Name_Generator"
+      ],
+      "tool_hashes": [
+        "490abb11709c8b9a11ef95b81bc2b973cdcc61135f4f737617b6f8a050dcfff0",
+        "44b774bae704e6303bc5a13cad07c36c29884a6a9b13ea19701b7eb15675fb76"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "90c47a5641152f9ad41e2c2b8d58a558f4042c498bbfe356b0f97a7dd9f9966d"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:3053",
+      "tool_names": [
+        "alerts"
+      ],
+      "tool_hashes": [
+        "3c8271c57537191ea760dc76e987932788734af8479c32423ba55f9f3134ade0"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "4c096b7f9aa86a3ba5bcdb64537ccf0a0cc7b3db439f266f638614ebeea4876f"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:10464",
+      "tool_names": [
+        "getPublicOpinion",
+        "Places"
+      ],
+      "tool_hashes": [
+        "887b57dcf884a06cdb84b1d2f774828020895f2ff9d9365f24c3159d986bb240",
+        "fbdc502d2de5cc10866ddc45daca143cf8d4c611533dc53a8f3dfc4fa5075641"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "d4a0eb732c7bfa8251ab8c1184975f446a941fab152a30b4852fa54e4e6fa953"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:56807",
+      "tool_names": [
+        "DatabaseConstraintValidator.validateData"
+      ],
+      "tool_hashes": [
+        "b334cfa6dd155ae98e67ddf3385561edde8558197d2bc830f907422b7776d831"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "516d69a901093bd7842dc05d8343e40c976c46bc44f960e9f76059d5675dc7ef"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:36042",
+      "tool_names": [
+        "getVaccinationCoverage",
+        "Get_Self-Help_Quote_Tags",
+        "Get_Cat_Breed_Information",
+        "CustomerSegmentationEngine"
+      ],
+      "tool_hashes": [
+        "e095d780bf64757276a6ed8b892d20d241fc8ff5788df20fc624a5bafb160b86",
+        "91ca8a1de41974911e16d4c860b54867873b9dffe9a9f7c17efd5c211d13dd0e",
+        "efe4e614c3891faab2971d5941eb679a10b6379924e9ff125c2cf194bbac6554",
+        "df66833ae8e07993ba2ce495f73f3fdbd460ee5b3fe547445e2d7d24d8f88c86"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "8187fe7e121f26d3069dcc411d339bac13914b081f9c24c72e5aa286d70f7896"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:56280",
+      "tool_names": [
+        "healthData.updateMedicalHistory",
+        "addPediatricRecord"
+      ],
+      "tool_hashes": [
+        "b5746741a29ef2ec14a4efdef567e3607aa02d24efb3b5ab977441cc5160ad62",
+        "acaa61323244bf23f7fac5e24faa1de074ef9f6fab3edd2171ab6baa4698588a"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "648771ddb35013606214f371a653a2bd5169786a3b3d1b86a6d1b8ad3f2c7620"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:35097",
+      "tool_names": [
+        "skillGapAnalyzer.identifyNeeds",
+        "getVRGame"
+      ],
+      "tool_hashes": [
+        "8c4d927924fc2c23004bbfce4126b6c82f1d71d3973c47367e2b25841cfdd506",
+        "ab126388edab77a3c68d6cc566afb1282748a6689d4e097e7151191c4abdbc1b"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "668f5467f9098240215455f2b5b68de3588ca1e7c6281cb5de41f7aec51eab69"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:42266",
+      "tool_names": [
+        "country_region_cities"
+      ],
+      "tool_hashes": [
+        "5118ed6252a4a25d94e429fdded66b65d469237921fba6735b9183e2367153a3"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "534bb1927f5f0617bae5ec5051b0a7f2a6d75834b701319658f9e556a786599b"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:2858",
+      "tool_names": [
+        "education.enroll_students"
+      ],
+      "tool_hashes": [
+        "4feb3eb63ba3a285f581852ec13113cc2836b4a62b79e3cb1c2495473f4b6d70"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "1250dd5081e07a90f07b74e861dc819de7d96e753a63c0cc801e443e73aa529f"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:34040",
+      "tool_names": [
+        "Symbols_Brief_Metrics",
+        "ProteinIsoformDetector.detectIsoforms",
+        "Cryptocurrency_Index_Ticker_Price_API",
+        "Registration_Check"
+      ],
+      "tool_hashes": [
+        "2e73f9d6ef37fd833f9e1081f7278643bdba2a705b8988aacbb56742cbfef9ed",
+        "c7a646a760b86552568d37f2923031950225c0ec74ffa2bf7611a3c35453cfe5",
+        "213c4ac81954399a37599390711ebc174628e47e24610f45051546c0a2b9dd30",
+        "98dbd781742febdce75aec5faef3242caae0f66d48982463952fff56f375d335"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "c0851af365d9c0f36dbb626d7968b128d55c826e1a863d3a219e64aa3b9488e6"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:40923",
+      "tool_names": [
+        "GetEarthquakeTypes"
+      ],
+      "tool_hashes": [
+        "c1e8c09978e6e9560bc1747c17d2d683bc282700ae2ee7fc79fae375c0d4b562"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "5850374c87b21111a22ea17506caabe837dbf740d1fbdca91915e1022f717057"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:20677",
+      "tool_names": [
+        "festival.participantRegister",
+        "assembly_line.get_efficiency"
+      ],
+      "tool_hashes": [
+        "aac50b4c58a46d88c4ecc94abe0a5da3117b86a656551b0650a029996e245e1b",
+        "2c8ba1df1edec2ca13a49a1d77ad2dfe89150ee385c34aeaff01491b6e8acacc"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "9552fa55c7d67a21dbd73a91cc9ce1216e4fd1ae17c1d35dec5d5e1caccf99ea"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:585",
+      "tool_names": [
+        "originals_episodes_get_likes",
+        "BBANDS",
+        "AccessibilityFixer.fixAccessibility",
+        "get_price_info_for_word_count"
+      ],
+      "tool_hashes": [
+        "aac4a321cc56284383ee13285e4d2305853cd1f07994f68e9652eeaf301f067f",
+        "328b24389f1f168bb6cb825a141fb11819575e632815978378366bf71c8c7423",
+        "b8f72568f6f3fd5a44ba7898d22ad9136a0b7c4910922fefdfa939255931264a",
+        "00efe0edc42c9f3021db2ed4ac78c6a914ed89fc0d1cb6a368f44feb0561e1f0"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "148fc603bc7a7b106d6243e3f802e6da3b5dfdcfe60362404941f5495d197e16"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:35860",
+      "tool_names": [
+        "query_races"
+      ],
+      "tool_hashes": [
+        "208ad40e0b6e209a8cfe9a0c0d50c25c068f0caace38856320b7cdbbeb6c3c1e"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "e06b3fe4dbd6f0a8217c44200487884f5553d7405433095b3c62725cd04be4e6"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:72009",
+      "tool_names": [
+        "getDataStrategy",
+        "interpretNonverbalCues",
+        "coins_get_brief_chart",
+        "v1_aggregation"
+      ],
+      "tool_hashes": [
+        "e314a317d178b4904ac6fde043aecc50791d1163d6fefb426c5c8c2ddeb6054c",
+        "6160dc92b019e28d1d97442d9ef3a7201ba77511564ebc091baddfe640b0c78f",
+        "0245764e5eaf7a0b086fc1dd417d8e71cd6c72fb9b41dfedd78aec213980c5e8",
+        "3bc53af77d4fa80af7183e444521396afc72fd8c03ab143214e1a60d6256dc3b"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "2ff1938fb01ee5c7612ba5676998af2f8be8f18d516be4d340e6d30f78fe5719"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:61037",
+      "tool_names": [
+        "Linkedin_Contacts"
+      ],
+      "tool_hashes": [
+        "dc6fd6739c4a1f4080c2b8799e116becab9359b2df7e527cc84b72f7ac5e34b5"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "325139dbb57576672f8027c542f24cd8ee2a0d295360063941822e2db32353ab"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:39991",
+      "tool_names": [
+        "getRoute",
+        "Get_Random_Named_Color"
+      ],
+      "tool_hashes": [
+        "12118f00f83846be43e197eb086348a4092c8987e9a29b26f9196d916fd3b709",
+        "f6d14a748676fda997c40c733b87ebf1b46837933c267c3f6b75c3c8ad7b6b5e"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "c1ab23e7e0b3c243d5b2706b29dfce29d955c657881a91ebfb410bb22fd2dbbb"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:76592",
+      "tool_names": [
+        "InteractiveChartBuilder",
+        "createReturnLabel"
+      ],
+      "tool_hashes": [
+        "0b546ec5fdd8c0c66e185388b04662cc18e65f90078f3137b3921ada1d81f968",
+        "407bb748665b6d8db25d54d6251cd7b6d9fd0b754542e033618db9eecd283181"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "1e190940764395aea8779a41d985addde5abd4e826bda82f96ece5cd3e7880dc"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:18314",
+      "tool_names": [
+        "Get_Horoscope",
+        "flame",
+        "StarLoveMatch_API"
+      ],
+      "tool_hashes": [
+        "87f1134d1b985944cdc73722ef0cb6990c8eb527fa7462c3b0c3a891488b755e",
+        "1f2d2120a310da3352613d850461ffd7ce0fe9922183ff5cdc6fe32df184bcfd",
+        "ef7e5205349888914e40372a9822d9455144340eadd0872d7ba62901f874b453"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "30f4eab92c8dec73e9f239d86947deecd902f9e13050fad1e96ccf1490e09165"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:89667",
+      "tool_names": [
+        "Get_Random_Programming_Memes",
+        "getTreeHeight",
+        "Get_In-Play_Fixtures_by_Sport",
+        "Radical_English_Meaning_API"
+      ],
+      "tool_hashes": [
+        "1302f012f2eef4592c703295cc0cf9c42840d105832027559f311378a7396508",
+        "49c51521d09a0c0c1b2b4c76c95825ca14d496b057a0de93f719e25221150206",
+        "f41ed29795589e067cbaddcf0c57a7bd7ab6f12f99230a61ad27211a4dac7474",
+        "dae43edf21d9a2704eafdd22ce2ffbaedbf82e73deff8b6330b2f2f19fe6df2f"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "0151bed8de5d043baeeace5ed64e0fb94f75f77ce2934cc30ba5ec55b6cc36fc"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:2292",
+      "tool_names": [
+        "READ_USERS",
+        "Get_NPS_Score",
+        "Read_Groups"
+      ],
+      "tool_hashes": [
+        "a01da145fd436a195766ed27428b7ac75055bbb5ebc1e1a1e9d942c0fc344d0a",
+        "0f9ce7c17ded30859c29fd4a73d14cba4c2272c5bf87f7caf0a19c0ef732205c",
+        "b821b2f72ecd73b52763d9798342a6fc49635e56e8c3a205a331bc83a3604d0c"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "d56ff3b1c20d46385d65e3a182d222eab4ef967bbf5cfc5f2d0bda2aef693a80"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:57564",
+      "tool_names": [
+        "Get_Live_Match"
+      ],
+      "tool_hashes": [
+        "effd1c369ddbc418cbb4d29cc7f9c9b2a032c1b5cfa7fecd1738074a774a973d"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "dc3ac64c6fca8fdb3db2c09e82e9b84e331660d7fb7964237288f7a4433b2089"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:16092",
+      "tool_names": [
+        "digestiveHealth.probioticStrains"
+      ],
+      "tool_hashes": [
+        "e681f39ed62977107c606e2572cbdaa7a00c113eb23c2e6cdbcb264d05ac56da"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "e377a5f5e7f36a29c362cf4289a2660caebc51d4db54b25211f2b3103e9a49a6"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:46100",
+      "tool_names": [
+        "Get_App_Details_by_Bundle_ID",
+        "Get_Release_Expectation_Bundle"
+      ],
+      "tool_hashes": [
+        "0ed24ad6cae0ac8f62437dfeb14e4754865a0289dd2f774d7c504185e48a4194",
+        "c5aeac1073cfa4f3e0fcfd09c9d448b5d13c953f076cbaa22c4abea9143c61e6"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "617a1fc7a733ae58c1b7b607a80cbefe32bb9919f42b21feb5f10a8ee086d5b7"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:45549",
+      "tool_names": [
+        "List_Properties",
+        "sendsms",
+        "Get_Supported_Languages"
+      ],
+      "tool_hashes": [
+        "4066cb20b627cd259e2a1cffc131f33899f1d88a6088b86c2735301e031948db",
+        "25f63a4627f6b055cf06f86130b1a4d2691849607e5e127a8ec3c7ba813f6aa1",
+        "ad09bd9fe1f2eaca9c7eac794aefbcf2fb77d01c0c778f323cf9d209ce52e380"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "41d405ea5f8cd672295f123797cdd401fc10ba429744f3eddbd06935d8218f47"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:38892",
+      "tool_names": [
+        "DNS_Propagation_Checker",
+        "titles_with_changed_sources",
+        "Get_F1_Champions",
+        "new_titles"
+      ],
+      "tool_hashes": [
+        "cf223efc333c1a8916269d4c5864be1bd5254a05f94dc522d09be925788560e8",
+        "ec9f9016c62732848c892f732cc64448e676342bb61bea92b2b1d14a21166703",
+        "5ee52924e709136e66c2ee084abadcbd1d834ad0137ee9cb79be80b2d2ad182a",
+        "3968a1926c38ce735fb95e16c93fff15449ca80a40f833d1ad5b7536b239a3f9"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "888363b82596072668e1bfc6f293d6ec13cdbe4b5af74246166e8fd0e4eef2aa"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:74538",
+      "tool_names": [
+        "Fetch_No-CORS_Image_URLs"
+      ],
+      "tool_hashes": [
+        "9fe0c13567e1b9c91fdfef406b86dffaf3058957c6b6e79d4aa4b8362b02f7a6"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "32b737aa6ed44e235bceae9f72eb2ae76a4bae3351190f7090114eab0c0bd4ea"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:47027",
+      "tool_names": [
+        "createTelecomApp"
+      ],
+      "tool_hashes": [
+        "598892522d63bae5dea75c35bbe56db6c23a61cf2410446c97e572738d952509"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "7c73453301950e46ef35deb0849d5e9e1671310b4ccce93246b3e183d9a13982"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:85594",
+      "tool_names": [
+        "Get_Final_Four_Teams"
+      ],
+      "tool_hashes": [
+        "84212d5cd942c7d2ac0dd0b5a73afc0ce8d0ccc78bf9e66b50e858e605bc209e"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "732994e99932efe27f34f3d579db868c4357c3553e92975ccfccb1b772dde0c8"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:18791",
+      "tool_names": [
+        "HomelessPrevention.scheduleOutreach"
+      ],
+      "tool_hashes": [
+        "95b2993a2c0a3b4b47091cfde041c585dcc14e7d5e75fd2d3739dc78f2427ad5"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "6f97d15b227276e32c0924311b2d54cdb88d8d594326a68efbbc63d670d5e6ba"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:70107",
+      "tool_names": [
+        "InvestmentOptimizer.optimizePortfolio"
+      ],
+      "tool_hashes": [
+        "7c56dceb903841d1de92884aa7f0ca24362688304ffe21a05e5ead27d52a6cee"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "1ac927ce18a2a76361f891e836f74536cf5b0c4866e46bc91ece4e8b253084b7"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:16350",
+      "tool_names": [
+        "expand_around_center"
+      ],
+      "tool_hashes": [
+        "498962e50e86dd064f13aef6269b0453cee705768521373f9b8a2356e0e8b244"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "973cdbb825a038112310c7056c2d635fd946f787d6374412a97abf92449a5697"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:11281",
+      "tool_names": [
+        "Retrieve_Men_s_Marks_from_World_Athletics_Scoring_Tables",
+        "Get_Year_Fact"
+      ],
+      "tool_hashes": [
+        "3a5c1ea5a9d579d97999e960637882a844af30ec2caa80405057554d97be4f8f",
+        "81635a2bebc02edc3378c0482096a03b5b6521e3eaabd96236fe34b1cc116e82"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "0ad9fd8459808db74c731b8da29dd068a254f5b7283bf977f679acb6d2ce923d"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:77390",
+      "tool_names": [
+        "Three_Outside_Up_Down_Indicator"
+      ],
+      "tool_hashes": [
+        "f702fcc81121fd8cef4f5d0bf2e582b53f86063fcbb60fbe534e4acdbc18c328"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "23246ba979bc6a32578b83fec018a2a2bc7094119ae377859aacdc258fde4a35"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:93069",
+      "tool_names": [
+        "ModifyEmf",
+        "ping_art"
+      ],
+      "tool_hashes": [
+        "5350c848b9f2a8bc2b0a9cf3ee974e33d264629cbbae4a2d345681762b7bdf2c",
+        "0a13bc2247f59b99db88b86d6dcc6a4bbb7944da814b216aec5660d1d4c8a0e8"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "768e08cfda9597b87443284cf1d4ac092eea06301fbaa734e788f62d0b2f49f0"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:38223",
+      "tool_names": [
+        "eomonth"
+      ],
+      "tool_hashes": [
+        "18a7632eb393db946ba75926a4450fa5805a2b24b0e35707a6f27244d2597147"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "a7ca8db057da958686ea760957acb9d0684bca298c71f42262d515ae51305ba2"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:63623",
+      "tool_names": [
+        "ContentManager.scheduleDocumentCleanup"
+      ],
+      "tool_hashes": [
+        "cefc138213c0f8fd93efe41385cbc330130886318358416bf6191f7a53eef705"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "f74b01945da9ab0838a3555a91e2a021635d1f5d7ddee179a102cf947c8e0903"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:29698",
+      "tool_names": [
+        "GetAvailableNumbers",
+        "Get_Patent_Similarity_Research_Predictions"
+      ],
+      "tool_hashes": [
+        "a7b2e29df19dd03b178cbf22ab156e035888869f80713c0be6e1277b037eb32c",
+        "63d4c7b7a4a96ee63ab87a7b61121b5846c879b860ac991aa602c703584d314a"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "504d78ff4739d3db166f5addd461d6fed855002311e411057263ceea1f8886c3"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:34503",
+      "tool_names": [
+        "getRomanLiterature",
+        "get_per_game_career_regular_season_stats"
+      ],
+      "tool_hashes": [
+        "658b10779074276fa42167b6ceebddc94f01e8309019c570ed807ce74a4d9494",
+        "b058eb4efe5a85e65d65e5b7ea5036d6ebb43a3975960e5d90e486d3f8c5cb22"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "40b83638139da293a353681bc866121b9c535af62a745bf863ce33218347baac"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:22386",
+      "tool_names": [
+        "shorts_sound_attribution",
+        "Country_Details_Level_3"
+      ],
+      "tool_hashes": [
+        "1f6193b14263cedf0bee1ae906a5fb6f8b4b567cf5514c82197e2da8fdd7eac2",
+        "cb56c98742934e09d10284bf45f0d72fdbeeceed949ac1c47b28e16340f759cf"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "cec7c11cc8bc6b11e675035586cd0c882aad2021aacb11c9c2b49d9559ba5947"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:58678",
+      "tool_names": [
+        "Get_Coach_Appearances_in_the_NCAA_Final_Four_by_Count"
+      ],
+      "tool_hashes": [
+        "0939070b289de22f558ed32fdf15b5ec21389abc1da918c54209e2c3fe9d2fbf"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "afdcc5beee379edc74716efbfa34f8a3cf747cb6f0081fed8db48ecc8fe0788d"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:93597",
+      "tool_names": [
+        "community.get_fair_trade_impact",
+        "video_game_impact_analysis",
+        "compareNonprofits"
+      ],
+      "tool_hashes": [
+        "bff740a7077c8d3b29704b683bc58f3f79e38131207316f97379cf34f83d75aa",
+        "c68c09ae34f3037c53f857cfc5d5a4789aa0abf82c6752177b10a09d7520d074",
+        "b235ae8bdc32e21c79c3381cc43743690a5d20fc5ffa183b3dd5b1138855ed95"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "7ae2ffb2f8431a15329e3704e4531f6960173c6ff22e7ea6e42567b3dee8a774"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:88443",
+      "tool_names": [
+        "Cities_Near_Location"
+      ],
+      "tool_hashes": [
+        "2819ef92c4651ff7c2ec08d7c9b198ca3c1cd67de30b9b3c976625ad3ecb6bd9"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "ae481c8b076a9cad64700a71260e5ecc3afdd4573971d5331bbf129195f90ef4"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:80894",
+      "tool_names": [
+        "Matching_API",
+        "JavaMethodTracer.traceMethodExecution",
+        "products_v2_get-filters"
+      ],
+      "tool_hashes": [
+        "dc19f7dbc4098746891fc2baba00d369205b73ee20672977f30094ed118adf99",
+        "e19b4e1821643a73e811156112e09c01d2961e6c7db0ab5b9737b94366718064",
+        "f354c5e9a931b3db2cf31a94bb1f4b135c9f9d85348d031beb869f1ef125440b"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "bc6c37d681a77d9614f898eb2d081c92b075feb4e082148d963d66a662ebe483"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:25838",
+      "tool_names": [
+        "createSoftwareArchitecture"
+      ],
+      "tool_hashes": [
+        "dbe6d0dad1713625703fd57b74beb1a1289d6815c74a5dcab7c2c72a4d8af42a"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "13f99b5da0519fee7ee1ec7141c45d62c3adf22e742a8e294c233ef3777b0f80"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:31926",
+      "tool_names": [
+        "Get_Car_Recalls",
+        "Price_to_Earning_API"
+      ],
+      "tool_hashes": [
+        "5b6ed81dab8e7caef07327d391cc76ab56f4c36291dd1c2144f726ceb1df7112",
+        "75f46b774629f80a582df52944dbcacd630bb86e51a4af77b0313ff31274bd04"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "b4eb2436054bddf5626e4fb6d98e6dcb7e9634495031ba2c37760143ec31501f"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:24951",
+      "tool_names": [
+        "get_binary_image_set",
+        "generateSpeech",
+        "testFramework.validateMethodOutput",
+        "generateAccessTokens"
+      ],
+      "tool_hashes": [
+        "b3016f2b5fab6bf9169c940dc050ef071d912d5603cb4e1c824c7e27e29271c7",
+        "67c85af4e5e769de583be5de094ed60b682f974f72d433f2825176b25fd00a41",
+        "b9725cff011597060339a9c63833b9bf3ce332d561987698e3363c1396787c95",
+        "67a340549986d58e39cb5652bc8a1a36d3580e5ad6c1d720d099eb26a9b3ccd4"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "d761e7903608de2d28572a2b9bb82c00d333ca8834a0354125c784b5e37919f4"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:33731",
+      "tool_names": [
+        "Timeline"
+      ],
+      "tool_hashes": [
+        "b1b230ef2aa9c8728b014e91b5dd0b60eafc7b424621ead9630fa437933f68b2"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "c086ee6b934bf9fe2007b44ceecf767856cc98513f2e0ec6c9e15a264a2cf19f"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:33522",
+      "tool_names": [
+        "getSentenceSentiment",
+        "market_get-equity",
+        "data.fetch",
+        "analyzeIS"
+      ],
+      "tool_hashes": [
+        "8acf7d75dd8ac148903dcdb9e0788a9bc5acbbeab9a938927f4e479d87bbf0c7",
+        "7a3fdbcb8ed12ab89905699ca0a6f4b6cc8ae7b0a41515bf049bae06d30c983d",
+        "f3e16cf7499968332a0e85e60326882f78e87bf3733e60d3dfab3907daa4e3c2",
+        "f46f6b07d344481a335c798cb5e6f81ccc572c494099ce3df72ddbe4b64d42bc"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "c175ece0295dd0793ec9e32f06b7ff5108ddba30959a054f37a3be00e18380c2"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:94431",
+      "tool_names": [
+        "Get_Baseball_Venues",
+        "StarLoveMatch_API"
+      ],
+      "tool_hashes": [
+        "0e16bc75e378971bd786abfa2cecfb2ca462cafaa0ee004b52ec9db7364fb25f",
+        "ef7e5205349888914e40372a9822d9455144340eadd0872d7ba62901f874b453"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "fa853f691bf42be8fdf9d9305e0148d124d5d9f08f7ae8a8eef342c3eceacf16"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:6788",
+      "tool_names": [
+        "Market_Movers"
+      ],
+      "tool_hashes": [
+        "4793025782f9d05962f08edb6f519a7e52526af7ce033eb0c296c4dc7a5394fb"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "3f24a0cc8da8f189955a1d665b9da8c4b9e30fe55a92d6a5b235aa57f806cdc6"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:41608",
+      "tool_names": [
+        "Retrieve_All_Listings",
+        "Get_Score_by_ID",
+        "VideoStreamer.streamVideo",
+        "Get_Offers"
+      ],
+      "tool_hashes": [
+        "98cd086eed9c6a9f8c44ad13f2ba460830373d6cd6784e5ab2cb9b40bcbcd9d0",
+        "c05c878cfc910e39017d68e4c24bbddc4d71cfaf1eec653dea6958afcaf9ace0",
+        "065874e9ff1c93ce018f14447a2a6e7f3ddfad621c7a8d87c8b593255c5c2209",
+        "89d4b451e88b03fe79ba22b03ceb2932540274699938fc0ab98fb9a228a12bfd"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "947a447cad97143420bedfdce599f3e804e3dc3c88f00d8c935b17de7e235b3f"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:36098",
+      "tool_names": [
+        "v1_stars",
+        "EventParticipantManager.addParticipants",
+        "Get_Channels_by_Country",
+        "Address_Autocomplete"
+      ],
+      "tool_hashes": [
+        "30b29fdbf7eab32701cc236c200eb2c2acc29827b6cda82947b9d2b0075c3949",
+        "9b0a58d55927acd8084e24eef2ffa9f6308048ebbc72bf90867ac79f30aedff1",
+        "e3209f2f40d505b0bb75c9886768678a5e541154342b99f350e8867175ea9503",
+        "58fd2d6d472375862aac638c81c561b19d934fbb78078ad33a2397e92e60bceb"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "197d28deb194dcd021cc359365299d6021ad2d3dd24206f5731fd47e59b3998a"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:29604",
+      "tool_names": [
+        "Geocode_Reverse",
+        "CookingTimer.setTimers",
+        "Live_Histogram_v3"
+      ],
+      "tool_hashes": [
+        "353871e047efacc2842ef7105abaec60f29931ad3681f80e952b2dff207f9535",
+        "6e6fa8cb87f138a2cf7cfd59f0730e01d7ffe4a52e689b60f0af69de0093ff76",
+        "a5b74b36faddfc3268c2e4a956c7bdc254c05b66e9022526984f2d99f1a13ca5"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "726c7c5300240ff606aece3f9deb41a21a45e5cdc05b22e8e2c3e67c5a47a94e"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:93867",
+      "tool_names": [
+        "EconomicTrends.compareUnemploymentRates",
+        "ROCR100",
+        "Ichimoku",
+        "InfrastructureAudit.performCheck"
+      ],
+      "tool_hashes": [
+        "88844369f79073f23fdd92587c765da2a7ad5edb3bb30a1711b8fadb0cb21c66",
+        "e41b1b88d7d047da0644904056b534d029dd348f4ad0c3abe0ff67536522a475",
+        "cf2ebfcfe944786de5707fef2674e18ea0321457d55bcb41fffa07f9f4159e2b",
+        "d721cb6bd4e8c200c9dc15da94ee8527019190a3d0a2e667ba9bd7c98d86dce4"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "a3fa74df56234d4296d54ec1de6c7185caa10100f5fc2af4b970ac4145fc3686"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:15609",
+      "tool_names": [
+        "airflow.monitor_dag_execution",
+        "Is_Registered_on_WhatsApp",
+        "jsDataAccess"
+      ],
+      "tool_hashes": [
+        "1aad00f480f961d4cda30d1514df9695100d026733ce838d557757c5b100a172",
+        "29d4fe732e7ab8bedfa14fe1762c15c6ffc888747eeacdb5322f42ff70986255",
+        "f2a2ea4abd45d5a2f7788b67f0507ba3e731063bcacc8ec59b8fdf7cc8a53516"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "3675d1159bcda1ee6ef461e3c96f220f7000640c2446ee515889f61839d5d0ab"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:75973",
+      "tool_names": [
+        "Generate_Password",
+        "find_largest_number",
+        "Get_User_Streams"
+      ],
+      "tool_hashes": [
+        "f418e9cde28d2a0fe62cf6e2b1138804cd3b0fef29e0a3f6a19786604bada19e",
+        "80ccbe3a98ddffc36bc415205dde466d6d5981b3f0746d43f773f9f634c39436",
+        "5f166c16dc2928fc40f1b3b0343d959d8c1d41d853aad08035e47b95d0ff5c2a"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "644d61cbbf9c1f2bd02c36dee15310374552a65f223a9e045b65e38274ac67d3"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:20860",
+      "tool_names": [
+        "getAllInboxes",
+        "IP_Location_by_IPv4_IPv6_IP_Address",
+        "v1_aircraft"
+      ],
+      "tool_hashes": [
+        "792c7f53a91adb856003c1d8a620af90b0f326e60a014117f85e72f2b1f8ba21",
+        "62820339470b4ce3260b362355db202b530d2d914d26e1c0c58fa7c87484cf81",
+        "ddaa62d49d05aaefce6d92517d8d88141145d036cdc485100995377622d57bb0"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "0ba6fe1a98d9d0e2bfd143c81afe2f1a883a142f188d090c22f64133d2e61696"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:80394",
+      "tool_names": [
+        "v1_stars",
+        "getManufacturerValues",
+        "DatabaseConstraintValidator.validateData",
+        "aircraft"
+      ],
+      "tool_hashes": [
+        "30b29fdbf7eab32701cc236c200eb2c2acc29827b6cda82947b9d2b0075c3949",
+        "61be0b3f566548e944958fe2c7de4aea299e4609c4fafdbf1213be7192e507f2",
+        "b334cfa6dd155ae98e67ddf3385561edde8558197d2bc830f907422b7776d831",
+        "9e7636fefd6b6dd3a320eebcdb013451930a59fa869ba8cee710c10ee1501823"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "a332e0d0c5567b488e49a33af2346f2bb0ced4b5a30c8ccc7cda562aba97aa29"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:23113",
+      "tool_names": [
+        "quantum.encrypt_message"
+      ],
+      "tool_hashes": [
+        "069c1014f083fd3b6c58885a9c1de6843212fc47bc7dbca602951a9aed72a46a"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "aa0ed88c8de029a2698d334f34cd7e638196ed36ac4b7079f29bca27488836dd"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:54524",
+      "tool_names": [
+        "getSensorsData",
+        "VideoStreamer.streamVideo",
+        "ScheduleOptimizer.generateFlexOptions"
+      ],
+      "tool_hashes": [
+        "4fc7c26f9baf0dbb35b3ac4fac77f5b9e2d2f90ac075f6e8270c995f41506475",
+        "065874e9ff1c93ce018f14447a2a6e7f3ddfad621c7a8d87c8b593255c5c2209",
+        "853858098e31039a4e02fd652f1dd90bbbea908dead277af8a429756c8f7be54"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "aaf7a2e360b422c239313acded8210590bbabd371952c45d79f5baa23caac72a"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:28968",
+      "tool_names": [
+        "robotics.schedule_maintenance",
+        "getEthicsOfTechnology",
+        "get_per36_career_post_season_by_id",
+        "get_career_totals_post_season"
+      ],
+      "tool_hashes": [
+        "21c19d401234b259cb0e8635148996026e0d15352e1733e222a15a5b264db7b1",
+        "d76c8ef02f9edcf07dd29e77fb57263b8636295141a842bc811398b37c74ee0f",
+        "3e792c2f4c3c0fde8cea118b4743cc0c34c0d505ecbda300030d68bbfa8fccc0",
+        "0fdc50b4b2894cdefb9c9568a389712f2ba7198da185776cc41d4957f90ad48c"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "dced40b64db891d260f3d8e7096da43e2e0b7dc9cada6c18b9b7b2770b1f6076"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:79993",
+      "tool_names": [
+        "jsAstModifier",
+        "addLevel",
+        "take_screenshot",
+        "createDeploymentPipeline"
+      ],
+      "tool_hashes": [
+        "5ed8bd4fb4ad19513990fb63f842e82cf70c4fd8f0b1f228a63feb05d9bf1954",
+        "5dce74d51e8e0325c337ccfd119e217bc02cb67d30636985e7a0f0e890c35cd2",
+        "8e62123175a59443a6bcbf1b716abdfc8f2bcdea65b04f199d07e1ba43fbdb7b",
+        "7c937248191658c4697a8bf2035cc5f8230c939c38b690a2cbe9f33096dd615a"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "f89922d8c9971126fa9a2b269506e6cefa1466985ee0c5505abefaeed091341a"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:59780",
+      "tool_names": [
+        "Get_Product_Information",
+        "Get_Compact_Financial_Instrument_Information"
+      ],
+      "tool_hashes": [
+        "52d6c5b941e6740c2a7ab9a81b2783ec335811b766167ed25a53fd4d6c92b1cb",
+        "dd21c726b4866b2e1ce917a4afc7f5dc65c7f68dcd0fb629eacf9e7b94a42056"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "e9275db452b847c81d5b92bf7c2a852d268f17206aaf7096202cd0612aef64ec"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:25309",
+      "tool_names": [
+        "heart_health.risk_assessment"
+      ],
+      "tool_hashes": [
+        "6a327314db8076edaa82f07c79b5b5b5f51799e277e7c2ff1d212ff7bb205d80"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "3d89e517257c9ac6a70fa480d229b2c3e7253b293f955bd4330ee52014ec216a"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:7187",
+      "tool_names": [
+        "Flight_Prices_for_a_Week",
+        "createLineGraph"
+      ],
+      "tool_hashes": [
+        "347bf5dd813627b0415620419ced1c4c1ec96426026b58feb1f1c5f550bdfaaa",
+        "4d094a0bfb25d189a132bce5b7729991b8d434b930b52e5918049d30305fdce1"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "d228d36f33b326194f29c0f8f6d76943a0211908d256b701186c23faae99a631"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:81774",
+      "tool_names": [
+        "Get_Imbuements_for_Cloud_Fabric_Energy_Protection",
+        "geoThermalHeatIndexAnalyzer",
+        "emergingTrends.fetchTrends"
+      ],
+      "tool_hashes": [
+        "402b4586995f8bd1b944d2db4c6c95184afe7f1de93755bc76dca75e78d65c19",
+        "fcf90824e1e083d7062b8f67402eac24eb619931648991d8ecb7e01e2a72c8b2",
+        "ff42501e31c58096b2436f0db4b3a5742745b1400b56c0374c6af091f2316353"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "6ad0d24cd5834c8c3dce992ab3db1c781d68d66d8767218225ba27d8708923c6"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:12303",
+      "tool_names": [
+        "Retrieve_Airdrop_Leaderboard"
+      ],
+      "tool_hashes": [
+        "c7aca28cdcb038024f127aac096f16b1cba720c1d4e5d11f74a9fab0f2d74706"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "9c073081e273eef8816f70f385cbfc44fe1f51d421fcfc1a5568fbb239a6ecf1"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:12019",
+      "tool_names": [
+        "list_titles"
+      ],
+      "tool_hashes": [
+        "3975c55280a2d6b20333d97e5e47e1bd5508e792d8e56e86654c74a5254be144"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "ec05f29062c0200f7c6bf73c2dde96e4072be991a62278d2776dbbfc0bd4a0ad"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:72860",
+      "tool_names": [
+        "GameDesignProfile.createGame",
+        "Upcoming_Matches_API"
+      ],
+      "tool_hashes": [
+        "0e9757d6b3a6eee78ffed22cc484d2e9ec41b0341966e8bd36de8c67a8e7f9bd",
+        "06b3af3c53797df4635ccee2a652ee4977baadbdc3b428253e12ee2b54dee57c"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "c3960cfb648c1b45d2f72a50e4ab040f249ef19f921ad03d37e55fc83e68d4d0"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:33076",
+      "tool_names": [
+        "createTelecomApp",
+        "createDesktopApp"
+      ],
+      "tool_hashes": [
+        "598892522d63bae5dea75c35bbe56db6c23a61cf2410446c97e572738d952509",
+        "cae07bbc67d8c99fb7eb99e96bc1f0c6d7e66221ddf19a12de384d55fbca3187"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "83da34800f15bd739c36b2bc50366e0c6b2831b146d2f3536c8bd431055eb40e"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:69874",
+      "tool_names": [
+        "getEmails",
+        "data_cleansing_remove_duplicates",
+        "getAllWebhooks"
+      ],
+      "tool_hashes": [
+        "af996bae0eae22eabd44bcdddd98f73e61415d79b44196507f22617c0725a85b",
+        "28e93a936f317a3cb57eff4902491fb8ad4e719105102383ea4136b2a8fc6627",
+        "61de66d703cf403247e5003a6ac229746ffb843a8d19c455390bb6ec5757e6fb"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "d724449f11f56a6e525fd2d93bc0fc09fa8877fba8b1c933f329bdf0a38ef643"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:40090",
+      "tool_names": [
+        "getRoute",
+        "Study_List_API_AP_Exam"
+      ],
+      "tool_hashes": [
+        "12118f00f83846be43e197eb086348a4092c8987e9a29b26f9196d916fd3b709",
+        "79ad8e59909254528373d64a9adef568d36dbac5a22eae145930c24a392c46ef"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "61a8b3a2e448642df56d04c2d741dfc06338caca6bcfe2f7b8413a4f8bfdfc46"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:52510",
+      "tool_names": [
+        "Places_Near_Place",
+        "createDesktopApp"
+      ],
+      "tool_hashes": [
+        "5cf77b5deb99cbfa32929982d3e7b49004a2ab1e0107b46c4149f6af9a215284",
+        "cae07bbc67d8c99fb7eb99e96bc1f0c6d7e66221ddf19a12de384d55fbca3187"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "918ef3b4ef4542dc0688033365665a567593fead46b36e44a86e99052503db50"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:59298",
+      "tool_names": [
+        "Timeline"
+      ],
+      "tool_hashes": [
+        "b1b230ef2aa9c8728b014e91b5dd0b60eafc7b424621ead9630fa437933f68b2"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "8d86b2af4a70846bca4cc427ec99e5af08e5f34a34be3a67184483be69c272f0"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:32612",
+      "tool_names": [
+        "get_asn_by_country",
+        "estimateSolarPower",
+        "Get_Users_by_Logon_Success",
+        "v1_aircraft"
+      ],
+      "tool_hashes": [
+        "2f35d2bd3290c1a025e7615f9d2f6fa15621257ac8d79dfc33921d7401758b5b",
+        "84aa333b870824ce66647d606ea79d647138190f0c338b456df7078228726c0f",
+        "3afc636fa932423824546fb4855d49909dce75f17aec1096ebb93bb53b53f58f",
+        "ddaa62d49d05aaefce6d92517d8d88141145d036cdc485100995377622d57bb0"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "665a91ba6ad74b5aced63b7293ba7ef43e212fe8043c77114cc73f88397e21f0"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:34899",
+      "tool_names": [
+        "bookTable",
+        "textileMachine.configureDyeingParameters",
+        "3dsMax_render_scene"
+      ],
+      "tool_hashes": [
+        "1e0ebc31efc969c85f5c7f4f97b4fa428db0c98ee11d38b2489b2e51f1a92fec",
+        "9207ec1819e68e5cf67da4bc70c66493fc627979841c0fe54c7bc8662ec22355",
+        "28089f9045b523a8aa7a0a64334cb17ca80193478674111edf731297bb02548f"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "7ae546d16e9d3d67ad2650de37933019fc565c4e3b5bff33900bf515575cf442"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:87161",
+      "tool_names": [
+        "UnTools_API",
+        "FootballRefereeLastMatches",
+        "Get_Market_Splits",
+        "Get_All_Social_Spikes_by_Coin_Name"
+      ],
+      "tool_hashes": [
+        "a6eca3f578cc0b0c8d4222101ca238de57caf4356a351f6e4e97026f35fa7415",
+        "335b6d30138ce92cbccf103f6ef5c35b79718753f0527fc4ca1ecee037f60991",
+        "7253545333a87da564c6c20330ccfb227a1ecec713a7d89947e47d72c910d301",
+        "6cb851280392117b981cd108f2d5f0eb95f437f0b6136217a10dcb4f37951a78"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "001a6e49a6df772928311580e195b01388130d10b7f70e03d9c158497d939e4e"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:94683",
+      "tool_names": [
+        "get_1_3_add_working_days"
+      ],
+      "tool_hashes": [
+        "70123bc8dca496d8efdd07a28adafda9195a94fbc62c78c690e20e77fd7f1fb2"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "329131d2d4a082c54f93d1dd64a2c5198599ca681e9467cdc624a5eaa3f894a7"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:38347",
+      "tool_names": [
+        "leagueplayersstatistics",
+        "getBatteryCapacity"
+      ],
+      "tool_hashes": [
+        "5c1ce68321745ba5724d0ed966e856f13dbec8a7b3c0b96a54f8eef266118f3c",
+        "c9514373d3fe27e2ee4fa9dfbe19ed3cbf9e677e52e445a7bf5451e11ae7926a"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "8112bbc302572945167ba7b0922316e2bb747e8b95c36306681860ed115bf304"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:68660",
+      "tool_names": [
+        "iot_device_vulnerability_scan",
+        "loadBalancerConfigurator"
+      ],
+      "tool_hashes": [
+        "27bc47c35d93ca2ae111cc37f022101737b8bb511de83059aa71a94d557006e8",
+        "c5b9ba4966e08c38a32c3399fab681160ffe2dd079caebb948dd9a21cc7618d4"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "661012db6c4e53757ed5c05a1d30746641fc2599b31dfe762679c818da331e43"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:31973",
+      "tool_names": [
+        "longterm_analysis_list",
+        "verify_an_email"
+      ],
+      "tool_hashes": [
+        "cb11233ec9a692fc532892cbe7c6d2b12d0287be5b3277603b2e2e94316eb2b2",
+        "92963076e57c1b8bdd97b57e4144e66bd54f5e1b441a279237a7952916d6d7a5"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "bbf4f16bf21c62b654b432a1428105d9c2bcc52370e6d37609bd4908a7355fe6"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:27903",
+      "tool_names": [
+        "Correct_Sentence",
+        "get_classes"
+      ],
+      "tool_hashes": [
+        "ca114cf03637a126a8bed182b34e01436b82f7db1fed86f7d80f8dc4bcef5db0",
+        "a7f3c65e90537a6f133a78203386a103486a3bdee1ad00f981dd946b13f4f7cc"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "00079e8d1acd474af167f9eb362968f19966d06bf4fb588442a9efcfd72fcadb"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:78065",
+      "tool_names": [
+        "getInboxes"
+      ],
+      "tool_hashes": [
+        "be009bfb03985a14bdd8f82e7968d7e9cfe3322a6e5a80b464b61d0c2a2374fc"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "f0d65be88e3a826940a7e87edcd8a45980ee114b67a5fe7d31c6fd1be5440042"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:38508",
+      "tool_names": [
+        "SchemaValidator.validateDataIntegrity"
+      ],
+      "tool_hashes": [
+        "e5e1af4b82f1aca9b8865e3332f9784bb728a21f304ad3491c38ca2f15a9e7a2"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "8ac4ded1e3e0ab2660f313685cefc5f22b7bdf40284a089499f59958a7e21b10"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:56497",
+      "tool_names": [
+        "retirement.annuityEstimator"
+      ],
+      "tool_hashes": [
+        "b1e2e1d6d2e656d7e399bfed543f22d6386622a7d99a74546fb5a8f923a71e29"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "10f73421c59f3d4a3b40993dbee5f0d0e042c89159831264bddf3462bd41121a"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:30035",
+      "tool_names": [
+        "Get_Italian_Pharmacies",
+        "Cities_Near_City",
+        "campaign.createEvent",
+        "libraryBookFinder"
+      ],
+      "tool_hashes": [
+        "a958978257e7b721d8906014d8302ad1c659b67cd5844a2586f6514f2c97cd8c",
+        "6ee35dc2ae37ba3808fc13030c3ec67e350531034a7b9f9135fb960aecfa18f5",
+        "6cf3d0c9856e0b87b9251e32d6e14536e4777e780cf1f30f7c3cfd2035a09151",
+        "f97ba617f6bc135365c18ff20897a3e07bb536d91c0956b366649ae49e56da73"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "cc987ba6f1c2bd7d557c4dbfb0a278b7f36188b4ce7a88542d8eaeeb13324955"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:29217",
+      "tool_names": [
+        "getFoodNutrition"
+      ],
+      "tool_hashes": [
+        "4cba853260a24c919f7afdeaee0010eb8cccf006fb751a01d68cffef1a03fcfe"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "e98564d78087a61331f393cdf64c52ef46938e00accd1487a36093f8b454abeb"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:68996",
+      "tool_names": [
+        "Delete_Custom_Period"
+      ],
+      "tool_hashes": [
+        "98a127a6a5e215d6690274a1239d530b1287e87aaff87604282c2b31bee0d405"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "e7af5d34207d03ea96ac9214634e754ebe4478e081bb2923c61da7a0c154e64a"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:33516",
+      "tool_names": [
+        "street",
+        "competitions_get_short_info"
+      ],
+      "tool_hashes": [
+        "f6696d15bfb7f3836a824deb32e1de7beb515af6179c92c4aa4ea0c3c667fe71",
+        "6685e8190fceb74f2da960002d0fc2a930edeb24d677795d38ebe6833760c3cb"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "ea1b2aea9ee6af3c2a5cb5a22e4d866e3b17c83ac5633b4f52873bea005f45fc"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:21070",
+      "tool_names": [
+        "Get_Airplanes_by_Name",
+        "MentorshipProgram.createProgram",
+        "Get_Daily_Betting_Tips",
+        "count_occurrences"
+      ],
+      "tool_hashes": [
+        "5faa5ffdf11c36ec5171a90cf53179eb70c05e478a3704d3893729443f4aed26",
+        "22330f0fcfc8aae822a01a793bc82f412117d3dcda3978548fedb3c8613e3d12",
+        "71f048eff260ad5fd6701fc3a5553ae9b581246de789a9fa26cc3997a8f5f28b",
+        "b42553861e5ad20090136d32c5028827f634cf93d9fb21bd29ccba940754b7d1"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "0509e739c30de573f3692f17a6e1be00e9a5d097e0a9900ff5ab9fa9d95a543c"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:18690",
+      "tool_names": [
+        "Futsal_Predictions_by_Day"
+      ],
+      "tool_hashes": [
+        "c4304fc1e83df1ca938097848df70abb32f8169348d26682e406c19c4ddefebc"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "9aa763f363e7bcbd9d171d71e3c488d1d6081ce355e80673a652a40f4b21ed48"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:22058",
+      "tool_names": [
+        "basal_metabolic_rate_bmr"
+      ],
+      "tool_hashes": [
+        "5606c220afe7704dd4dfe1d9851d88d741e7a894121d2809603c631bba85ac25"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "e99c90c5f6fb54ebce1ecb5df5b6eac846eaf755571a1bd65dcf2a0f22ea7e13"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:17536",
+      "tool_names": [
+        "checkAccessControl"
+      ],
+      "tool_hashes": [
+        "b7d8e266f4ebb405ea516ab6682cf6ef1aeb5affdc396a9452cc567553a53678"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "7d2011057ce37cefff5158dfc695f1e583e2b95db2217f68d5833abc1b6ad56e"
+    },
+    {
+      "source": "smoltalk:openhermes-100k",
+      "source_id": "openhermes-100k:60560",
+      "tool_names": [
+        "VideoEditor.addTransition"
+      ],
+      "tool_hashes": [
+        "f5dd78446120e84bab52cc2968b4503ccdb3055fdca7ba48be0754cfa0017a99"
+      ],
+      "origin": "v3_audited_openhermes",
+      "sha256": "6b41ae7fb482bc8ae92cf530cad79605c40d0cda6f5e231f7ba19ab0f0670296"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:25923",
+      "tool_names": [
+        "v1_aggregation"
+      ],
+      "tool_hashes": [
+        "3bc53af77d4fa80af7183e444521396afc72fd8c03ab143214e1a60d6256dc3b"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "8c2900e3daa433b8840de929019d564e5bd123700c0c26584ace9318849a822e"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:17164",
+      "tool_names": [
+        "list_of_games",
+        "Is_a_business_free",
+        "TrafficPredictor.predictTraffic",
+        "getJPX"
+      ],
+      "tool_hashes": [
+        "804eb5acd63059880b3f0e52c3e84eb3d2d1b54eff2323c89c29d0945963e218",
+        "fdc7afa5d988b1b638b7321287adcf4613a4937280bc84b652b9a4d65102b419",
+        "66ee6d8168f064c9605b037f1b94685192d0acb30e6f573819204e31d21a02a9",
+        "d8441049b87082c00f4e4142b5c2e6e3564fe9c6b891ca44647a8a21dc061ef5"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "f56c990cba801e27f82645af18c2fcf3d54a148b0ee406aec8113ee020635a0d"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:24672",
+      "tool_names": [
+        "Send_Email_Notification"
+      ],
+      "tool_hashes": [
+        "35f697ea35146bc200adffbd83b56b22420a2f870a8393bccf8a691cfc1cfd56"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "e0f851c9de2472df1653722e2e3faec8a1795d17b75513bcfcc041586cb56737"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:4489",
+      "tool_names": [
+        "continents",
+        "Get_Random_Word_from_Taboo_Categories",
+        "leagueplayersstatistics",
+        "publishNewspaperArticle"
+      ],
+      "tool_hashes": [
+        "094de91a4797d6a8083e1f89267f6d7d642ba84a84988b8f538580ea7ae92980",
+        "2aa0a89bde5fca89e806264c0d969fd978ed4a36a1620156ffd82ae4b40cb699",
+        "5c1ce68321745ba5724d0ed966e856f13dbec8a7b3c0b96a54f8eef266118f3c",
+        "97ef081f3c16d4329ee7cadace095ee9d9fd89d62a7dafbadbbc658e9d4da1b9"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "cf099a065851d97c1eaac10bb04f763307a2c25d8bcc7cca988d9fd5cfa7af73"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:21032",
+      "tool_names": [
+        "Bulk_Geocoding",
+        "Get_Webcams_by_Region",
+        "webcams_list_category_category_category"
+      ],
+      "tool_hashes": [
+        "1c1e9467d6f41304f0226ab05665ed3437cd62de3e65e0c661eca02967e40cfc",
+        "5433792af9ab23011b34951370286628c86ee13226943f5112f19bd453e1c48d",
+        "7193215cfa3bed8683d462e785f711b884316b5348beea8dcd6f133e4d767fcc"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "45398d549b3add830d9f41f145649a08167b233433adbd6f805f763174d4d510"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:24158",
+      "tool_names": [
+        "EdoArtifacts.retrieveArtifactDetails"
+      ],
+      "tool_hashes": [
+        "28aa16b160b8f77ad67602205444b4c31611bb6d81aa3ec23e2adf4a67f77105"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "3687d12c742527a99b01840043cd496bc415f54fbed8d91e331c0dcb9d8691f8"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:4423",
+      "tool_names": [
+        "ContentOptimizer.generateHeadlines"
+      ],
+      "tool_hashes": [
+        "68519d97cd0f098ecba0d47fb4b51fa37fcd7512b429fb0b32c6275d95f04186"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "6cd8a01bb40c7b97a7bab38b2d3d72c07da1c0161907065240251f38b82e3389"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:16424",
+      "tool_names": [
+        "routing",
+        "is_anagram_phrase",
+        "hotel_details"
+      ],
+      "tool_hashes": [
+        "24c5c68999ffb5789ad85378a06a683a6502cde3fcdd169897b368c82850d40b",
+        "278422a0c44491d8e4b0dd43b616f40bc1706ffd0465f9b99dea21e88cca7f78",
+        "91f892dbf1d71735ef6d4ecc1ccc319c7a423b29d3e55aa89eb3006dbdff6c0b"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "429385bc69cf30099639f73c19cd11bc479df7b73e8081e521d4df3d4803008d"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:22981",
+      "tool_names": [
+        "get_0mmo_info"
+      ],
+      "tool_hashes": [
+        "7578f284c66c704dd2e68562bd13f1db04582d63d8d537a0e6f7f9138259320f"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "c0babc0815e5b02d0a5fb9a9deefad3891fc58f42043a1c7bd361cd2ca4bcad7"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:30193",
+      "tool_names": [
+        "Get_Divisions_Near_Division"
+      ],
+      "tool_hashes": [
+        "a69becf48df32fc34b8f90c7f1ea7f059dca49c90cc0dcd7e392ff9b0b67ab03"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "fcb687a8917a1a44f63c8a75682eabf17a0f7dd5a92b3810d500214002ef3d31"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:24078",
+      "tool_names": [
+        "cities",
+        "get_word_by_length_start_and_contain",
+        "Get_Business_Photos"
+      ],
+      "tool_hashes": [
+        "3dc14e405fb70bd1e31b9ae977a51bc500c7f9936bf13c49691d25f55e912fbc",
+        "d484f776deaec7a38858d8d8a935ce3b95b5c86c3b1da25bd5ad01b9037ba83d",
+        "3a10e67d8c80be038d5185f0ad214e29697c29bcc87a7c62707ab5969799b111"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "36aa5cc287d51597a86d13c50e0342dc37b80a84e57db43a4359314e900aa753"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:19731",
+      "tool_names": [
+        "Retrieve_Paged_Collection_of_Amber_Waves_Content_Nodes"
+      ],
+      "tool_hashes": [
+        "a9d88a93a01f12757c0e7e4ff31a25567fca5825daa69d69fa1dc0613d27d265"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "84fad00d514a24f04ed8cefc8af4c5730dd36ec1eba453acbabb63ce339032c7"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:20619",
+      "tool_names": [
+        "take_screenshot",
+        "Get_Property_Types",
+        "business_reviews"
+      ],
+      "tool_hashes": [
+        "8e62123175a59443a6bcbf1b716abdfc8f2bcdea65b04f199d07e1ba43fbdb7b",
+        "702de4519ce4be19fce9ba1cbf671ea8d9a891433c741a0d7cd9b795f275ed9b",
+        "211360cd80443a70c16a90146fccbaba3b28b958313ff3e6ad2ddc3aa215684b"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "89059f4390f7421e860911eb41b17cedd6d99eeccc1f020750fc43528581a09f"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:1826",
+      "tool_names": [
+        "Get_Reference_Currencies"
+      ],
+      "tool_hashes": [
+        "6cc3c3bd0291062632403b212a4b5fb9404523e0314c21115c2dad1f15ee3ed5"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "2be226cf04a552106f5226a524b35df1a92a46ab077cf68c398b02bb2aa0b0a3"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:31646",
+      "tool_names": [
+        "Get_Project_Jobs",
+        "getProjectBudget",
+        "v4_sports_sport_scores",
+        "referents"
+      ],
+      "tool_hashes": [
+        "a704b5dc4fe13bd88e17409d21442ab0cfa6598a07590c9e58179334db3bca8a",
+        "300f3009f31ea593cf0dd68e77442640be8b606ef0318afa4d719a476e54e20d",
+        "c5724225e2b89712a09c0d43b1784eefcc90c34daf74e832c1c1149b32480ac7",
+        "18c6d461811e93f38e11721b0c5a69e5e8826679ef421a2114ce01457c957fea"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "7956574944c2895e8322f994b0c03a45cf5c9da8f9b833a2163780de9a9ae8be"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:10448",
+      "tool_names": [
+        "generate_random_string",
+        "business_photos"
+      ],
+      "tool_hashes": [
+        "d3423de47f1cd5255f1fb4f8a2b9ec7175db24abf598dc6e2cffbc1615982cb5",
+        "5c0d863bbb76a95f26d9e2243f2174d94ef4c20b7f97af110e56fa88c375ce0d"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "334275f61ca876c72388d0e1d17df93cd1b9329aecd7b6dfb151660900efa956"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:27464",
+      "tool_names": [
+        "getAllInboxes",
+        "timeline",
+        "Get_Animes"
+      ],
+      "tool_hashes": [
+        "792c7f53a91adb856003c1d8a620af90b0f326e60a014117f85e72f2b1f8ba21",
+        "9b817704acd4422578ed0bc7bef42aa9eb574f6cc0ad83c1155da0551d10d000",
+        "b81334ee607ea4a52780091378c0028018c617a8b7a24d4fa62401c462b54e05"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "2c4e86befea5d6866afbaffcd098ac6d486434dccfee075a2cc2b76b719dd5b5"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:9394",
+      "tool_names": [
+        "equity_intraday",
+        "DAX_Point_Changes_for_Each_Month_January-August_2022",
+        "List_Webcams_by_Category"
+      ],
+      "tool_hashes": [
+        "fc3351b8a9b3373ec3abb6665c227e288e98112cc7f0b4afe27362d7cfdfce67",
+        "01f675d3df0f0d48b53bf59516f2b45506908580b82711ed7ff2e68568c26223",
+        "172ef06c54191787a54f5de67ee96f30f6ebd4046f03e35a4d8549113ea6ed3c"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "97732f3b26403d681f0f7bba025c27ea465573b2820bf26036f84500b3c112ad"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:18642",
+      "tool_names": [
+        "webcams_list_property"
+      ],
+      "tool_hashes": [
+        "8902c325f62bf62d52581954faacb911f4e42c3b5203ea00c6fec03f988895c9"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "fd4c49cff04aa4eaefdf26c3e11a60ca7a1928f5028626dc85d7af38ff84ce16"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:9730",
+      "tool_names": [
+        "products_list",
+        "Get_User_Followings",
+        "List_Webcams_by_Category",
+        "Get_Sport_Sections"
+      ],
+      "tool_hashes": [
+        "08078f9b23d766369873f1047cb0fca7b0921e487323d5085a8b04877b18a92d",
+        "823e6e88f8e31cab15ca54c6c87a15ab0b46e291ce9d31da6e6392d40db4a571",
+        "172ef06c54191787a54f5de67ee96f30f6ebd4046f03e35a4d8549113ea6ed3c",
+        "bda92de7f6ca586c2d18f9552605883523ad0efce82797d828e2821845a6a504"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "c734b892b4d0220177a430cbb770e514c73e465a93ff1b97fd54ff91b2b18a8f"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:28456",
+      "tool_names": [
+        "Remove_Profanity"
+      ],
+      "tool_hashes": [
+        "7fc577771518d2a16a8f11eaab8bdcbdef03736ebe9a0aaaaac51565f8a9c55f"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "fa47e2c329b805ebbb7b77db9757c30886fa8433e3578cc2ca5792039e30d33a"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:492",
+      "tool_names": [
+        "Song_Comments_API",
+        "Get_Direct_Messages",
+        "Traveling_Salesman_API",
+        "Products"
+      ],
+      "tool_hashes": [
+        "fc156b0f79bec289f57a25d571f7c5d01170e22a85c77fa9a5eb568052013360",
+        "c4dec9fbeae6464dd7fd4e3639c3e7db077f0f756e37ab7afd5689d2e5b8ba9d",
+        "754e294b0a7c73c1a95ad131bdc6f0d57c151986039ad368afcf653853d6041b",
+        "b495563d530bf4b96d837d744eccb5b4eed65d077eb5deb953ea304b1635f98a"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "abc2b9d15c755e908fc300c883b29bd18c96cb8bb619d362dc6d5e9291758acc"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:5596",
+      "tool_names": [
+        "Historical_Social_Stats",
+        "Get_Divisions_Near_Division",
+        "titles_random",
+        "queueMovie"
+      ],
+      "tool_hashes": [
+        "91dcb9f7379ea2151db5bb0ea4a47c4313c4512e3fad8b1d1f394a68deb18dd3",
+        "a69becf48df32fc34b8f90c7f1ea7f059dca49c90cc0dcd7e392ff9b0b67ab03",
+        "b998ff4e7d34b344a5d5eab1a6b2a40e7329b186d15534d7e75d4c9539a30f2d",
+        "36c24eab2d6852be00cc4f21d0cc1d5c44822542615996687c41f8e34e92bbbd"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "795047ec7238279ada1303692f6aeb95270699c9de090df9000b51231acfd320"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:24178",
+      "tool_names": [
+        "overview",
+        "specs_v1_tier2"
+      ],
+      "tool_hashes": [
+        "583d86cfda3f397de2288104f79102a35020eafb0124e0c17a2657678733a890",
+        "07e65133cae4deb6ce9ba1e0f5f2404e5f2b010e7597e5beb251dffef7fbb97b"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "77e70668d9446c838de922d644b0f3df254b7f14d9c6437e340b2a7e61e9f164"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:7518",
+      "tool_names": [
+        "Fetch_Business_Information"
+      ],
+      "tool_hashes": [
+        "e37d0f7752919840db28deec798847e61109d120d8a222f5119415f52269d103"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "b8bf1746a00c5d48f2afb1bab88ff3509198249aa8420692a8a862e154a46b20"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:9330",
+      "tool_names": [
+        "Get_Random_Sentences"
+      ],
+      "tool_hashes": [
+        "fca3ad4081a5d98a563d5c5cade6eddc3516a338ca10cf396f4fbf52f0ec9dff"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "93a35a5068aeb77484836343a44e2d14250f47a6d0ff9651c3231a03243119ff"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:26734",
+      "tool_names": [
+        "Historical_Social_Stats"
+      ],
+      "tool_hashes": [
+        "91dcb9f7379ea2151db5bb0ea4a47c4313c4512e3fad8b1d1f394a68deb18dd3"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "e673623a1acf177912e037e07fccb80c3af4731c504d0f2d064c25f312a2c11c"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:11887",
+      "tool_names": [
+        "GetDisastersByRadiusAndGPS"
+      ],
+      "tool_hashes": [
+        "b522bfe8b339ff138c037fcefaae3ad545249ecfb351c94d99334e120bbb4263"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "f21c9cf7e9570b84dcc3dbadbbb06a9782cf7dfcd145a7a873d8db13173eb1b3"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:27760",
+      "tool_names": [
+        "EcosystemResponseModel.predictEnvironmentalImpact"
+      ],
+      "tool_hashes": [
+        "c69566b5671b42dab361ff921dc92d34ddc921fe0013d40a0bfa1751f6648a08"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "c2ed38849e1d8fcfb8667de94f063f16624bf2da1e6595aa74fcacab1fc34539"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:27480",
+      "tool_names": [
+        "smartgrid.get_generation"
+      ],
+      "tool_hashes": [
+        "cefb5c79d383d5b49e31e42bd1690e469ff56c10beff93acf82743122a4bb2c9"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "27fc96b0ad01ef0141b5d787e5f3ab9324029d9e1804dad69d75d1992d3cc129"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:7199",
+      "tool_names": [
+        "Places_Near_Place",
+        "Recent_Earthquakes"
+      ],
+      "tool_hashes": [
+        "5cf77b5deb99cbfa32929982d3e7b49004a2ab1e0107b46c4149f6af9a215284",
+        "e70d92b8bd5a5bd1aca27ec2d5caa678f71d6847d98414b1b8dbf3d44c8a6f21"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "6b7af85a2197214c3c8fde4088bb355445e080ed514212302d970d32c8313676"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:11739",
+      "tool_names": [
+        "InteractiveChartBuilder"
+      ],
+      "tool_hashes": [
+        "0b546ec5fdd8c0c66e185388b04662cc18e65f90078f3137b3921ada1d81f968"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "a0170f7cd5f6623da28b335af249d2636726685025901b1d759c9439e8d94cca"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:21865",
+      "tool_names": [
+        "Build_Word_Ladders",
+        "Timeline",
+        "CommentThreads"
+      ],
+      "tool_hashes": [
+        "d671e5f2359e02b8beac0ff3c010863ace867cf23a6660aca619a0adcac6319d",
+        "b1b230ef2aa9c8728b014e91b5dd0b60eafc7b424621ead9630fa437933f68b2",
+        "434528b50e069f407f0e30de37cc352dc188a590d292d62b278c0402753245d4"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "68aa8130e6bfc698d68925eff2a2ef2432ad737148b431e013a5c6559b50e0a7"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:33403",
+      "tool_names": [
+        "workrelationships.conflict_prevention",
+        "v1_aggregation"
+      ],
+      "tool_hashes": [
+        "00cdd14591cfb0925d33a3eda09f545a676cf76bf7681386996d70da72263c86",
+        "3bc53af77d4fa80af7183e444521396afc72fd8c03ab143214e1a60d6256dc3b"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "50fdf898e42f56b6c57943f85055996d51e1c0769cdbfbd9cf001c46bce05554"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:4186",
+      "tool_names": [
+        "Get_Divisions_Near_Division"
+      ],
+      "tool_hashes": [
+        "a69becf48df32fc34b8f90c7f1ea7f059dca49c90cc0dcd7e392ff9b0b67ab03"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "ac8049baf4d013ce40199159b7c19bba121ab894460c9d1c2c4c41b58da74c06"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:17093",
+      "tool_names": [
+        "PlaylistItems"
+      ],
+      "tool_hashes": [
+        "e1f9093740dec1327e5f516be218d64934d518543f19cff0c7f48afd5b995f11"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "7b32a20d329af14d2d2eb3107ff30b235b93cd9ca16bd3d083f344fc12fde68e"
+    },
+    {
+      "source": "smoltalk:smol-constraints",
+      "source_id": "smol-constraints:11202",
+      "tool_names": [
+        "Backtrack_Kline",
+        "Health_Check_Endpoint",
+        "ArrayElementFinder.findFirstMatch"
+      ],
+      "tool_hashes": [
+        "b9462f730e65e21ca0af7fb2db1da959596cc042bca5cdca72abe03af3075f15",
+        "25de4f4bb198214059da1288c4c77a72e51801ed589c7d8bdc27e35eb5eb2a8e",
+        "acb165f7013e5547758eb65afbdc10a8111d3ead6b8a1de9bdccef25abf3dee6"
+      ],
+      "origin": "v3_audited_constraints",
+      "sha256": "d7a5c58523adb4cfa5cac3d08a861410974e1256f7d674bc2b7c13a5a5b827f4"
+    }
+  ]
+}

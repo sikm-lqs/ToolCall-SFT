@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from collections.abc import Iterable
 from hashlib import file_digest
 import json
 from pathlib import Path
@@ -156,6 +157,40 @@ def _format_batch_mask_view(
     return "\n".join(lines)
 
 
+def _verify_packed_source_labels(
+    batch: dict[str, Any], reference_dataset: Iterable[dict[str, Any]]
+) -> int:
+    ids = batch["input_ids"].reshape(-1).tolist()
+    labels = batch["labels"].reshape(-1).tolist()
+    bounds = batch["cu_seq_lens_q"].tolist()
+    if (
+        len(bounds) < 2
+        or bounds[0] != 0
+        or bounds[-1] != len(ids)
+        or any(a >= b for a, b in zip(bounds, bounds[1:]))
+    ):
+        raise AssertionError(f"Invalid packed sequence boundaries: {bounds!r}")
+
+    pending: dict[tuple[int, ...], set[tuple[int, ...]]] = {}
+    for start, stop in zip(bounds, bounds[1:]):
+        pending.setdefault(tuple(ids[start:stop]), set()).add(tuple(labels[start:stop]))
+    lengths = {len(key) for key in pending}
+    for row in reference_dataset:
+        original = row["input_ids"]
+        if len(original) not in lengths:
+            continue
+        key = tuple(original)
+        if key in pending:
+            pending[key].discard(tuple(row["labels"]))
+            if not pending[key]:
+                del pending[key]
+            if not pending:
+                return len(bounds) - 1
+    raise AssertionError(
+        "Packed inputs or source labels differ from the original assistant-only tokenization"
+    )
+
+
 def inspect_dataloader_batches(
     dataloader: Any,
     tokenizer: Any,
@@ -163,6 +198,8 @@ def inspect_dataloader_batches(
     num_batches: int = 2,
     min_active_ratio: float = 0.03,
     max_active_ratio: float = 0.45,
+    *,
+    reference_dataset: Iterable[dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     """Pull real training batches and assert assistant-only loss masking before training starts."""
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -184,7 +221,11 @@ def inspect_dataloader_batches(
 
         if active_tokens == 0:
             raise AssertionError(f"Batch {b_idx} has ZERO trainable tokens (all -100)!")
-        if not (min_active_ratio <= ratio <= max_active_ratio):
+        outlier = not (min_active_ratio <= ratio <= max_active_ratio)
+        source_verified_sequences = None
+        if reference_dataset is not None and "cu_seq_lens_q" in batch:
+            source_verified_sequences = _verify_packed_source_labels(batch, reference_dataset)
+        elif outlier:
             raise AssertionError(
                 f"Batch {b_idx} trainable ratio {ratio:.4f} outside expected [{min_active_ratio}, {max_active_ratio}]; "
                 "suspect broken loss mask!"
@@ -221,6 +262,8 @@ def inspect_dataloader_batches(
                 "total_tokens": total_tokens,
                 "active_tokens": active_tokens,
                 "active_ratio": round(ratio, 4),
+                "active_ratio_outlier": outlier,
+                "source_verified_sequences": source_verified_sequences,
                 "assistant_segments": decoded_segments_count,
             }
         )

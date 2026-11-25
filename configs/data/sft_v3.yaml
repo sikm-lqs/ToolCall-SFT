@@ -1,0 +1,61 @@
+version: sft_v3
+seed: 42
+max_seq_length: 8192
+
+tokenizer:
+  model_id: Qwen/Qwen3.5-2B
+  snapshot: ~/.cache/modelscope/models/Qwen--Qwen3.5-2B/snapshots/master
+
+output_dir: data/processed/sft_v3
+historical_val_path: data/processed/sft_v1r1_clean/val.jsonl
+
+sources:
+  toolace:
+    raw_path: data/raw/toolace/data/train-00000-of-00001.parquet
+    strip_policy_prompt: true
+    split_no_call_subtypes: true
+    strict_validation: true
+    train_counts:
+      toolace_multi_turn: 700
+      toolace_parallel: 600
+      toolace_single: 650
+      toolace_irrelevant_refusal: 300
+      toolace_missing_param: 400
+    val_counts:
+      toolace_multi_turn: 40
+      toolace_parallel: 50
+      toolace_single: 50
+      toolace_irrelevant_refusal: 45
+      toolace_missing_param: 50
+
+  xlam_60k:
+    raw_path: data/raw/xlam-60k/xlam_function_calling_60k.json
+    strict_validation: true
+    require_multi_candidate_single: true
+    train_counts:
+      xlam_parallel: 750
+      xlam_single: 700
+    val_counts:
+      xlam_parallel: 60
+      xlam_single: 60
+
+  apigen_mt_5k:
+    raw_path: data/raw/apigen-mt-5k/apigen-mt_5k.json
+    strict_validation: true
+    max_seq_length: 7500
+    require_final_nl: true
+    tau2_domains_dir: runs/upstream/tau2-sparse/data/tau2/domains
+    train_count: 280
+    val_count: 40
+
+  smoltalk_irrelevant:
+    raw_dir: data/raw/smoltalk/data
+    approved_clean_dir: data/processed/sft_v1r1_clean
+    review_path: configs/data/sft_v3_smoltalk_review.json
+    train_count: 210
+    val_count: 45
+
+eval_inspection_dirs:
+  - data/eval-inspection/bfcl-v4
+  - data/eval-inspection/api-bank
+  - data/eval-inspection/tau2-bench

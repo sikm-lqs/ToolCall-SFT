@@ -1,0 +1,48 @@
+experiment: grpo-minimal-2b
+description: "Single-GPU GRPO integration check: four real Smoke prompts, native generation, no benchmark claim"
+
+model:
+  model_id: Qwen/Qwen3.5-2B
+  local_path: runs/train/sft-v3-2b-lora-20261124T143953Z/merged-checkpoint-68
+
+data:
+  dir: data/processed/grpo_smoke
+  train_file: train.jsonl
+  max_train_samples: 4
+
+lora:
+  enabled: true
+  r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  target_modules: all-linear
+
+vllm:
+  enabled: false
+  importance_sampling_correction: false
+
+training:
+  seed: 42
+  use_kernels: false
+  per_device_train_batch_size: 4
+  gradient_accumulation_steps: 1
+  gradient_checkpointing: true
+  num_generations: 4
+  max_completion_length: 192
+  temperature: 0.8
+  top_p: 0.95
+  learning_rate: 1.0e-5
+  lr_scheduler_type: constant
+  warmup_steps: 0
+  weight_decay: 0
+  num_train_epochs: 1
+  beta: 0.02
+  loss_type: grpo
+  logging_steps: 1
+  eval_steps: 0
+  save_steps: 1.0
+  save_total_limit: 1
+  dataloader_num_workers: 0
+
+swanlab:
+  mode: disabled

@@ -252,6 +252,7 @@ def run_sft(
         tokenizer,
         out_dir,
         num_batches=2,
+        reference_dataset=train_ds if packing else None,
     )
     print("Preflight loss-mask batch check passed:", json.dumps(mask_report, ensure_ascii=False), flush=True)
 

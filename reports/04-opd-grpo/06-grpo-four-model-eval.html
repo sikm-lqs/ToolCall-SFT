@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>四模型全量评测 · ToolCall-SFT</title>
+<style>
+:root{--ink:#142329;--sub:#4d6267;--muted:#65777c;--line:#d9e2df;--bg:#f5f7f4;--white:#fff;--green:#0b684f;--red:#9b3a2d;--navy:#173139;--base:#768587;--sft:#364ea3;--g141:#9b4d23;--g187:#087d69;--mono:ui-monospace,SFMono-Regular,Consolas,monospace}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 "Noto Sans CJK SC","MiSans","Microsoft YaHei",system-ui,sans-serif}
+main,.mast-in{width:min(1240px,calc(100% - 48px));margin:auto}
+a{color:#154e64;text-underline-offset:3px} a:focus-visible,button:focus-visible{outline:3px solid #b46921;outline-offset:3px}
+.mast{color:#ebf5f1;background:#152e34;border-bottom:1px solid #1e4d4c}
+.meta-bar{display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap;padding:17px 0;border-bottom:1px solid #416064;letter-spacing:.09em;font:600 12px/1.6 var(--mono);color:#bad2ca}
+.hero{padding:29px 0 28px;display:grid;grid-template-columns:1fr auto;gap:18px;align-items:end}
+.eyebrow,.eyeno{font:700 12px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--green)}
+.hero .eyebrow{color:#92d2b9}
+h1,h2,h3,p,figure{margin:0} h1{font-size:clamp(30px,5vw,56px);line-height:1.12;letter-spacing:-.055em;font-weight:750;margin:9px 0 13px}
+.hero p{color:#c5d9d2;max-width:57em}.stamp{display:flex;gap:7px;flex-wrap:wrap}.stamp span{font-size:12px;white-space:nowrap;padding:4px 10px;border:1px solid #527473;border-radius:3px;color:#d9e9e3}
+nav{display:flex;gap:18px;flex-wrap:wrap;padding:13px 0;border-top:1px solid #416064}nav a{color:#d9e9e3;font-size:13px;font-weight:650;text-decoration:none}nav a:hover{text-decoration:underline}
+section{padding:28px 0 0;scroll-margin-top:12px}
+.sech{display:flex;gap:12px;align-items:baseline;margin-bottom:6px}
+h2{font-size:clamp(22px,3vw,32px);line-height:1.23;letter-spacing:-.028em}
+h3{font-size:17px;line-height:1.46}
+.lead{color:var(--sub);margin-bottom:14px}
+.cards,.twocol,.notes{display:grid;gap:12px}.cards{grid-template-columns:repeat(4,1fr)}.twocol{grid-template-columns:1fr 1fr}.notes{grid-template-columns:repeat(2,1fr)}
+.card,.panel,.note{background:var(--white);border:1px solid var(--line);border-radius:7px;padding:14px 16px}
+.card h3{font-size:15px}.card .unit{font:11px var(--mono);color:var(--muted);padding:3px 0 7px}
+.legend{display:flex;gap:15px;flex-wrap:wrap;margin:0 0 12px;font-size:12px;color:var(--sub)}
+.key{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;background:var(--c)}
+.bar-row{display:grid;gap:8px;grid-template-columns:41px 1fr 55px;align-items:center;margin:6px 0}.bar-row span:first-child{font:11px var(--mono);color:var(--sub);white-space:nowrap}
+.track{height:7px;background:#eaf0ec;border-radius:2px;overflow:hidden}.fill{height:100%;background:var(--c);border-radius:2px}
+.num,.delta,.n,.rate{font-variant-numeric:tabular-nums;font-feature-settings:"tnum";white-space:nowrap}.bar-row b{text-align:right;font:650 13px var(--mono)}
+.alert{border-left:4px solid #b5663f;background:#fff4e8;border-radius:0 5px 5px 0;padding:11px 14px;margin-top:13px;color:#653921}
+.toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:8px 0 13px}.toolbar .group{display:flex;flex-wrap:wrap;gap:5px}.toolbar .lab{font-size:12px;color:var(--sub);font-weight:700;margin-right:2px}
+button{cursor:pointer;border:1px solid #c6d4d1;background:#fff;padding:6px 10px;color:#294348;border-radius:4px;font:inherit;font-size:13px;font-weight:650}
+button[aria-pressed=true]{background:#153f41;color:white;border-color:#153f41}button:hover:not([aria-pressed=true]){background:#e8f1ec}
+.hint{font-size:12px;color:var(--sub);margin-bottom:8px}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:7px;background:#fff}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:680px}
+caption{text-align:left;padding:10px;color:var(--sub);font-size:12px}
+th,td{text-align:right;padding:8px 12px;border-bottom:1px solid #e5ede9}
+thead th{background:#eaf0ec;color:#213b40;font-weight:750;white-space:nowrap}
+tbody th:first-child, thead th:first-child{text-align:left}
+tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}
+.n{color:var(--sub);font-size:12px}.model-h{border-top:3px solid var(--c);min-width:108px}
+.group-row th{text-align:left;background:#f0f5f2;padding:5px 12px;color:#39585a;font-size:12px;letter-spacing:.08em}
+.metric-name{font:600 12px/1.5 var(--mono);color:#233e43}
+.delta{font-weight:800;font-size:14px}.up{color:var(--green)}.down{color:var(--red)}.flat{color:#53696d}
+.rate{display:block;color:#4e6165;font-size:11px}.ref{color:#465d60}
+.panel h3{margin-bottom:4px}.panel p,.note p{color:var(--sub);font-size:14px}
+.panel figcaption{font-size:12px;color:var(--sub);margin-top:7px}
+.figsvg{width:100%;height:auto;display:block;min-height:170px;margin-top:5px}
+.note p{margin-top:6px}.note{border-top:3px solid #81a496}
+.sources{padding:15px 16px;border:1px solid var(--line);border-radius:7px;background:white}
+.sources li{margin:5px 0}.sources .rev{font:11px var(--mono);color:var(--muted)}
+footer{margin-top:24px;border-top:1px solid var(--line);padding:15px 0 26px;color:var(--sub);font-size:12px}
+@media(max-width:1040px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:720px){main,.mast-in{width:calc(100% - 28px)}.hero,.twocol,.notes{grid-template-columns:1fr}.hero{padding:23px 0}.cards{gap:8px}.card,.panel,.note{padding:10px 11px}.bar-row{grid-template-columns:40px 1fr 52px;gap:4px}section{padding-top:23px}nav{gap:11px}}
+@media(max-width:360px){.cards{grid-template-columns:1fr}}
+@media print{.mast{background:#fff;color:#111}.hero p,.stamp span,.hero .eyebrow,.meta-bar{color:#333}nav,.toolbar{display:none}.scroll{overflow:visible}table{min-width:0}th,td{padding:3px 7px}.cards,.note,.panel{break-inside:avoid}body{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<header class="mast"><div class="mast-in">
+<div class="meta-bar"><span>TOOLCALL-SFT / 评测报告 06</span><span>2026-11-25 · Asia/Shanghai</span></div>
+<div class="hero"><div><div class="eyebrow">Qwen3.5-2B · SFT → GRPO v2</div><h1>拒调更准，调用却退了</h1><p>四个模型的全量对比。GRPO 改善了不适用工具时的拒调、部分多轮任务和回包正文，但两个 checkpoint 都没守住 SFT 起点的应调用能力。</p></div><div class="stamp"><span>BFCL Core · 4,441 题</span><span>API-Bank Full · 1,281 步</span></div></div>
+<nav aria-label="章节"><a href="#overview">结果总览</a><a href="#bfcl">BFCL 17 类</a><a href="#api">API-Bank 分级</a><a href="#diagnosis">失分诊断</a><a href="#conclusion">结论与建议</a><a href="#sources">数据口径</a></nav>
+</div></header>
+<main>
+<section id="overview"><div class="sech"><span class="eyeno">01</span><h2>四模型总览</h2></div>
+<p class="lead">同指标横向比较。条形长度是实际分数（从 0 到 100），不是相对变化。</p>
+<div id="legend" class="legend"></div><div id="cards" class="cards"></div>
+<div class="scroll" id="overview-table" style="margin-top:12px"></div>
+<div class="alert"><b>取舍：</b>通用工具调用保留 <b>SFT-68</b>。若只在两份 GRPO 里选，<b>187</b> 的 BFCL 和调用总体略强；<b>141</b> 的拒调和 API-Bank 回复更好。两者都不是全面升级。</div>
+</section>
+<section id="bfcl"><div class="sech"><span class="eyeno">02</span><h2>BFCL Core · 17 个子类</h2></div>
+<p class="lead">第一行数字是相对基准的百分点，第二行是该模型的实际准确率。切到 SFT-68 只看 GRPO 带来的变化。</p>
+<div class="toolbar"><span class="lab">差值基准</span><div class="group" id="baselines" aria-label="切换差值基准"><button data-ref="0" aria-pressed="true">Qwen3.5-2B Base</button><button data-ref="1" aria-pressed="false">SFT-68 · GRPO 起点</button></div></div>
+<div class="toolbar" style="padding-top:0"><span class="lab">BFCL 筛选</span><div class="group" id="filters" aria-label="筛选 BFCL 子类"></div></div>
+<p class="hint" id="relative-note" aria-live="polite"></p>
+<div class="scroll" id="bf-table"></div>
+</section>
+<section id="api"><div class="sech"><span class="eyeno">03</span><h2>API-Bank Full · 调用与回复分开看</h2></div>
+<p class="lead">753 步调用、528 步回复，按 L1/L2/L3 拆开。泄漏率和应调未调率越低越好（负差值为绿）。ROUGE-L F1 按 ×100 展示，衡量文本重合，不是事实正确率。</p>
+<div class="twocol" id="api-panels"></div>
+<div class="scroll" id="api-table" style="margin-top:12px"></div>
+</section>
+<section id="diagnosis"><div class="sech"><span class="eyeno">04</span><h2>为什么总分退了？</h2></div>
+<div class="twocol">
+<figure class="panel"><h3>该调却没有可解析调用</h3><p>BFCL 单步应调用 AST 10 类，合计 2,501 题（不含拒调、相关性判断和多轮）。</p><div id="empty-figure"></div><figcaption>这里统计的是失败题中的空结果，不把所有空结果直接等同于主动拒答。</figcaption></figure>
+<figure class="panel"><h3>内部 reward 上升，主要变化在 non-call</h3><p>GRPO 内部验证 190 题；下图是 reward 分量而非外部准确率。</p><div class="legend" style="margin:8px 0 0"><span><i class="key" style="--c:#173139"></i>总 reward</span><span><i class="key" style="--c:#364ea3"></i>call 正确分</span><span><i class="key" style="--c:#087d69"></i>non-call 正确分</span></div><div id="reward-figure"></div><figcaption>Step 0 → 187：总 reward 2.623 → 3.372，call 2.139 → 2.182，non-call 0.251 → 2.719。三条线口径不同，不能直接相加。</figcaption></figure>
+</div>
+<div class="scroll" id="diag-table" style="margin-top:12px"></div>
+</section>
+<section id="conclusion"><div class="sech"><span class="eyeno">05</span><h2>分析结论与下一轮验收</h2></div>
+<div class="notes">
+<article class="note"><h3>① 最大回退是「该调时没调」</h3><p>相对 SFT-68，GRPO-187 的单步应调用 AST 从 79.21% 跌到 58.50%（−20.71 pp），空输出失败从 19 升到 597。<code>simple_java</code> 掉 50.00 pp，<code>parallel</code> 掉 48.00 pp，<code>simple_python</code> 掉 28.75 pp。Python 在非空输出子集仍是 241/268（89.93%），接近 SFT 的 356/397（89.67%）；两边子集不同，不能据此断言参数能力完全没退化。187 在应调用 AST 少做对 518 题；拒调多对 181 题、多轮多对 20 题，其余相关性少对 1 题，合计净少 318 题。</p></article>
+<article class="note"><h3>② 保留拒调和正文的收益，但别扩大结论</h3><p>GRPO-141 的两类拒调合计 86.74%，比 Base +15.93 pp、比 SFT +16.90 pp。API-Bank 标签泄漏从 SFT 的 128/528 降到 82/528，比 Base 的 106/528 也好。两份 GRPO 的回复重合度整体更高，但 L3 回复 ROUGE-L 都低于 SFT；整体提升不是各层都提升。</p></article>
+<article class="note"><h3>③ 187 的多轮改善不等于修复工具恢复</h3><p>187 多轮微平均 19.88%（比 Base +1.13 pp、比 SFT +2.50 pp），主要看 <code>multi_turn_base</code> 和长上下文。<code>miss_func</code> 仅 4/200：比 SFT 多 2 题、比 Base 少 1 题；仍不足以说工具补齐恢复已解决。</p></article>
+<article class="note"><h3>④ 用双边行为门槛选 checkpoint</h3><p>下一步先补测 47/94，看漏调何时开始；用同一批「适用工具 / 不适用工具」配对题同时约束两边，并把单工具与并行正例纳入回归。再对数据配比和 non-call reward 做独立消融；这轮结果支持门控偏移的诊断，但没有单独证明是哪条数据或奖励规则导致。</p></article>
+</div></section>
+<section id="sources"><div class="sech"><span class="eyeno">06</span><h2>口径与可追溯来源</h2></div>
+<div class="sources"><p>四组评测核对了相同的 BFCL 题目 ID（17 类 / 4,441 题）和 API-Bank 步骤 ID（1,281 步）。配置一致：temperature=0、thinking 关闭、输出上限 1,024、上下文 65,536、vLLM 0.19.1 / <code>qwen3_coder</code>。API-Bank 是金标历史模式，不是端到端互动成功率。</p>
+<p style="margin-top:8px">BFCL 微平均按题汇总；Core 加权分取评测原始汇总，不能当成同一种平均。BFCL 请求错误数（Base / SFT / 141 / 187）为 <b>15 / 5 / 6 / 3</b>，保留原始计分，不因错误事后换分母。API-Bank 标签泄漏按回复正文包含字面 <code>&lt;tool_call&gt;</code> 重算。<b>pp</b> 表示百分点，例如 60%→70% 是 +10 pp；不是相对增长 16.7%。</p>
+<ul id="source-links"></ul>
+<p><a href="05-grpo-v2-full-and-eval-report.md">原训练与全量评测报告</a> · <a href="../03-sft/05-sft-v3-2b-ckpt68-core-eval-report.md">SFT 起点全量报告</a>。本页以原始 JSON / JSONL 为准，不混用快评。</p></div></section>
+<footer>ToolCall-SFT · 本报告不包含未对四模型同口径评测的其他 benchmark。</footer>
+</main>
+<script type="application/json" id="report-data">{"models":[{"bf":"runs/eval/bfcl-v4/qwen3.5-2b/core-baseline-20261123T144655.947343Z/summary.json","api":"runs/eval/api-bank/qwen3.5-2b/full-baseline-20261123T150622.824657Z/summary.json","revision":"c926764ddb1bca70f5ef304bd39d3734693bfb4be88479ebfa700f5f220f5d92"},{"bf":"runs/eval/sft-v3-2b-core-20261125T021651Z/core-ckpt-68/bfcl/summary.json","api":"runs/eval/sft-v3-2b-core-20261125T021651Z/core-ckpt-68/api-bank/summary.json","revision":"sha256:7b749bfb675b8d3c4967255b5fccfb9b662c9987390aad3626d32d022dbd0ba2"},{"bf":"runs/eval/grpo-v2-core-dual-20261125T125449Z/core-checkpoint-141/bfcl/summary.json","api":"runs/eval/grpo-v2-core-dual-20261125T125449Z/core-checkpoint-141/api-bank/summary.json","revision":"sha256:f0a578f9fc5f5e2ea6672f1d42a3051b47e51f1da5e16c6a8845c69832f19521"},{"bf":"runs/eval/grpo-v2-core-dual-20261125T125449Z/core-checkpoint-187/bfcl/summary.json","api":"runs/eval/grpo-v2-core-dual-20261125T125449Z/core-checkpoint-187/api-bank/summary.json","revision":"sha256:1efccd28d3983ec1cd3affa2484e7ca95732bc6b33b9e26257b53a0824c634c1"}],"bf":[{"name":"simple_python","vals":[70.5,89.0,59.75,60.25],"n":400,"counts":[282,356,239,241],"lower":false,"group":"单轮 / 并行","empty":[79,3,134,132],"pair":[{"loss":88,"gain":14},{"loss":0,"gain":0},{"loss":130,"gain":13},{"loss":128,"gain":13}]},{"name":"simple_java","vals":[14.000000000000002,59.0,7.000000000000001,9.0],"n":100,"counts":[14,59,7,9],"lower":false,"group":"单轮 / 并行","empty":[68,0,85,83],"pair":[{"loss":45,"gain":0},{"loss":0,"gain":0},{"loss":52,"gain":0},{"loss":50,"gain":0}]},{"name":"simple_javascript","vals":[28.000000000000004,44.0,16.0,14.000000000000002],"n":50,"counts":[14,22,8,7],"lower":false,"group":"单轮 / 并行","empty":[22,1,34,32],"pair":[{"loss":9,"gain":1},{"loss":0,"gain":0},{"loss":15,"gain":1},{"loss":15,"gain":0}]},{"name":"multiple","vals":[82.5,92.5,66.0,66.0],"n":200,"counts":[165,185,132,132],"lower":false,"group":"单轮 / 并行","empty":[19,1,56,57],"pair":[{"loss":28,"gain":8},{"loss":0,"gain":0},{"loss":61,"gain":8},{"loss":62,"gain":9}]},{"name":"parallel","vals":[50.5,86.5,38.0,38.5],"n":200,"counts":[101,173,76,77],"lower":false,"group":"单轮 / 并行","empty":[82,0,106,108],"pair":[{"loss":79,"gain":7},{"loss":0,"gain":0},{"loss":102,"gain":5},{"loss":101,"gain":5}]},{"name":"parallel_multiple","vals":[71.0,86.0,54.0,56.99999999999999],"n":200,"counts":[142,172,108,114],"lower":false,"group":"单轮 / 并行","empty":[29,0,56,53],"pair":[{"loss":37,"gain":7},{"loss":0,"gain":0},{"loss":67,"gain":3},{"loss":63,"gain":5}]},{"name":"irrelevance","vals":[78.75,77.5,93.33333333333333,92.5],"n":240,"counts":[189,186,224,222],"lower":false,"group":"拒调","empty":[189,186,224,222],"pair":[{"loss":31,"gain":34},{"loss":0,"gain":0},{"loss":4,"gain":42},{"loss":4,"gain":40}]},{"name":"live_simple","vals":[65.89147286821705,78.68217054263566,54.65116279069767,55.81395348837209],"n":258,"counts":[170,203,141,144],"lower":false,"group":"Live","empty":[20,6,54,54],"pair":[{"loss":40,"gain":7},{"loss":0,"gain":0},{"loss":66,"gain":4},{"loss":64,"gain":5}]},{"name":"live_multiple","vals":[72.4596391263058,74.07407407407408,67.33143399810066,68.18613485280152],"n":1053,"counts":[763,780,709,718],"lower":false,"group":"Live","empty":[18,8,80,72],"pair":[{"loss":87,"gain":70},{"loss":0,"gain":0},{"loss":143,"gain":72},{"loss":132,"gain":70}]},{"name":"live_parallel","vals":[62.5,68.75,62.5,62.5],"n":16,"counts":[10,11,10,10],"lower":false,"group":"Live","empty":[1,0,2,2],"pair":[{"loss":3,"gain":2},{"loss":0,"gain":0},{"loss":3,"gain":2},{"loss":3,"gain":2}]},{"name":"live_parallel_multiple","vals":[45.83333333333333,83.33333333333334,45.83333333333333,45.83333333333333],"n":24,"counts":[11,20,11,11],"lower":false,"group":"Live","empty":[3,0,4,4],"pair":[{"loss":9,"gain":0},{"loss":0,"gain":0},{"loss":9,"gain":0},{"loss":9,"gain":0}]},{"name":"live_irrelevance","vals":[68.66515837104072,67.76018099547511,84.95475113122171,84.16289592760181],"n":884,"counts":[607,599,751,744],"lower":false,"group":"拒调","empty":[607,599,751,744],"pair":[{"loss":70,"gain":78},{"loss":0,"gain":0},{"loss":14,"gain":166},{"loss":15,"gain":160}]},{"name":"live_relevance","vals":[87.5,81.25,75.0,75.0],"n":16,"counts":[14,13,12,12],"lower":false,"group":"Live","empty":[2,3,4,4],"pair":[{"loss":1,"gain":2},{"loss":0,"gain":0},{"loss":2,"gain":1},{"loss":2,"gain":1}]},{"name":"multi_turn_base","vals":[29.5,27.500000000000004,30.0,31.5],"n":200,"counts":[59,55,60,63],"lower":false,"group":"多轮","empty":[0,0,0,0],"pair":[{"loss":23,"gain":27},{"loss":0,"gain":0},{"loss":25,"gain":30},{"loss":24,"gain":32}]},{"name":"multi_turn_miss_func","vals":[2.5,1.0,1.0,2.0],"n":200,"counts":[5,2,2,4],"lower":false,"group":"多轮","empty":[0,0,0,0],"pair":[{"loss":2,"gain":5},{"loss":0,"gain":0},{"loss":2,"gain":2},{"loss":2,"gain":4}]},{"name":"multi_turn_miss_param","vals":[15.0,17.0,14.499999999999998,15.5],"n":200,"counts":[30,34,29,31],"lower":false,"group":"多轮","empty":[0,0,0,0],"pair":[{"loss":20,"gain":16},{"loss":0,"gain":0},{"loss":26,"gain":21},{"loss":26,"gain":23}]},{"name":"multi_turn_long_context","vals":[28.000000000000004,24.0,28.999999999999996,30.5],"n":200,"counts":[56,48,58,61],"lower":false,"group":"多轮","empty":[0,0,0,0],"pair":[{"loss":18,"gain":26},{"loss":0,"gain":0},{"loss":20,"gain":30},{"loss":19,"gain":32}]}],"api":[{"name":"调用准确率 · 总计","vals":[66.53386454183267,67.72908366533864,64.01062416998671,64.14342629482071],"n":753,"counts":[501,510,482,483],"lower":false,"group":"调用准确率"},{"name":"调用准确率 · L1","vals":[79.17737789203085,79.94858611825192,76.34961439588689,76.60668380462725],"n":389,"counts":[308,311,297,298],"lower":false,"group":"调用准确率"},{"name":"调用准确率 · L2","vals":[47.89915966386555,49.57983193277311,44.537815126050425,44.537815126050425],"n":119,"counts":[57,59,53,53],"lower":false,"group":"调用准确率"},{"name":"调用准确率 · L3","vals":[55.51020408163265,57.14285714285714,53.87755102040816,53.87755102040816],"n":245,"counts":[136,140,132,132],"lower":false,"group":"调用准确率"},{"name":"应调未调率 · 总计","vals":[3.718459495351926,3.851261620185923,7.436918990703852,7.3041168658698545],"n":753,"counts":[28,29,56,55],"lower":true,"group":"应调未调率"},{"name":"应调未调率 · L1","vals":[0.7712082262210797,1.5424164524421593,3.8560411311053984,3.3419023136246784],"n":389,"counts":[3,6,15,13],"lower":true,"group":"应调未调率"},{"name":"应调未调率 · L2","vals":[0.8403361344537815,2.5210084033613445,8.403361344537815,7.563025210084033],"n":119,"counts":[1,3,10,9],"lower":true,"group":"应调未调率"},{"name":"应调未调率 · L3","vals":[9.795918367346939,8.16326530612245,12.653061224489795,13.46938775510204],"n":245,"counts":[24,20,31,33],"lower":true,"group":"应调未调率"},{"name":"回复 ROUGE-L F1 · 总计","vals":[36.59909536000646,35.8190822141894,38.35077356061392,37.90717546697014],"n":528,"counts":null,"lower":false,"group":"回复 ROUGE-L F1"},{"name":"回复 ROUGE-L F1 · L1","vals":[38.49749333333333,38.56178666666666,40.15864,39.746453333333335],"n":375,"counts":null,"lower":false,"group":"回复 ROUGE-L F1"},{"name":"回复 ROUGE-L F1 · L2","vals":[29.23747572815534,22.742233009708738,31.407281553398057,30.995922330097088],"n":103,"counts":null,"lower":false,"group":"回复 ROUGE-L F1"},{"name":"回复 ROUGE-L F1 · L3","vals":[37.526047001668196,42.18710818184011,39.09536880008304,38.349772931204654],"n":50,"counts":null,"lower":false,"group":"回复 ROUGE-L F1"},{"name":"回复标签泄漏率 · 总计","vals":[20.075757575757574,24.242424242424242,15.530303030303031,16.28787878787879],"n":528,"counts":[106,128,82,86],"lower":true,"group":"回复标签泄漏率"},{"name":"回复标签泄漏率 · L1","vals":[18.4,19.733333333333334,14.666666666666666,15.466666666666667],"n":375,"counts":[69,74,55,58],"lower":true,"group":"回复标签泄漏率"},{"name":"回复标签泄漏率 · L2","vals":[32.038834951456316,52.42718446601942,26.21359223300971,27.184466019417474],"n":103,"counts":[33,54,27,28],"lower":true,"group":"回复标签泄漏率"},{"name":"回复标签泄漏率 · L3","vals":[8.0,0.0,0.0,0.0],"n":50,"counts":[4,0,0,0],"lower":true,"group":"回复标签泄漏率"}],"summary":[{"name":"BFCL Core 微平均","vals":[59.265931096599864,65.70592208961945,58.02747129024994,58.545372663814454],"n":4441,"counts":[2632,2918,2577,2600],"lower":false,"group":""},{"name":"BFCL Core 加权","vals":[43.483333333333334,47.016666666666666,42.65,43.43333333333333],"n":4441,"counts":null,"lower":false,"group":""},{"name":"BFCL 应调用 AST（10 类）","vals":[66.8532586965214,79.20831667333067,57.61695321871252,58.496601359456214],"n":2501,"counts":[1672,1981,1441,1463],"lower":false,"group":""},{"name":"BFCL 不适用拒调（2 类）","vals":[70.8185053380783,69.83985765124555,86.74377224199287,85.94306049822063],"n":1124,"counts":[796,785,975,966],"lower":false,"group":""},{"name":"BFCL 多轮（4 类）","vals":[18.75,17.375,18.625,19.875],"n":800,"counts":[150,139,149,159],"lower":false,"group":""},{"name":"调用准确率 · 总计","vals":[66.53386454183267,67.72908366533864,64.01062416998671,64.14342629482071],"n":753,"counts":[501,510,482,483],"lower":false,"group":"调用准确率"},{"name":"应调未调率 · 总计","vals":[3.718459495351926,3.851261620185923,7.436918990703852,7.3041168658698545],"n":753,"counts":[28,29,56,55],"lower":true,"group":"应调未调率"},{"name":"回复 ROUGE-L F1 · 总计","vals":[36.59909536000646,35.8190822141894,38.35077356061392,37.90717546697014],"n":528,"counts":null,"lower":false,"group":"回复 ROUGE-L F1"},{"name":"回复标签泄漏率 · 总计","vals":[20.075757575757574,24.242424242424242,15.530303030303031,16.28787878787879],"n":528,"counts":[106,128,82,86],"lower":true,"group":"回复标签泄漏率"}],"diag":[{"name":"BFCL 应调用 AST 空输出（10 类）","vals":[13.634546181527387,0.7596961215513794,24.430227908836464,23.87045181927229],"n":2501,"counts":[341,19,611,597],"lower":true,"group":""},{"name":"simple_python","vals":[19.75,0.75,33.5,33.0],"n":400,"counts":[79,3,134,132],"lower":true,"group":""},{"name":"simple_java","vals":[68.0,0.0,85.0,83.0],"n":100,"counts":[68,0,85,83],"lower":true,"group":""},{"name":"parallel","vals":[41.0,0.0,53.0,54.0],"n":200,"counts":[82,0,106,108],"lower":true,"group":""}],"validation":[{"step":0,"reward":2.6227149765742452,"call":2.138818398787734,"noncall":0.25132978723404253},{"step":47,"reward":3.2474391033774928,"call":2.1034410706396853,"noncall":2.5531914893617023},{"step":94,"reward":3.313804857354415,"call":2.193849406885297,"noncall":2.5172872340425534},{"step":141,"reward":3.3314041965886165,"call":2.1909027655472917,"noncall":2.591755319148936},{"step":187,"reward":3.3719795158034875,"call":2.1824946463777777,"noncall":2.7194148936170213}],"ops":[{"request_errors":15,"context_rejections":12,"length_stops":85,"latency_p95_seconds":29.165347619000386,"generation_seconds":1110.704392800999,"output_tokens":1310854},{"request_errors":5,"context_rejections":5,"length_stops":54,"latency_p95_seconds":16.083195046000128,"generation_seconds":737.449067972,"output_tokens":831210},{"request_errors":6,"context_rejections":6,"length_stops":78,"latency_p95_seconds":25.23989029800032,"generation_seconds":995.4282983569992,"output_tokens":1374935},{"request_errors":3,"context_rejections":3,"length_stops":86,"latency_p95_seconds":24.593236685999727,"generation_seconds":988.4764265819995,"output_tokens":1369685}]}</script>
+<script>
+'use strict';
+const D=JSON.parse(document.getElementById('report-data').textContent);
+const M=[['Base','#768587','Qwen3.5-2B Base'],['SFT-68','#364ea3','SFT-v3 r64 ckpt-68'],['G-141','#9b4d23','GRPO-v2 ckpt-141'],['G-187','#087d69','GRPO-v2 ckpt-187']];
+const pct=v=>v.toFixed(2)+'%';
+const effective=v=>Math.abs(v)<.005?0:v;
+const sign=v=>{v=effective(v);return (v>0?'+':v<0?'−':'')+Math.abs(v).toFixed(2)+' pp'};
+const contrast=(v,lower)=>effective(v)===0?'flat':((v>0)!==lower?'up':'down');
+const safe=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const byId=id=>document.getElementById(id);
+const mini=(r,max=100)=>r.vals.map((v,i)=>'<div class="bar-row"><span>'+M[i][0]+'</span><div class="track" aria-hidden="true"><div class="fill" style="--c:'+M[i][1]+';width:'+Math.max(0,Math.min(100,v/max*100))+'%"></div></div><b title="'+(r.counts?r.counts[i]+'/'+r.n:'')+'">'+pct(v)+'</b></div>').join('');
+byId('legend').innerHTML=M.map(x=>'<span><i class="key" style="--c:'+x[1]+'"></i>'+x[2]+'</span>').join('');
+const su=D.summary;
+const cards=[[0,'准确率 · 越高越好'],[2,'单步 · 越高越好'],[3,'两类合并 · 越高越好'],[4,'四类合并 · 越高越好']];
+byId('cards').innerHTML=cards.map(([i,n])=>'<figure class="card"><h3>'+su[i].name+'</h3><div class="unit">'+n+' / n='+su[i].n.toLocaleString()+'</div>'+mini(su[i])+'</figure>').join('');
+const idx=[5,8];byId('api-panels').innerHTML=idx.map((i,j)=>'<figure class="panel"><h3>'+su[i].name+'</h3><p>'+(!j?'调用步骤 · 越高越好，分母 753。':'回包后正文 · 越低越好，分母 528。')+'</p>'+mini(su[i],j?30:100)+'<figcaption>'+(j?'条形标尺 0–30%；82/528 是 141 的泄漏次数。':'条形标尺 0–100%；GRPO 两份权重均低于 Base 和 SFT。')+'</figcaption></figure>').join('');
+let ref=0, filter='全部';
+const groups=['全部','单轮 / 并行','Live','拒调','多轮'];
+byId('filters').innerHTML=groups.map((k,i)=>'<button data-filter="'+k+'" aria-pressed="'+(!i)+'">'+k+'</button>').join('');
+function tbl(rows,caption){
+ const score=(r,i)=>{const v=r.vals[i]-r.vals[ref]; const col=contrast(v,r.lower); const n=r.counts?r.counts[i]+'/'+r.n:'';
+ const tint=i===ref?'#f0f3f1':col==='up'?'rgba(29,146,108,'+(.075+Math.min(Math.abs(v),50)*.0026)+')':col==='down'?'rgba(205,88,64,'+(.075+Math.min(Math.abs(v),50)*.0026)+')':'#fff';
+ return '<td style="background:'+tint+'" title="'+pct(r.vals[i])+(n?' · '+n:'')+'"><span class="delta '+(i===ref?'ref':col)+'">'+(i===ref?'基准':sign(v))+'</span><span class="rate">'+pct(r.vals[i])+(n?' · '+n:'')+'</span></td>'};
+ let group='';
+ const body=rows.map(r=>{const g=r.group&&r.group!==group?'<tr class="group-row"><th colspan="6" scope="rowgroup">'+safe(r.group)+'</th></tr>':'';group=r.group;
+ return g+'<tr class="metric-row"><th scope="row" class="metric-name">'+safe(r.name)+'</th><td class="n">'+r.n.toLocaleString()+'</td>'+M.map((_,i)=>score(r,i)).join('')+'</tr>'}).join('');
+ return '<table><caption>'+caption+'</caption><thead><tr><th scope="col">子类 / 指标</th><th scope="col">样本数</th>'+M.map(x=>'<th scope="col" class="model-h" style="--c:'+x[1]+'">'+x[0]+'</th>').join('')+'</tr></thead><tbody>'+body+'</tbody></table>';
+}
+function refresh(){
+ const bl=M[ref][2];
+ byId('relative-note').textContent='当前差值基准：'+bl+'。所有差值表联动；绿色为改善，红色为回退。';
+ const bf=groups.slice(1).flatMap(g=>D.bf.filter(x=>x.group===g&&(filter==='全部'||filter===g)));
+ byId('overview-table').innerHTML=tbl(D.summary.slice(0,5),'BFCL 总览：微平均、Core 加权与主要能力维度 · 相对 '+bl);
+ byId('bf-table').innerHTML=tbl(bf,'BFCL：准确率越高越好 · 相对 '+bl);
+ byId('api-table').innerHTML=tbl(D.api,'API-Bank：每层调用与回复分母不同 · 相对 '+bl);
+ byId('diag-table').innerHTML=tbl(D.diag,'BFCL 应调用题：空输出失败率越低越好 · 相对 '+bl);
+}
+for(const b of byId('baselines').querySelectorAll('button'))b.addEventListener('click',()=>{ref=Number(b.dataset.ref);for(const v of b.parentElement.children)v.setAttribute('aria-pressed',v===b);refresh()});
+for(const b of byId('filters').querySelectorAll('button'))b.addEventListener('click',()=>{filter=b.dataset.filter;for(const v of b.parentElement.children)v.setAttribute('aria-pressed',v===b);refresh()});
+refresh();
+const empty=D.diag[0];
+byId('empty-figure').innerHTML='<svg class="figsvg" viewBox="0 0 480 190" role="img" aria-label="BFCL 10 类空输出失败率，Base 13.63%，SFT 0.76%，141 24.43%，187 23.87%">'+[0,5,10,15,20,25,30].map(x=>'<path d="M'+(74+x*11)+' 17v137" stroke="#dfe8e3"/><text x="'+(74+x*11)+'" y="171" text-anchor="middle" font-size="12" fill="#53696d">'+x+'%</text>').join('')+empty.vals.map((x,i)=>'<text x="2" y="'+(34+i*35)+'" font-size="13" fill="#294147">'+M[i][0]+'</text><rect x="74" y="'+(19+i*35)+'" width="'+(x*11)+'" height="21" rx="3" fill="'+M[i][1]+'"/><text x="'+(80+x*11)+'" y="'+(34+i*35)+'" font-size="13" font-weight="700" fill="#233c42">'+pct(x)+'</text>').join('')+'</svg>';
+const s=D.validation,x=z=>40+z/187*396,y=z=>154-z/4*137;
+byId('reward-figure').innerHTML='<svg class="figsvg" viewBox="0 0 480 190" role="img" aria-label="训练内部验证曲线：总奖励从 2.62 到 3.37，非调用正确分上升，调用正确分接近平稳">'+[0,1,2,3,4].map(v=>'<path d="M40 '+y(v)+'h396" stroke="#dfe8e3"/><text x="17" y="'+(y(v)+4)+'" font-size="12" fill="#53696d">'+v+'</text>').join('')+s.map(r=>'<text x="'+x(r.step)+'" y="171" text-anchor="middle" font-size="12" fill="#53696d">'+r.step+'</text>').join('')+[['reward','#173139'],['call','#364ea3'],['noncall','#087d69']].map(([k,col])=>'<polyline points="'+s.map(r=>x(r.step)+','+y(r[k])).join(' ')+'" fill="none" stroke="'+col+'" stroke-width="2.7"/>'+s.map(r=>'<circle cx="'+x(r.step)+'" cy="'+y(r[k])+'" r="3.6" fill="'+col+'"><title>'+k+' · Step '+r.step+': '+r[k].toFixed(4)+'</title></circle>').join('')).join('')+'</svg>';
+byId('source-links').innerHTML=D.models.map((r,i)=>'<li><b>'+M[i][2]+'</b>：<a href="../../'+r.bf+'">BFCL summary</a> · <a href="../../'+r.api+'">API-Bank summary</a> <span class="rev">rev '+r.revision.replace('sha256:','').slice(0,12)+'</span></li>').join('')+'<li><a href="../../runs/train/grpo-v2-2b-colocate-20261125T115813Z/checkpoint-187/trainer_state.json">GRPO trainer_state.json</a>：内部验证曲线。明细数据已内嵌，离线打开无需联网。</li>';
+</script>
+</body>
+</html>

@@ -18,7 +18,12 @@ dependencies = [
 [project.scripts]
 toolcall-download = "toolcall.models:main"
 toolcall-build-data = "toolcall.data.build_sft_v1:main"
+toolcall-build-data-v1r1 = "toolcall.data.build_sft_v1r1:main"
+toolcall-build-data-v2 = "toolcall.data.build_sft_v2_curated:main"
+toolcall-build-data-v3 = "toolcall.data.build_sft_v3:main"
+toolcall-build-grpo = "toolcall.data.build_grpo:main"
 toolcall-sft = "toolcall.training.sft:main"
+toolcall-grpo = "toolcall.training.grpo:main"
 toolcall-merge-lora = "toolcall.training.merge_lora:main"
 toolcall-log-eval = "toolcall.evaluation.swanlab_log:main"
 toolcall-eval = "toolcall.evaluation.cli:main"

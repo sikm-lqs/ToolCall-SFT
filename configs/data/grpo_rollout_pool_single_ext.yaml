@@ -1,0 +1,44 @@
+version: grpo_rollout_pool_single_ext_v1
+seed: 202
+max_prompt_tokens: 4096
+
+tokenizer:
+  model_id: Qwen/Qwen3.5-2B
+  snapshot: ~/.cache/modelscope/models/Qwen--Qwen3.5-2B/snapshots/master
+
+sources:
+  toolace:
+    raw_path: data/raw/toolace/data/train-00000-of-00001.parquet
+    strip_policy_prompt: true
+    split_no_call_subtypes: true
+    strict_validation: true
+  xlam_60k:
+    raw_path: data/raw/xlam-60k/xlam_function_calling_60k.json
+    strict_validation: true
+
+exclude_val_paths:
+  - data/processed/sft_v3/val.jsonl
+  - data/processed/sft_v1r1_clean/val.jsonl
+
+exclude_pool_paths:
+  - data/processed/grpo_rollout_pool/candidates.jsonl
+
+eval_inspection_dirs:
+  - data/eval-inspection/bfcl-v4
+  - data/eval-inspection/api-bank
+  - data/eval-inspection/tau2-bench
+
+tau2_domains_dir: runs/upstream/tau2-sparse/data/tau2/domains
+
+pool_limits:
+  adv_irr_limit: 0
+  miss_func_limit: 0
+
+output_dir: data/processed/grpo_rollout_pool_single_ext
+split_tag: rollout_single_ext
+sample_id_prefix: grpo_ext
+
+counts:
+  single_turn_call: 2500
+
+single_turn_min_one_tool_ratio: 0.45

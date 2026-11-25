@@ -1,0 +1,90 @@
+version: grpo_v2
+seed: 42
+max_prompt_tokens: 4096
+
+tokenizer:
+  model_id: Qwen/Qwen3.5-2B
+  snapshot: ~/.cache/modelscope/models/Qwen--Qwen3.5-2B/snapshots/master
+
+sources:
+  rollout_runs:
+    - candidates: data/processed/grpo_rollout_pool/candidates.jsonl
+      scored: runs/rollout/grpo-pool-dp2-20261125T103929Z/scored_rollouts.jsonl
+    - candidates: data/processed/grpo_rollout_pool_single_ext/candidates.jsonl
+      scored: runs/rollout/grpo-pool-dp2-20261125T110239Z/scored_rollouts.jsonl
+
+exclude_val_paths:
+  - data/processed/sft_v3/val.jsonl
+  - data/processed/sft_v1r1_clean/val.jsonl
+
+eval_inspection_dirs:
+  - data/eval-inspection/bfcl-v4
+  - data/eval-inspection/api-bank
+  - data/eval-inspection/tau2-bench
+
+tau2_domains_dir: runs/upstream/tau2-sparse/data/tau2/domains
+
+output_dir: data/processed/grpo_v2
+
+# Val (190 total): 150 difficulty-mined sensitivity set + 40 saturated 4/4 stability anchors.
+# For 0/4 quotas, std>0 prompts are prioritized (~75% where available, retaining ~25% std==0 hard cases).
+val:
+  mined:
+    single_turn_call: {mid: 48, zero: 12}
+    multi_turn_continue: {mid: 7, zero: 5}
+    multi_turn_miss_func_recover: {mid: 12, zero: 3}
+    multi_turn_post_tool_response: {mid: 2, zero: 1}
+    parallel_call: {mid: 18, zero: 4}
+    irrelevance_refusal: {mid: 18, zero: 5}
+    missing_param: {mid: 12, zero: 3}
+  anchors_4_4:
+    single_turn_call: 16
+    multi_turn_continue: 3
+    multi_turn_miss_func_recover: 3
+    multi_turn_post_tool_response: 2
+    parallel_call: 6
+    irrelevance_refusal: 6
+    missing_param: 4
+
+# Train (1,500 total): 40% single_turn_call (600), 20% multi_turn (300), 40% parallel/refusal/missing_param (600)
+train:
+  single_turn_call: {mid: 480, zero: 120}
+  multi_turn_continue: {mid: 67, zero: 54}
+  multi_turn_miss_func_recover: {mid: 152, zero: 3}
+  multi_turn_post_tool_response: {mid: 17, zero: 7}
+  parallel_call: {mid: 180, zero: 45}
+  irrelevance_refusal: {mid: 180, zero: 45}
+  missing_param: {mid: 104, zero: 46}
+
+# Target fraction of each bucket's 0/4 quota drawn from reward_std > 0 (remaining ~25% keeps std == 0 hard cases).
+zero_pass_std_gt0_share: 0.75
+single_turn_min_one_tool_ratio: 0.45
+
+# Stratified Smoke subset sampled directly from grpo_v2 train (240) and val (60)
+smoke:
+  output_dir: data/processed/grpo_v2_smoke
+  train:
+    single_turn_call: {mid: 77, zero: 19}
+    multi_turn_continue: {mid: 11, zero: 9}
+    multi_turn_miss_func_recover: {mid: 24, zero: 0}
+    multi_turn_post_tool_response: {mid: 3, zero: 1}
+    parallel_call: {mid: 29, zero: 7}
+    irrelevance_refusal: {mid: 29, zero: 7}
+    missing_param: {mid: 17, zero: 7}
+  val:
+    mined:
+      single_turn_call: {mid: 15, zero: 4}
+      multi_turn_continue: {mid: 2, zero: 2}
+      multi_turn_miss_func_recover: {mid: 4, zero: 1}
+      multi_turn_post_tool_response: {mid: 1, zero: 0}
+      parallel_call: {mid: 6, zero: 1}
+      irrelevance_refusal: {mid: 6, zero: 1}
+      missing_param: {mid: 4, zero: 1}
+    anchors_4_4:
+      single_turn_call: 4
+      multi_turn_continue: 1
+      multi_turn_miss_func_recover: 1
+      multi_turn_post_tool_response: 1
+      parallel_call: 2
+      irrelevance_refusal: 2
+      missing_param: 1

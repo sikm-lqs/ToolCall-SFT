@@ -1,0 +1,47 @@
+version: grpo_rollout_pool_v1
+seed: 101
+max_prompt_tokens: 4096
+
+tokenizer:
+  model_id: Qwen/Qwen3.5-2B
+  snapshot: ~/.cache/modelscope/models/Qwen--Qwen3.5-2B/snapshots/master
+
+sources:
+  toolace:
+    raw_path: data/raw/toolace/data/train-00000-of-00001.parquet
+    strip_policy_prompt: true
+    split_no_call_subtypes: true
+    strict_validation: true
+  xlam_60k:
+    raw_path: data/raw/xlam-60k/xlam_function_calling_60k.json
+    strict_validation: true
+
+exclude_val_paths:
+  - data/processed/sft_v3/val.jsonl
+  - data/processed/sft_v1r1_clean/val.jsonl
+
+eval_inspection_dirs:
+  - data/eval-inspection/bfcl-v4
+  - data/eval-inspection/api-bank
+  - data/eval-inspection/tau2-bench
+
+tau2_domains_dir: runs/upstream/tau2-sparse/data/tau2/domains
+
+pool_limits:
+  adv_irr_limit: 800
+  miss_func_limit: 2000
+
+output_dir: data/processed/grpo_rollout_pool
+
+# Order matters: scarce natural buckets first so shared group_keys prioritize rare trajectories.
+# null means take all unique non-overlapping candidates in that bucket.
+counts:
+  multi_turn_continue: null
+  multi_turn_post_tool_response: null
+  missing_param: null
+  irrelevance_refusal: null
+  multi_turn_miss_func_recover: 800
+  parallel_call: 2000
+  single_turn_call: 2500
+
+single_turn_min_one_tool_ratio: 0.45

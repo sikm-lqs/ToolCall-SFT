@@ -172,7 +172,35 @@ def normalize_toolace_parameters(raw_params: Any) -> dict[str, Any]:
     return norm
 
 
-def validate_record(record: dict[str, Any]) -> tuple[bool, str]:
+def _matches_schema_type(value: Any, schema_type: Any) -> bool:
+    if isinstance(schema_type, list):
+        return any(_matches_schema_type(value, item) for item in schema_type)
+    if not isinstance(schema_type, str):
+        return True
+    t = schema_type.strip().lower()
+    if t == "integer":
+        return isinstance(value, int) and not isinstance(value, bool)
+    if t == "number":
+        return isinstance(value, (int, float)) and not isinstance(value, bool)
+    if t == "boolean":
+        return isinstance(value, bool)
+    if t == "array":
+        return isinstance(value, list)
+    if t == "object":
+        return isinstance(value, dict)
+    if t == "string":
+        return isinstance(value, str)
+    if t == "null":
+        return value is None
+    return True
+
+
+def validate_record(
+    record: dict[str, Any],
+    *,
+    strict_arg_types: bool = False,
+    reject_duplicate_tools: bool = False,
+) -> tuple[bool, str]:
     """Verify structural, schema, and turn-pairing invariants for a normalized OpenAI sample."""
     tools = record.get("tools")
     messages = record.get("messages")
@@ -186,6 +214,8 @@ def validate_record(record: dict[str, Any]) -> tuple[bool, str]:
         fn = tool.get("function")
         if not isinstance(fn, dict) or not isinstance(fn.get("name"), str) or not fn["name"]:
             return False, "invalid_tool_function"
+        if reject_duplicate_tools and fn["name"] in tool_map:
+            return False, "duplicate_tool_name"
         params = fn.get("parameters")
         if not isinstance(params, dict) or params.get("type") != "object":
             return False, "invalid_tool_parameters"
@@ -227,6 +257,13 @@ def validate_record(record: dict[str, Any]) -> tuple[bool, str]:
                     for req in required:
                         if req not in args:
                             return False, "missing_required_arg"
+                    if strict_arg_types:
+                        props = tool_map[name]["parameters"].get("properties") or {}
+                        for arg_name, arg_val in args.items():
+                            prop_schema = props.get(arg_name)
+                            if isinstance(prop_schema, dict) and "type" in prop_schema:
+                                if not _matches_schema_type(arg_val, prop_schema["type"]):
+                                    return False, f"arg_type_mismatch:{prop_schema['type']}"
             elif not content.strip():
                 return False, "empty_assistant_turn"
         elif role == "tool":

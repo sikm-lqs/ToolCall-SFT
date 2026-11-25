@@ -14,11 +14,14 @@
 | 05 | [SFT 训练管线设计](05-sft训练管线.md) | 异构数据标准化、Qwen3.5 模板与 Loss Mask 校验、配比与训练超参 |
 | 06 | [`SFT-v1` 数据集与实验方案](06-sft-v1实验方案.md) | `SFT-v1`（`xlam-60k + toolace`）本地构建实录、4 大深坑排查、Loss Mask 校验与实验协议 |
 | 07 | [`SFT-v1` 服务器执行与验收手册](07-sft-v1服务器执行手册.md) | 远程 A100 执行步骤：数据 SHA 核验、Pre-flight、E0/E1/E2 训练、8 类快筛及 `BFCL core` + `API-Bank full` 验收 |
+| 08 | [Stage 2 GRPO 训练管线、Reward 与数据集设计](08-grpo方案与数据设计.md) | 单卡 vs 双卡算力权衡、Reward 公式深化与排雷、1,500 条高质量可控 GRPO 数据配比及待拍板问题 |
+| 09 | [GRPO 难度筛选与 Rollout 数据挖掘方案](09-grpo难度筛选与rollout数据挖掘方案.md) | 双卡 DP=2 Rollout 采样挖掘、`reward_std > 0` 难度分层及 `grpo_v2` 双层验证集构建设计 |
 
 ## 节点状态与运维快照
 
 | 日期 | 文档 | 说明 |
 | --- | --- | --- |
+| 2026-11-25 | [GRPO-v2 阶段总结与当前状态](status/2026-11-25-grpo-v2-status.md) | `SFT-v3 ckpt-68` → `GRPO-v2` 全量训练与三权重（`ckpt-47/141/187`）全量评测汇总、过度拒调诊断与待选下一步 |
 | 2026-11-24 | [本地与 GPU 服务器现状盘点](status/2026-11-24-local-and-server-status.md) | 本地与 `rl-server` 的 Git/数据/环境/实验进度对照、`E0` 训练与 vLLM 诊断及待办 |
 
 回到[项目首页](../README.md) · 查看[报告索引](../reports/README.md)。
